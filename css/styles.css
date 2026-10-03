@@ -62,3 +62,18 @@
 .day-buttons button:hover:not(:disabled){background:#e9ece5}
 .day-buttons button:disabled{opacity:.4;cursor:default}
 @media(max-width:680px){.results-head h2{line-height:1.4}.day-navigation{align-items:flex-start;flex-direction:column}}
+
+#authModal{width:min(460px,calc(100vw - 32px));max-height:90vh;overflow:auto}
+.auth-tabs{display:flex;gap:4px;padding:4px;background:#eeefeb;border-radius:9px;margin:22px 0}
+.auth-tabs button{flex:1;border:0;background:transparent;padding:11px 8px;border-radius:6px;font-size:13px;color:#777e70}
+.auth-tabs button[aria-selected="true"]{background:white;color:#30362a;box-shadow:0 2px 5px #00000008}
+.auth-form{display:flex;flex-direction:column;gap:9px}
+.auth-form label{font-size:12px;font-weight:500;margin-top:6px}
+.auth-form input,.auth-form select{width:100%;border:1px solid #d9ddd3;border-radius:7px;padding:12px;background:#fff;color:var(--ink)}
+.auth-form .primary{margin-top:14px}
+#authModal .auth-note{font-size:11px;line-height:1.6;margin-top:20px}
+#authModal .auth-status{font-size:12px;background:#eef0e9;border-radius:7px;padding:12px}
+.auth-status:empty{display:none}
+@media(max-width:680px){header{flex-wrap:wrap;height:auto;min-height:73px;gap:8px;padding:14px 0}header .login-button{display:block;padding:9px 12px}nav{gap:12px;margin-left:auto}nav a{padding:9px 0}.logo{font-size:24px}}
+
+.my-resume-card{display:flex;flex-direction:column;gap:11px;padding:19px;margin-bottom:25px;background:linear-gradient(130deg,#fff,#e9ece5);border:1px solid #d7ddd0;border-radius:12px;color:#424b39}.my-resume-card[hidden]{display:none}.my-resume-label{display:flex;justify-content:space-between;font-size:13px;font-weight:600}.my-resume-card strong{font-size:16px;font-weight:500;line-height:1.4}.my-resume-card>span:not(.my-resume-label){font-size:11px;color:#626d56}.my-resume-card small{font-size:10px;color:#88917e}.my-resume-card:hover{border-color:#9da990}

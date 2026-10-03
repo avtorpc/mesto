@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ru"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Резюме — место</title><link rel="stylesheet" href="../css/styles.css"><link rel="stylesheet" href="../css/resume.css"></head>
+<body class="resume-page" data-view="owner"><div class="wrap"><header><a class="logo" href="index.html" aria-label="место — главная"><span class="mark"></span>место</a><nav><a href="index.html#vacancies" id="allNav">Вакансии</a><a href="index.html#workers" class="active" id="workersNav">Работники</a></nav><span class="prototype">ПРОТОТИП</span><button type="button" class="nav-btn login-button" id="openAuth" aria-haspopup="dialog">Войти</button></header>
+<main id="resumeRoot">
+<div class="owner-banner"><div><span class="eyebrow">Личный кабинет · деморежим</span><h2>Моё резюме</h2><p>Ваш опыт, навыки и следующий шаг в карьере.</p></div><a id="ownerPreview" class="outline-button" href="resume.html?id=101&amp;preview=1">Посмотреть глазами работодателя ↗</a></div>
+<div id="ownerNotice" class="owner-notice" role="status"></div>
+<div class="resume-breadcrumb"><a href="index.html#vacancies">← К поиску работы</a><span id="resumeDate"></span></div>
+<section class="profile-hero"><div class="profile-topline"><span class="availability"><span class="dot"></span>Открыт к предложениям</span><span class="resume-id" id="resumeId"></span></div><div class="profile-identity"><div class="profile-avatar" id="avatar" aria-hidden="true"></div><div><p class="profile-name" id="personName"></p><h1 id="personTitle"></h1><div class="profile-meta" id="personMeta"></div></div></div><p class="profile-intro" id="personIntro"></p></section>
+<div class="resume-layout"><div class="resume-body">
+<nav class="resume-sections" aria-label="Разделы резюме"><a href="#about">О себе</a><a href="#experience">Опыт</a><a href="#skills">Навыки</a><a href="#education">Образование</a><a href="#projects">Проекты</a></nav>
+<section class="resume-section" id="about" tabindex="-1"><div class="section-index">01</div><div><h2>О себе</h2><p id="aboutText"></p><div class="fact-grid" id="personalFacts"></div></div></section>
+<section class="resume-section" id="experience" tabindex="-1"><div class="section-index">02</div><div><h2>Профессиональный опыт <span id="experienceTotal"></span></h2><p id="experienceSummary" class="experience-summary"></p><h3 class="experience-results-title">Что умею и каких результатов достигаю</h3><ul id="experienceHighlights" class="experience-highlights"></ul><details class="work-history"><summary>Места работы <span id="workplaceCount"></span></summary><p class="work-history-caption">Компании и периоды работы — подробнее о профессиональном пути.</p><div id="experienceList" class="timeline"></div></details></div></section>
+<section class="resume-section" id="skills" tabindex="-1"><div class="section-index">03</div><div><h2>Ключевые навыки</h2><div id="profileSkills" class="profile-tags"></div><h3>Квалификация и качества</h3><div id="profileQualities" class="profile-tags secondary"></div></div></section>
+<section class="resume-section" id="education" tabindex="-1"><div class="section-index">04</div><div><h2>Образование</h2><div id="educationList"></div><h3>Языки</h3><p id="languages"></p></div></section>
+<section class="resume-section" id="projects" tabindex="-1"><div class="section-index">05</div><div><h2>Избранный проект</h2><article class="project-card"><span class="project-type">ОПЫТ В ДЕЛЕ</span><h3 id="projectTitle"></h3><p id="projectText"></p></article></div></section>
+<p class="resume-disclaimer">Демонстрационное резюме. Все персональные данные, места работы и проекты вымышлены.</p>
+</div><aside class="resume-sidebar"><section class="contact-card"><p class="small-label">Ожидаемый доход</p><div class="profile-salary" id="profileSalary"></div><p class="salary-caption">на руки в месяц</p><dl id="workConditions"></dl><button type="button" class="primary" id="inviteCandidate">Пригласить на собеседование ↗</button><button type="button" class="outline-button" id="saveCandidate" aria-pressed="false">Сохранить резюме</button><p id="saveStatus" role="status" class="small-label"></p><div class="owner-publishing"><h3>Видимость резюме</h3><p id="visibilityText"></p><button type="button" class="outline-button" id="toggleVisibility"></button><p class="small-label">Демонстрация: изменение видимости сохраняется только в этом браузере и не публикует резюме.</p></div></section><button type="button" class="print-button" id="printResume">↓ Сохранить в PDF / распечатать</button><p class="sidebar-caption">Расскажите о себе так,<br>чтобы вас заметили.</p></aside></div>
+</main><footer class="footer"><span><b>место</b> · У каждого есть своё.</span><span>Демонстрационное резюме · 2026</span></footer></div>
+<dialog id="editResumeModal" aria-labelledby="editResumeTitle"><button type="button" class="close" id="closeEdit" aria-label="Закрыть редактор">×</button><div class="eyebrow">Моё резюме</div><h2 id="editResumeTitle">Редактировать резюме</h2><form id="editResumeForm" class="auth-form"><div id="editFields" class="auth-form"></div><p class="small-label">Изменения сохраняются локально. Используйте демонстрационные данные.</p><p id="editStatus" role="status"></p><div class="filter-actions"><button type="button" class="load" id="cancelEdit">Отмена</button><button type="submit" class="primary">Сохранить изменения</button></div></form></dialog>
+<dialog id="inviteModal" aria-labelledby="inviteTitle"><button type="button" class="close" id="closeInvite" aria-label="Закрыть">×</button><div class="eyebrow">Знакомство с кандидатом</div><h2 id="inviteTitle">Пригласить на собеседование</h2><form id="inviteForm" class="auth-form"><label for="inviteRole">Ваша вакансия</label><input id="inviteRole" required placeholder="Название должности"><label for="inviteMessage">Сообщение кандидату</label><textarea id="inviteMessage" rows="5" required></textarea><p class="auth-note">Это демонстрация. Сообщение не отправляется кандидату и не сохраняется.</p><button class="primary" type="submit">Проверить приглашение</button><p id="inviteStatus" role="status"></p></form></dialog>
+<dialog id="authModal" aria-labelledby="authTitle">
+<button type="button" class="close" id="closeAuth" aria-label="Закрыть окно входа">×</button>
+<div class="eyebrow">Личный кабинет</div><h2 id="authTitle">Рады вас видеть</h2>
+<div class="auth-tabs" role="tablist" aria-label="Вход или регистрация">
+<button type="button" role="tab" id="loginTab" aria-controls="loginPanel" aria-selected="true">Войти</button>
+<button type="button" role="tab" id="registerTab" aria-controls="registerPanel" aria-selected="false" tabindex="-1">Зарегистрироваться</button>
+</div>
+<div id="loginPanel" role="tabpanel" aria-labelledby="loginTab">
+<form id="loginForm" class="auth-form">
+<label for="loginEmail">Электронная почта</label><input id="loginEmail" type="email" autocomplete="username" placeholder="name@example.com" required>
+<label for="loginPassword">Пароль</label><input id="loginPassword" type="password" autocomplete="current-password" placeholder="Введите пароль" required>
+<button type="submit" class="primary">Войти</button>
+</form></div>
+<div id="registerPanel" role="tabpanel" aria-labelledby="registerTab" hidden>
+<form id="registerForm" class="auth-form">
+<label for="registerName">Ваше имя</label><input id="registerName" type="text" autocomplete="name" placeholder="Как к вам обращаться" required maxlength="100">
+<label for="registerRole">Я хочу</label><select id="registerRole"><option value="applicant">Найти работу</option><option value="employer">Найти работников</option></select>
+<label for="registerEmail">Электронная почта</label><input id="registerEmail" type="email" autocomplete="email" placeholder="name@example.com" required>
+<label for="registerPassword">Пароль</label><input id="registerPassword" type="password" autocomplete="new-password" placeholder="Не менее 8 символов" minlength="8" required>
+<button type="submit" class="primary">Зарегистрироваться</button>
+</form></div>
+<p class="auth-note">Демонстрация: вход и регистрация пока не подключены. Данные не отправляются и не сохраняются.</p>
+<p id="authStatus" class="auth-status" role="status" aria-live="polite"></p>
+</dialog>
+<script src="../js/data.js" defer></script><script src="../js/resume.js" defer></script><script src="../js/owner.js" defer></script><script src="../js/auth.js" defer></script></body></html>

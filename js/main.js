@@ -1,32 +1,8 @@
-// Даты демонстрационных вакансий распределены относительно дня открытия прототипа.
-function dateDaysAgo(offset, now = new Date()) {
-  const parts = new Intl.DateTimeFormat('en-CA', {timeZone:'Europe/Moscow', year:'numeric', month:'2-digit', day:'2-digit'}).formatToParts(now);
-  const part = type => parts.find(item => item.type === type).value;
-  const date = new Date(Date.UTC(Number(part('year')), Number(part('month')) - 1, Number(part('day'))));
-  date.setUTCDate(date.getUTCDate() - offset);
-  return date.toISOString().slice(0,10);
-}
-function displayDate(date) {
-  return new Intl.DateTimeFormat('ru-RU', {day:'numeric', month:'long', year:'numeric', timeZone:'UTC'}).format(new Date(date+'T12:00:00Z'));
-}
 let dayOffset = 0;
-const jobs=[
-{id:1,publishedAt:dateDaysAgo(0),requirements:["Портфолио", "Работа в команде", "Самостоятельность"],specialty:'Продуктовый дизайнер',skills:["Figma", "UI/UX", "Прототипирование"],company:'Контур',logo:'к',title:'Продуктовый дизайнер',salary:180000,range:'180 000 – 250 000 ₽',city:'Москва',format:'Удалённо',experience:'3–6 лет',text:'Создавайте понятные сервисы для бизнеса. От первых гипотез до интерфейсов, которыми пользуются каждый день.',tasks:'Проектировать пользовательские сценарии, развивать дизайн-систему и проверять решения вместе с командой исследований.'},
-{id:2,publishedAt:dateDaysAgo(0),requirements:["Коммерческий опыт", "Работа в команде", "Английский B1"],specialty:'Frontend-разработчик',skills:["JavaScript", "TypeScript", "React"],company:'Точка',logo:'т',title:'Frontend-разработчик',salary:200000,range:'200 000 – 300 000 ₽',city:'Санкт-Петербург',format:'Гибрид',experience:'3–6 лет',text:'Развивайте цифровые продукты для предпринимателей в команде, где ценят инициативу и качество кода.',tasks:'Разрабатывать интерфейсы на React и TypeScript, участвовать в обсуждении архитектуры и улучшать производительность продукта.'},
-{id:3,publishedAt:dateDaysAgo(0),requirements:["Аналитическое мышление", "Коммуникабельность", "Самостоятельность"],specialty:'Менеджер продукта',skills:["SQL", "Аналитика", "Исследования"],company:'Самокат',logo:'↗',title:'Менеджер продукта',salary:170000,range:'170 000 – 230 000 ₽',city:'Москва',format:'Гибрид',experience:'1–3 года',text:'Помогайте людям экономить время. Ищем человека, который умеет превращать данные и идеи в полезные продукты.',tasks:'Изучать потребности пользователей, формировать продуктовые гипотезы, вести бэклог и оценивать результаты экспериментов.'},
-{id:4,publishedAt:dateDaysAgo(1),requirements:["Портфолио", "Внимание к деталям", "Соблюдение сроков"],specialty:'Графический дизайнер',skills:["Figma", "Photoshop", "Иллюстрация"],company:'Студия Смена',logo:'с.',title:'Графический дизайнер',salary:90000,range:'90 000 – 130 000 ₽',city:'Казань',format:'В офисе',experience:'1–3 года',text:'Разрабатывайте визуальный язык брендов: айдентику, коммуникации и проекты на стыке дизайна и культуры.',tasks:'Создавать концепции айдентики, готовить макеты для цифровых каналов и работать с арт-директором.'},
-{id:5,publishedAt:dateDaysAgo(1),requirements:["Аналитическое мышление", "Внимание к деталям", "Готовность учиться"],specialty:'Аналитик',skills:["SQL", "Excel", "Аналитика"],company:'Практика',logo:'п',title:'Младший аналитик',salary:70000,range:'70 000 – 100 000 ₽',city:'Москва',format:'Удалённо',experience:'Без опыта',text:'Начните карьеру в аналитике с поддержкой наставника и реальными задачами продуктовой команды.',tasks:'Готовить отчёты, анализировать поведение пользователей и помогать команде принимать решения на основе данных.'},
-{id:6,publishedAt:dateDaysAgo(2),requirements:["Коммерческий опыт", "Работа в команде", "Опыт наставничества"],specialty:'Backend-разработчик',skills:["SQL", "Python", "Docker"],company:'Север',logo:'с',title:'Ведущий backend-разработчик',salary:300000,range:'300 000 – 400 000 ₽',city:'Санкт-Петербург',format:'Удалённо',experience:'Более 6 лет',text:'Развивайте платформу для команд и стройте надёжные сервисы с высокой нагрузкой.',tasks:'Проектировать сервисы, проводить ревью и помогать команде развивать инженерные практики.'}
-];
-const $=s=>document.querySelector(s);let saved=new Set();try{saved=new Set(JSON.parse(localStorage.getItem('mesto-saved')||'[]'))}catch{}let onlySaved=false,limit=3;
+let currentView="jobs";
+const currentRecords=()=>currentView==="workers"?resumes:jobs;
+const $=s=>document.querySelector(s);let saved=new Set();try{saved=new Set(JSON.parse(localStorage.getItem('mesto-saved')||'[]'))}catch{}let limit=3;
 const bookmark='<svg width="19" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M6 3h12v18l-6-4-6 4Z"/></svg>';
-// Специальности и популярность навыков берём из требований работодателей.
-[...new Set(jobs.map(job => job.specialty))].sort((a, b) => a.localeCompare(b, 'ru')).forEach(specialty => {
-  const option = document.createElement('option');
-  option.value = specialty;
-  option.textContent = specialty;
-  $('#specialtySuggestions').append(option);
-});
 function publicationLabel(job) {
   if (job.publishedAt === dateDaysAgo(0)) return 'Сегодня';
   if (job.publishedAt === dateDaysAgo(1)) return 'Вчера';
@@ -40,23 +16,57 @@ function changeDay(offset) {
 $('#olderDay').onclick = () => changeDay(dayOffset + 1);
 $('#newerDay').onclick = () => changeDay(dayOffset - 1);
 $('#todayDay').onclick = () => changeDay(0);
-// Частота специальностей по всей демонстрационной базе, а не статистика рынка.
-const specialtyCounts = new Map();
-jobs.forEach(job => specialtyCounts.set(job.specialty, (specialtyCounts.get(job.specialty) || 0) + 1));
-[...specialtyCounts].sort((a,b)=>b[1]-a[1] || a[0].localeCompare(b[0],'ru')).slice(0,3).forEach(([specialty,count])=>{
-  const button = document.createElement('button');
-  button.type = 'button';
-  button.textContent = specialty;
-  button.title = 'Вакансий в прототипе: ' + count;
-  button.onclick = () => {
-    $('#specialty').value = specialty;
-    $('#query').value = '';
-    buildSkillsFilter();
-    limit = 3;
-    render();
-  };
-  $('#popularSpecialties').append(button);
-});
+function buildCatalogs() {
+  const data = currentRecords();
+  $('#specialtySuggestions').replaceChildren();
+  const counts = new Map();
+  data.forEach(item=>counts.set(item.specialty,(counts.get(item.specialty)||0)+1));
+  [...counts.keys()].sort((a,b)=>a.localeCompare(b,'ru')).forEach(value=>{
+    const option=document.createElement('option');option.value=value;$('#specialtySuggestions').append(option);
+  });
+  $('#popularSpecialties').replaceChildren();
+  const caption=document.createElement('span');caption.textContent=currentView==='workers'?'Популярные специальности:':'Самые востребованные:';$('#popularSpecialties').append(caption);
+  [...counts].sort((a,b)=>b[1]-a[1]||a[0].localeCompare(b[0],'ru')).slice(0,3).forEach(([value,count])=>{
+    const button=document.createElement('button');button.type='button';button.textContent=value;button.title='В подборке: '+count;
+    button.onclick=()=>{$('#specialty').value=value;$('#query').value='';buildSkillsFilter();limit=3;render()};$('#popularSpecialties').append(button);
+  });
+  [['city','cityOptions'],['format','formatOptions'],['experience','experienceOptions']].forEach(([field,id])=>{
+    const list=$('#'+id);list.replaceChildren();
+    [...new Set(data.map(item=>item[field]))].sort((a,b)=>a.localeCompare(b,'ru')).forEach(value=>{
+      const label=document.createElement('label');label.className='check';
+      const input=document.createElement('input');input.type='checkbox';input.name=field;input.value=value;
+      label.append(input,document.createTextNode(value));list.append(label);
+    });
+  });
+}
+function switchView(view) {
+  currentView=view;dayOffset=0;limit=3;
+  const workers=view==='workers';
+  $('#myResume').hidden=workers;
+  let myTitle=resumes.find(person=>person.id===101).title;
+  try{const draft=JSON.parse(localStorage.getItem('mesto-resume-draft-101'));if(draft&&draft.candidate&&typeof draft.candidate.title==='string')myTitle=draft.candidate.title}catch{}
+  $('#myResumeTitle').textContent=myTitle;
+  document.querySelectorAll('input[type="checkbox"]').forEach(input=>input.checked=false);
+  ['#query','#specialty','#salary'].forEach(id=>$(id).value='');
+  $('#sort').value='new';$('#cityPicker').open=false;
+  $('.hero h1').innerHTML=workers?'Найдите людей.<br><span>Для вашей команды.</span>':'Найдите работу.<br><span>И своё место.</span>';
+  $('.hero .eyebrow').textContent=workers?'Команда начинается с человека':'Новый этап начинается здесь';
+  $('.intro').textContent=workers?'Выбирайте специалистов по опыту, навыкам и ожиданиям. Найдите человека, с которым получится больше.':'Хорошая работа — та, что подходит именно вам. Выбирайте команду, задачи и свой ритм.';
+  $('#query').placeholder=workers?'Должность, имя или ключевое слово':'Должность, компания или ключевое слово';
+  $('#query').setAttribute('aria-label',workers?'Поиск резюме':'Поиск вакансий');
+  $('#specialty').placeholder=workers?'Введите специальность кандидата':'Введите название вакансии';
+  $('#searchForm .primary').textContent=workers?'Найти работников ↗':'Найти работу ↗';
+  $('#salaryTitle').textContent=workers?'Ожидаемый доход':'Уровень дохода';
+  $('#salary').placeholder=workers?'До, ₽ в месяц':'От, ₽ в месяц';
+  $('#salary').setAttribute('aria-label',workers?'Максимальный ожидаемый доход кандидата':'Минимальная зарплата');
+  $('#requirementsTitle').textContent=workers?'Квалификация и качества':'Основные требования';
+  $('.skills-help').textContent=workers?'Покажем резюме хотя бы с одним выбранным навыком.':'Покажем вакансии хотя бы с одним выбранным навыком.';
+  $('.requirements-filter .skills-help').textContent=workers?'Покажем резюме хотя бы с одним выбранным качеством.':'Покажем вакансии хотя бы с одним выбранным требованием.';
+  $('#load').textContent=workers?'Показать ещё резюме ↓':'Показать ещё вакансии ↓';
+  $('.footer span:last-child').textContent=workers?'Демонстрационные резюме · HTML-прототип, 2026':'Демонстрационные вакансии · HTML-прототип, 2026';
+  document.title=workers?'место — поиск работников':'место — работа, которая вам подходит';
+  buildCatalogs();buildSkillsFilter();render();
+}
 
 function normalizeSearch(value) {
   return value.toLowerCase().replace(/ё/g, 'е').trim();
@@ -72,7 +82,7 @@ function matchesSpecialty(job, specialty) {
 }
 function rankedSkills(specialty, field = 'skills') {
   const counts = new Map();
-  jobs.filter(job => matchesSpecialty(job, specialty) && matchesQuery(job)).forEach(job => {
+  currentRecords().filter(job => matchesSpecialty(job, specialty) && matchesQuery(job)).forEach(job => {
     new Set((job[field] || []).map(skill => skill.trim()).filter(Boolean)).forEach(skill => {
       counts.set(skill, (counts.get(skill) || 0) + 1);
     });
@@ -82,9 +92,9 @@ function rankedSkills(specialty, field = 'skills') {
 function buildSkillsFilter() {
   const specialty = $('#specialty').value.trim();
   const hasQuery = specialty || $('#query').value.trim();
-  $('#skillsTitle').textContent = hasQuery ? 'Навыки по вакансии' : 'Востребованные навыки';
-  $('#skillsContext').textContent = hasQuery ? 'Из подходящих вакансий · сначала популярные' : 'Чаще всего встречаются в вакансиях';
-  $('#requirementsContext').textContent = hasQuery ? 'Из подходящих вакансий · сначала популярные' : 'Чаще всего встречаются в вакансиях';
+  $('#skillsTitle').textContent = currentView==='workers'?'Навыки кандидатов':hasQuery ? 'Навыки по вакансии' : 'Востребованные навыки';
+  $('#skillsContext').textContent = currentView==='workers'?'Из резюме кандидатов · сначала популярные':hasQuery ? 'Из подходящих вакансий · сначала популярные' : 'Чаще всего встречаются в вакансиях';
+  $('#requirementsContext').textContent = currentView==='workers'?'Из резюме кандидатов · сначала популярные':hasQuery ? 'Из подходящих вакансий · сначала популярные' : 'Чаще всего встречаются в вакансиях';
   buildOptionList('#skillsList', 'skill', rankedSkills(specialty));
   buildOptionList('#requirementsList', 'requirement', rankedSkills(specialty, 'requirements'));
 }
@@ -95,7 +105,7 @@ function buildOptionList(selector, fieldName, options) {
   if (!options.length) {
     const empty = document.createElement('p');
     empty.className = 'skills-hint';
-    empty.textContent = 'Нет подходящих вакансий. Попробуйте другое название.';
+    empty.textContent = 'Нет подходящих '+(currentView==='workers'?'резюме':'вакансий')+'. Попробуйте другое название.';
     list.append(empty);
   }
   options.forEach(([value, count]) => {
@@ -110,7 +120,7 @@ function buildOptionList(selector, fieldName, options) {
     name.textContent = value;
     const total = document.createElement('small');
     total.textContent = count;
-    total.title = 'Количество вакансий';
+    total.title = currentView==='workers'?'Количество резюме':'Количество вакансий';
     label.append(input, name, total);
     list.append(label);
   });
@@ -127,11 +137,11 @@ function activeFilterGroups() {
     { key: 'specialty', label: 'Специальность', values: [$('#specialty').value.trim()].filter(Boolean) },
     { key: 'city', label: 'Города', values: checkedValues('city') },
     { key: 'format', label: 'Формат работы', values: checkedValues('format') },
-    { key: 'salary', label: 'Уровень дохода', values: salary > 0 ? ['От ' + salary.toLocaleString('ru-RU') + ' ₽ в месяц'] : [] },
+    { key: 'salary', label: currentView==='workers'?'Ожидаемый доход':'Уровень дохода', values: salary > 0 ? [(currentView==='workers'?'До ':'От ') + salary.toLocaleString('ru-RU') + ' ₽ в месяц'] : [] },
     { key: 'experience', label: 'Опыт работы', values: checkedValues('experience') },
     { key: 'skill', label: 'Навыки', values: checkedValues('skill') },
-    { key: 'requirement', label: 'Основные требования', values: checkedValues('requirement') },
-    { key: 'saved', label: 'Раздел', values: onlySaved ? ['Только избранные'] : [] }
+    { key: 'requirement', label: currentView==='workers'?'Квалификация и качества':'Основные требования', values: checkedValues('requirement') },
+
   ].filter(group => group.values.length);
 }
 function updateFilterSummary() {
@@ -193,8 +203,7 @@ function removeFilter(key, value) {
   if (['query', 'specialty', 'salary'].includes(key)) {
     $('#' + key).value = '';
     if (key !== 'salary') buildSkillsFilter();
-  } else if (key === 'saved') {
-    onlySaved = false;
+
   } else {
     document.querySelectorAll(`[name="${key}"]`).forEach(input => {
       if (input.value === value) input.checked = false;
@@ -204,19 +213,19 @@ function removeFilter(key, value) {
   render();
 }
 // Демонстрационное сохранение. Реальный профиль потребует авторизации и API.
-const filterStorageKey = 'mesto-demo-filter-preset-v1';
+const filterStorageKey = () => currentView === 'workers' ? 'mesto-workers-filter-preset-v1' : 'mesto-demo-filter-preset-v1';
 function readSavedFilters() {
   try {
-    const preset = JSON.parse(localStorage.getItem(filterStorageKey));
+    const preset = JSON.parse(localStorage.getItem(filterStorageKey()));
     return preset && preset.version === 1 && preset.fields && preset.checks ? preset : null;
   } catch { return null; }
 }
 function saveFilterPreset() {
-  const preset = {version: 1, fields: {}, checks: {}, onlySaved};
+  const preset = {version: 1, fields: {}, checks: {}, view: currentView};
   ['query', 'specialty', 'salary'].forEach(key => preset.fields[key] = $('#' + key).value);
   ['city', 'format', 'experience', 'skill', 'requirement'].forEach(key => preset.checks[key] = checkedValues(key));
   try {
-    localStorage.setItem(filterStorageKey, JSON.stringify(preset));
+    localStorage.setItem(filterStorageKey(), JSON.stringify(preset));
     $('#restoreFilters').hidden = false;
     $('#filterSaveStatus').textContent = 'Фильтры сохранены в этом браузере. Их можно восстановить после перезагрузки страницы.';
   } catch {
@@ -237,7 +246,6 @@ function restoreFilterPreset() {
     const values = Array.isArray(preset.checks[key]) ? preset.checks[key] : [];
     document.querySelectorAll(`[name="${key}"]`).forEach(input => input.checked = values.includes(input.value));
   });
-  onlySaved = preset.onlySaved === true;
   limit = 3;
   render();
   $('#filterSaveStatus').textContent = 'Сохранённые фильтры применены.';
@@ -248,21 +256,10 @@ $('#restoreFilters').onclick = restoreFilterPreset;
 function resetFilters() {
   document.querySelectorAll('input[type="checkbox"]').forEach(input => input.checked = false);
   ['#salary', '#query', '#specialty'].forEach(selector => $(selector).value = '');
-  onlySaved = false;
   limit = 3;
   buildSkillsFilter();
   render();
 }
-[...new Set(jobs.map(job => job.city))].sort((a,b)=>a.localeCompare(b,'ru')).forEach(city => {
-  const label = document.createElement('label');
-  label.className = 'check';
-  const input = document.createElement('input');
-  input.type = 'checkbox';
-  input.name = 'city';
-  input.value = city;
-  label.append(input, document.createTextNode(city));
-  $('#cityOptions').append(label);
-});
 $('#cityOptions').addEventListener('change',()=>{limit=3;render()});
 $('#clearCities').onclick=()=>{document.querySelectorAll('[name="city"]').forEach(input=>input.checked=false);limit=3;render()};
 document.addEventListener('click',event=>{if(!$('#cityPicker').contains(event.target))$('#cityPicker').open=false});
@@ -276,6 +273,5 @@ $('#filtersModal').addEventListener('click',event=>{
   if(event.clientX<rect.left||event.clientX>rect.right||event.clientY<rect.top||event.clientY>rect.bottom)$('#filtersModal').close();
 });
 
-buildSkillsFilter();
-function render(){const specialty=$('#specialty').value,cities=checkedValues('city'),min=Number($('#salary').value),formats=[...document.querySelectorAll('[name=format]:checked')].map(e=>e.value),exp=[...document.querySelectorAll('[name=experience]:checked')].map(e=>e.value),skills=[...document.querySelectorAll('[name=skill]:checked')].map(e=>e.value),requirements=[...document.querySelectorAll('[name=requirement]:checked')].map(e=>e.value);let filtered=jobs.filter(j=>(onlySaved||j.publishedAt===dateDaysAgo(dayOffset))&&matchesSpecialty(j,specialty)&&(!onlySaved||saved.has(j.id))&&matchesQuery(j)&&(!cities.length||cities.includes(j.city))&&j.salary>=min&&(!formats.length||formats.includes(j.format))&&(!exp.length||exp.includes(j.experience))&&(!skills.length||skills.some(skill=>(j.skills||[]).includes(skill)))&&(!requirements.length||requirements.some(item=>(j.requirements||[]).includes(item))));if($('#sort').value==='salary')filtered.sort((a,b)=>b.salary-a.salary);else filtered.sort((a,b)=>b.publishedAt.localeCompare(a.publishedAt));$('#resultsTitle').textContent=onlySaved?'Избранные вакансии':dayOffset===0?'Вакансии, открытые сегодня':'Вакансии за '+displayDate(dateDaysAgo(dayOffset));const total=document.createElement('span');total.textContent=filtered.length+' найдено';$('#resultsTitle').append(total);$('#dayNavigation').hidden=onlySaved;$('#dayLabel').textContent=(dayOffset===0?'Сегодня · ':dayOffset===1?'Вчера · ':'')+displayDate(dateDaysAgo(dayOffset));$('#newerDay').disabled=dayOffset===0;$('#todayDay').disabled=dayOffset===0;updateFilterSummary();renderFilterChips();$('#jobs').innerHTML=filtered.slice(0,limit).map(j=>`<article class="job"><div class="job-top"><div class="company"><span class="company-logo">${j.logo}</span>${j.company}<span title="Демонстрационная компания">·</span></div><div class="job-meta"><span class="date">${publicationLabel(j)}</span><button class="save ${saved.has(j.id)?'saved':''}" data-save="${j.id}" aria-label="${saved.has(j.id)?'Удалить из избранного':'Добавить в избранное'}" aria-pressed="${saved.has(j.id)}">${bookmark}</button></div></div><h3>${j.title}</h3><div class="pay">${j.range}<small>на руки</small></div><p class="description">${j.text}</p><div class="job-bottom"><div class="tags"><span class="tag">${j.city}</span><span class="tag">${j.format}</span><span class="tag">${j.experience}</span></div><button class="details" data-detail="${j.id}">Подробнее <span>↗</span></button></div></article>`).join('')||'<div class="empty">Пока ничего не найдено.<br><br>Измените условия поиска, выберите другой день или проверьте избранное.</div>';$('#load').hidden=filtered.length<=limit;$('#savedCount').textContent=saved.size?`(${saved.size})`:'';$('#allNav').classList.toggle('active',!onlySaved);$('#savedNav').classList.toggle('active',onlySaved)}
-$('#searchForm').addEventListener('submit',e=>{e.preventDefault();limit=3;render();$('#vacancies').scrollIntoView({behavior:'smooth'})});document.querySelectorAll('#sort').forEach(el=>el.addEventListener('change',()=>{limit=3;render()}));$('aside').addEventListener('change',event=>{if(event.target.id==='specialty')buildSkillsFilter();limit=3;render()});$('#specialty').addEventListener('input',()=>{buildSkillsFilter();limit=3;render()});$('#query').addEventListener('input',()=>{buildSkillsFilter();limit=3;render()});$('#reset').onclick=resetFilters;document.querySelectorAll('[data-query]').forEach(b=>b.onclick=()=>{$('#query').value=b.dataset.query;buildSkillsFilter();limit=3;render()});$('#savedNav').onclick=()=>{onlySaved=true;render()};$('#allNav').onclick=()=>{onlySaved=false;render()};$('#load').onclick=()=>{limit+=3;render()};$('#jobs').onclick=e=>{const save=e.target.closest('[data-save]'),detail=e.target.closest('[data-detail]');if(save){const id=Number(save.dataset.save);saved.has(id)?saved.delete(id):saved.add(id);try{localStorage.setItem('mesto-saved',JSON.stringify([...saved]))}catch{}render()}if(detail){const j=jobs.find(j=>j.id===Number(detail.dataset.detail));$('#modalContent').innerHTML=`<div class="eyebrow">${j.company}</div><h2>${j.title}</h2><div class="pay">${j.range}</div><div class="dialog-tags">${j.city} · ${j.format} · ${j.experience}</div><p>${j.text}</p><h3>Чем предстоит заниматься</h3><p>${j.tasks}</p><p class="prototype-notice">Это демонстрационная вакансия. В готовом сервисе здесь появится возможность отправить резюме и связаться с работодателем.</p>`;const heading=document.createElement('h3');heading.textContent='Ключевые навыки';const skillTags=document.createElement('div');skillTags.className='tags';(j.skills||[]).forEach(skill=>{const tag=document.createElement('span');tag.className='tag';tag.textContent=skill;skillTags.append(tag)});$('#modalContent').insertBefore(heading,$('.prototype-notice'));$('#modalContent').insertBefore(skillTags,$('.prototype-notice'));const requirementsHeading=document.createElement('h3');requirementsHeading.textContent='Основные требования';const requirementsList=document.createElement('ul');(j.requirements||[]).forEach(requirement=>{const item=document.createElement('li');item.textContent=requirement;requirementsList.append(item)});$('#modalContent').insertBefore(requirementsHeading,$('.prototype-notice'));$('#modalContent').insertBefore(requirementsList,$('.prototype-notice'));$('#modal').showModal()}};$('.close').onclick=()=>$('#modal').close();$('#modal').addEventListener('click',e=>{if(e.target===$('#modal')){const r=$('#modal').getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)$('#modal').close()}});$('#employer').onclick=()=>{$('#modalContent').innerHTML='<div class="eyebrow">Для работодателей</div><h2>Найдите своих людей.</h2><p>Здесь будет кабинет компании: публикация вакансий, управление откликами и общение с кандидатами.</p><p>В этом прототипе представлена главная страница для соискателей.</p>';$('#modal').showModal()};render();
+function render(){const specialty=$('#specialty').value,cities=checkedValues('city'),min=Number($('#salary').value),formats=[...document.querySelectorAll('[name=format]:checked')].map(e=>e.value),exp=[...document.querySelectorAll('[name=experience]:checked')].map(e=>e.value),skills=[...document.querySelectorAll('[name=skill]:checked')].map(e=>e.value),requirements=[...document.querySelectorAll('[name=requirement]:checked')].map(e=>e.value);let filtered=currentRecords().filter(j=>(j.publishedAt===dateDaysAgo(dayOffset))&&matchesSpecialty(j,specialty)&&matchesQuery(j)&&(!cities.length||cities.includes(j.city))&&(currentView==='workers'?(!min||j.salary<=min):j.salary>=min)&&(!formats.length||formats.includes(j.format))&&(!exp.length||exp.includes(j.experience))&&(!skills.length||skills.some(skill=>(j.skills||[]).includes(skill)))&&(!requirements.length||requirements.some(item=>(j.requirements||[]).includes(item))));if($('#sort').value==='salary')filtered.sort((a,b)=>b.salary-a.salary);else filtered.sort((a,b)=>b.publishedAt.localeCompare(a.publishedAt));$('#resultsTitle').textContent=dayOffset===0?(currentView==='workers'?'Резюме, опубликованные сегодня':'Вакансии, открытые сегодня'):(currentView==='workers'?'Резюме за ':'Вакансии за ')+displayDate(dateDaysAgo(dayOffset));const total=document.createElement('span');total.textContent=filtered.length+' найдено';$('#resultsTitle').append(total);$('#dayNavigation').hidden=false;$('#dayLabel').textContent=(dayOffset===0?'Сегодня · ':dayOffset===1?'Вчера · ':'')+displayDate(dateDaysAgo(dayOffset));$('#newerDay').disabled=dayOffset===0;$('#todayDay').disabled=dayOffset===0;updateFilterSummary();renderFilterChips();$('#jobs').innerHTML=filtered.slice(0,limit).map(j=>`<article class="job"><div class="job-top"><div class="company"><span class="company-logo">${j.logo}</span>${j.company}<span title="Демонстрационные данные">·</span></div><div class="job-meta"><span class="date">${publicationLabel(j)}</span><button class="save ${saved.has(j.id)?'saved':''}" data-save="${j.id}" aria-label="${saved.has(j.id)?'Удалить из избранного':'Добавить в избранное'}" aria-pressed="${saved.has(j.id)}">${bookmark}</button></div></div><h3>${j.title}</h3><div class="pay">${j.range}<small>${currentView==='workers'?'ожидаемый доход':'на руки'}</small></div><p class="description">${j.text}</p><div class="job-bottom"><div class="tags"><span class="tag">${j.city}</span><span class="tag">${j.format}</span><span class="tag">${j.experience}</span></div><button class="details" data-detail="${j.id}">Подробнее <span>↗</span></button></div></article>`).join('')||'<div class="empty">Пока ничего не найдено.<br><br>Измените условия поиска или выберите другой день.</div>';$('#load').hidden=filtered.length<=limit;$('#allNav').classList.toggle('active',currentView==='jobs');$('#workersNav').classList.toggle('active',currentView==='workers')}
+$('#searchForm').addEventListener('submit',e=>{e.preventDefault();limit=3;render();$('#vacancies').scrollIntoView({behavior:'smooth'})});document.querySelectorAll('#sort').forEach(el=>el.addEventListener('change',()=>{limit=3;render()}));$('aside').addEventListener('change',event=>{if(event.target.id==='specialty')buildSkillsFilter();limit=3;render()});$('#specialty').addEventListener('input',()=>{buildSkillsFilter();limit=3;render()});$('#query').addEventListener('input',()=>{buildSkillsFilter();limit=3;render()});$('#reset').onclick=resetFilters;document.querySelectorAll('[data-query]').forEach(b=>b.onclick=()=>{$('#query').value=b.dataset.query;buildSkillsFilter();limit=3;render()});$('#workersNav').onclick=()=>switchView('workers');$('#allNav').onclick=()=>switchView('jobs');$('#load').onclick=()=>{limit+=3;render()};$('#jobs').onclick=e=>{const save=e.target.closest('[data-save]'),detail=e.target.closest('[data-detail]');if(save){const id=Number(save.dataset.save);saved.has(id)?saved.delete(id):saved.add(id);try{localStorage.setItem('mesto-saved',JSON.stringify([...saved]))}catch{}render()}if(detail){if(currentView==='workers'){location.href='resume.html?id='+encodeURIComponent(detail.dataset.detail);return;}const j=currentRecords().find(j=>j.id===Number(detail.dataset.detail));$('#modalContent').innerHTML=`<div class="eyebrow">${j.company}</div><h2>${j.title}</h2><div class="pay">${j.range}</div><div class="dialog-tags">${j.city} · ${j.format} · ${j.experience}</div><p>${j.text}</p><h3>${currentView==='workers'?'Опыт и достижения':'Чем предстоит заниматься'}</h3><p>${j.tasks}</p><p class="prototype-notice">${currentView==='workers'?'Это демонстрационное резюме вымышленного кандидата. Связь с кандидатом появится в готовом сервисе.':'Это демонстрационная вакансия. В готовом сервисе здесь появится возможность отправить резюме и связаться с работодателем.'}</p>`;const heading=document.createElement('h3');heading.textContent='Ключевые навыки';const skillTags=document.createElement('div');skillTags.className='tags';(j.skills||[]).forEach(skill=>{const tag=document.createElement('span');tag.className='tag';tag.textContent=skill;skillTags.append(tag)});$('#modalContent').insertBefore(heading,$('.prototype-notice'));$('#modalContent').insertBefore(skillTags,$('.prototype-notice'));const requirementsHeading=document.createElement('h3');requirementsHeading.textContent=currentView==='workers'?'Квалификация и качества':'Основные требования';const requirementsList=document.createElement('ul');(j.requirements||[]).forEach(requirement=>{const item=document.createElement('li');item.textContent=requirement;requirementsList.append(item)});$('#modalContent').insertBefore(requirementsHeading,$('.prototype-notice'));$('#modalContent').insertBefore(requirementsList,$('.prototype-notice'));$('#modal').showModal()}};$('.close').onclick=()=>$('#modal').close();$('#modal').addEventListener('click',e=>{if(e.target===$('#modal')){const r=$('#modal').getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)$('#modal').close()}});switchView(location.hash==='#workers'?'workers':'jobs');
