@@ -16,7 +16,6 @@
 <p class="resume-disclaimer">Демонстрационное резюме. Все персональные данные, места работы и проекты вымышлены.</p>
 </div><aside class="resume-sidebar"><section class="contact-card"><p class="small-label">Ожидаемый доход</p><div class="profile-salary" id="profileSalary"></div><p class="salary-caption">на руки в месяц</p><dl id="workConditions"></dl><button type="button" class="primary" id="inviteCandidate">Пригласить на собеседование ↗</button><button type="button" class="outline-button" id="saveCandidate" aria-pressed="false">Сохранить резюме</button><p id="saveStatus" role="status" class="small-label"></p><div class="owner-publishing"><h3>Видимость резюме</h3><p id="visibilityText"></p><button type="button" class="outline-button" id="toggleVisibility"></button><p class="small-label">Демонстрация: изменение видимости сохраняется только в этом браузере и не публикует резюме.</p></div></section><button type="button" class="print-button" id="printResume">↓ Сохранить в PDF / распечатать</button><p class="sidebar-caption">Расскажите о себе так,<br>чтобы вас заметили.</p></aside></div>
 </main><footer class="footer"><span><b>место</b> · У каждого есть своё.</span><span>Демонстрационное резюме · 2026</span></footer></div>
-<dialog id="editResumeModal" aria-labelledby="editResumeTitle"><button type="button" class="close" id="closeEdit" aria-label="Закрыть редактор">×</button><div class="eyebrow">Моё резюме</div><h2 id="editResumeTitle">Редактировать резюме</h2><form id="editResumeForm" class="auth-form"><div id="editFields" class="auth-form"></div><p class="small-label">Изменения сохраняются локально. Используйте демонстрационные данные.</p><p id="editStatus" role="status"></p><div class="filter-actions"><button type="button" class="load" id="cancelEdit">Отмена</button><button type="submit" class="primary">Сохранить изменения</button></div></form></dialog>
 <dialog id="inviteModal" aria-labelledby="inviteTitle"><button type="button" class="close" id="closeInvite" aria-label="Закрыть">×</button><div class="eyebrow">Знакомство с кандидатом</div><h2 id="inviteTitle">Пригласить на собеседование</h2><form id="inviteForm" class="auth-form"><label for="inviteRole">Ваша вакансия</label><input id="inviteRole" required placeholder="Название должности"><label for="inviteMessage">Сообщение кандидату</label><textarea id="inviteMessage" rows="5" required></textarea><p class="auth-note">Это демонстрация. Сообщение не отправляется кандидату и не сохраняется.</p><button class="primary" type="submit">Проверить приглашение</button><p id="inviteStatus" role="status"></p></form></dialog>
 <dialog id="authModal" aria-labelledby="authTitle">
 <button type="button" class="close" id="closeAuth" aria-label="Закрыть окно входа">×</button>
@@ -27,19 +26,23 @@
 </div>
 <div id="loginPanel" role="tabpanel" aria-labelledby="loginTab">
 <form id="loginForm" class="auth-form">
-<label for="loginEmail">Электронная почта</label><input id="loginEmail" type="email" autocomplete="username" placeholder="name@example.com" required>
-<label for="loginPassword">Пароль</label><input id="loginPassword" type="password" autocomplete="current-password" placeholder="Введите пароль" required>
+<label for="loginEmail">Электронная почта *</label><input id="loginEmail" type="email" autocomplete="username" placeholder="name@example.com" required>
+<label for="loginPassword">Пароль *</label><input id="loginPassword" type="password" autocomplete="current-password" placeholder="Введите пароль" required>
 <button type="submit" class="primary">Войти</button>
 </form></div>
 <div id="registerPanel" role="tabpanel" aria-labelledby="registerTab" hidden>
 <form id="registerForm" class="auth-form">
-<label for="registerName">Ваше имя</label><input id="registerName" type="text" autocomplete="name" placeholder="Как к вам обращаться" required maxlength="100">
-<label for="registerRole">Я хочу</label><select id="registerRole"><option value="applicant">Найти работу</option><option value="employer">Найти работников</option></select>
-<label for="registerEmail">Электронная почта</label><input id="registerEmail" type="email" autocomplete="email" placeholder="name@example.com" required>
-<label for="registerPassword">Пароль</label><input id="registerPassword" type="password" autocomplete="new-password" placeholder="Не менее 8 символов" minlength="8" required>
+<label for="registerName">Ваше имя *</label><input id="registerName" type="text" autocomplete="name" placeholder="Как к вам обращаться" required maxlength="100">
+<label for="registerRole">Я хочу *</label><select id="registerRole"><option value="applicant">Найти работу</option><option value="employer">Найти работников</option></select>
+<div id="employerRegistrationFields" class="auth-form" hidden>
+<label for="registerEmployerType">Тип работодателя *</label><select id="registerEmployerType"><option value="company">Компания</option><option value="entrepreneur">Индивидуальный предприниматель</option><option value="private">Частный работодатель</option></select>
+<label for="registerCompany">Название компании / имя работодателя *</label><input id="registerCompany" type="text" maxlength="150" placeholder="Название для кандидатов">
+<p class="auth-note">Следующий шаг — личный кабинет работодателя. Используйте демонстрационные данные.</p>
+</div><label for="registerEmail">Электронная почта *</label><input id="registerEmail" type="email" autocomplete="email" placeholder="name@example.com" required>
+<label for="registerPassword">Пароль *</label><input id="registerPassword" type="password" autocomplete="new-password" placeholder="Не менее 8 символов" minlength="8" required>
 <button type="submit" class="primary">Зарегистрироваться</button>
 </form></div>
-<p class="auth-note">Демонстрация: вход и регистрация пока не подключены. Данные не отправляются и не сохраняются.</p>
-<p id="authStatus" class="auth-status" role="status" aria-live="polite"></p>
+<p class="auth-note">Деморежим: реальный аккаунт не создаётся. Данные работодателя сохраняются на время сеанса в этом браузере для заполнения вакансии. Для соискателя подтверждение email имитируется кодом в демописьме. Пароль не сохраняется и не отправляется.</p>
+<section id="emailVerification" hidden aria-labelledby="verifyHeading"><h3 id="verifyHeading">Подтвердите почту</h3><p id="verifyEmail"></p><form id="verifyForm" class="auth-form"><label for="emailCode">Код из письма *</label><input id="emailCode" inputmode="numeric" autocomplete="one-time-code" pattern="[0-9]{6}" maxlength="6" required placeholder="6 цифр"><button type="submit" class="primary">Подтвердить и в кабинет</button></form><details class="demo-mail"><summary>Открыть демонстрационное письмо</summary><p>Реальное письмо не отправлялось. Для проверки сценария используйте код:</p><strong id="demoEmailCode"></strong></details><div class="verification-actions"><button type="button" id="resendEmailCode">Отправить код повторно</button><button type="button" id="changeVerifyEmail">Изменить email</button></div><p id="verifyStatus" role="status"></p></section><p id="authStatus" class="auth-status" role="status" aria-live="polite"></p>
 </dialog>
-<script src="../js/data.js" defer></script><script src="../js/resume.js" defer></script><script src="../js/owner.js" defer></script><script src="../js/auth.js" defer></script></body></html>
+<script src="../js/user-store.js" defer></script><script src="../js/data.js" defer></script><script src="../js/resume.js" defer></script><script src="../js/owner.js" defer></script><script src="../js/auth.js" defer></script></body></html>

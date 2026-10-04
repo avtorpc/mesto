@@ -22,11 +22,14 @@ Object.entries(profileDetails).forEach(([key,details])=>{
 });
 const params = new URLSearchParams(location.search);
 const id = params.has('id') ? Number(params.get('id')) : 101;
-const originalCandidate = resumes.find(person => person.id === id);
+let personalRecord=null;
+if(id>106){try{personalRecord=UserStore.get(id)}catch{}}
+if(personalRecord)profileDetails[id]=personalRecord.details;
+const originalCandidate = personalRecord?personalRecord.candidate:resumes.find(person => person.id === id);
 const isOwnerPage = document.body.dataset.view === 'owner';
 const isOwnerPreview = params.get('preview') === '1';
-let ownerDraft = null;
-if (isOwnerPage || isOwnerPreview) {
+let ownerDraft = personalRecord;
+if (!personalRecord && (isOwnerPage || isOwnerPreview)) {
   try { const stored = JSON.parse(localStorage.getItem('mesto-resume-draft-' + id));
     if (stored && stored.version === 1) ownerDraft = stored;
   } catch {}
@@ -46,6 +49,13 @@ if (candidate && ownerDraft) {
     else if(typeof detailFields[key]==='string')profileDetails[id][key]=detailFields[key];
   });
 }
+if(candidate&&ownerDraft){
+  const repeated=ownerDraft.details||{};
+  const schemas={workEntries:['company','role','period'],educations:['school','degree'],languages:['name','level'],projects:['title','result']};
+  Object.entries(schemas).forEach(([key,fields])=>{
+    if(Array.isArray(repeated[key])&&repeated[key].every(row=>row&&fields.every(field=>typeof row[field]==='string')))profileDetails[id][key]=repeated[key];
+  });
+}
 function addText(parent, tag, text, className) {
   const element = document.createElement(tag); element.textContent = text;
   if (className) element.className = className;
@@ -58,23 +68,31 @@ if (!candidate) {
   const back=addText($('#resumeRoot'),'a','← Вернуться к работникам');back.href='index.html#workers';
 } else {
   const details=profileDetails[id];
+  if(personalRecord){$('.availability').textContent=personalRecord.visibility==='hidden'?'Резюме скрыто · демо':'Открыто к предложениям · демо';$('.resume-breadcrumb a').href='user.html';$('.resume-breadcrumb a').textContent='← В мой кабинет';}
   document.title=candidate.name+' — '+candidate.title+' · место';
-  const fields={resumeDate:'Опубликовано '+displayDate(candidate.publishedAt),resumeId:'Резюме № '+id,avatar:candidate.logo,personName:candidate.name,personTitle:candidate.title,personIntro:candidate.text,aboutText:candidate.tasks,experienceTotal:details.years,profileSalary:candidate.range,languages:details.language,projectTitle:details.project,projectText:details.result};
+  const fields={resumeDate:'Опубликовано '+displayDate(candidate.publishedAt),resumeId:'Резюме № '+id,avatar:candidate.logo,personName:candidate.name,personTitle:candidate.title||'Новое резюме',personIntro:candidate.text,aboutText:candidate.tasks,experienceTotal:details.years,profileSalary:personalRecord&&candidate.salary===0?'Доход не указан':candidate.range,languages:details.language,projectTitle:details.project,projectText:details.result};
   Object.entries(fields).forEach(([key,value])=>$('#'+key).textContent=value);
-  [candidate.city,candidate.format,'Опыт: '+details.years].forEach(value=>addText($('#personMeta'),'span',value));
+  [candidate.city||'Город пока не указан',candidate.format,'Опыт: '+details.years].forEach(value=>addText($('#personMeta'),'span',value));
   [['Занятость','Полная занятость'],['Начало работы','По договорённости'],['Формат',candidate.format],['Город',candidate.city]].forEach(([label,value])=>{const fact=addText($('#personalFacts'),'div','');addText(fact,'span',label);addText(fact,'strong',value)});
   $('#experienceSummary').textContent=details.summary;
   details.bullets.forEach(text=>addText($('#experienceHighlights'),'li',text));
-  $('#workplaceCount').textContent=details.workplaces.length;
-  details.workplaces.forEach(workplace=>{
-    const [company,role,...period]=workplace.split('|').map(value=>value.trim());
+  const workplaces=Array.isArray(details.workEntries)?details.workEntries:details.workplaces.map(workplace=>{const [company,role,...period]=workplace.split('|').map(value=>value.trim());return {company,role,period:period.join(' · ')}});
+  $('#workplaceCount').textContent=workplaces.length;
+  workplaces.forEach(({company,role,period})=>{
     const job=addText($('#experienceList'),'article','', 'timeline-item');
     addText(job,'h3',company);
     if(role)addText(job,'div',role,'timeline-company');
-    if(period.length)addText(job,'div',period.join(' · '),'timeline-date');
+    if(period)addText(job,'div',period,'timeline-date');
   });
   candidate.skills.forEach(skill=>addText($('#profileSkills'),'span',skill));candidate.requirements.forEach(item=>addText($('#profileQualities'),'span',item));
-  addText($('#educationList'),'h3',details.school);addText($('#educationList'),'p',details.degree);
+  const educations=Array.isArray(details.educations)?details.educations:[{school:details.school,degree:details.degree}];
+  educations.forEach(row=>{addText($('#educationList'),'h3',row.school);addText($('#educationList'),'p',row.degree)});
+  if(Array.isArray(details.languages))$('#languages').textContent=details.languages.map(row=>[row.name,row.level].filter(Boolean).join(' — ')).join(' · ');
+  if(Array.isArray(details.projects)){
+    const projectHost=$('#projectTitle').parentElement.parentElement;
+    $('#projectTitle').parentElement.remove();
+    details.projects.forEach(row=>{const card=addText(projectHost,'article','','project-card');addText(card,'span','ОПЫТ В ДЕЛЕ','project-type');addText(card,'h3',row.title);addText(card,'p',row.result)});
+  }
   [['Формат работы',candidate.format],['Город',candidate.city],['Опыт работы',details.years],['Занятость','Полная занятость']].forEach(([label,value])=>{addText($('#workConditions'),'dt',label);addText($('#workConditions'),'dd',value)});
   let bookmarks=new Set();try{const stored=JSON.parse(localStorage.getItem('mesto-saved')||'[]');if(Array.isArray(stored))bookmarks=new Set(stored)}catch{}
   function updateBookmark(){const active=bookmarks.has(id);$('#saveCandidate').textContent=active?'✓ Резюме сохранено':'Сохранить резюме';$('#saveCandidate').setAttribute('aria-pressed',String(active))}
@@ -99,9 +117,11 @@ if (candidate) {
       else link.removeAttribute('aria-current');
     });
   }
+  let navigating=false, navigationTimer;
   function goToSection(index, animate) {
     const section = sections[index];
-    section.focus({preventScroll:true});
+    navigating=true;clearTimeout(navigationTimer);
+    navigationTimer=setTimeout(()=>{navigating=false},1000);
     const top = window.scrollY + section.getBoundingClientRect().top - menu.getBoundingClientRect().height - 16;
     window.scrollTo({top: Math.max(0, top), behavior: animate && !window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'smooth' : 'auto'});
     markSection(index);
@@ -113,10 +133,10 @@ if (candidate) {
   }));
   let scheduled = false;
   function updateActiveSection() {
+    if(navigating){scheduled=false;return}
     const threshold = menu.getBoundingClientRect().height + 32;
     let active = 0;
     sections.forEach((section, index) => {if(section.getBoundingClientRect().top <= threshold) active = index});
-    if (window.scrollY > 0 && window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 2) active = sections.length - 1;
     markSection(active); scheduled = false;
   }
   window.addEventListener('scroll', () => {

@@ -57,3 +57,44 @@
 .resume-section.section-highlighted .section-index{font-size:20px;font-weight:600;color:#424c39}
 @media(prefers-reduced-motion:reduce){.section-index{transition:none}}
 @media print{.resume-section.section-highlighted .section-index{font-size:10px;font-weight:400}}
+
+/* Редактирование владельцем непосредственно в разделах страницы. */
+.inline-fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+.inline-field{display:flex;flex-direction:column;gap:8px;min-width:0}
+.inline-field.wide,.inline-fields>.work-history{grid-column:1/-1}
+.inline-field label{font-size:12px;color:#30362c;line-height:1.6}
+.inline-field input,.inline-field select,.inline-field textarea{width:100%;box-sizing:border-box;border:1px solid #cdd2c8;border-radius:8px;background:#fff;color:#20251d;padding:12px;font:inherit;font-size:14px}
+.inline-field textarea{resize:vertical;line-height:1.7}
+.inline-field :is(input,select,textarea):focus{outline:2px solid #aab69e;outline-offset:2px}
+.inline-save{padding:24px 0;display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+.inline-save button{padding:14px 22px}
+body[data-view=owner] #inviteCandidate{display:none}
+@media(max-width:680px){.inline-fields{grid-template-columns:1fr}body[data-view=owner] .resume-sidebar{order:0}}
+
+.repeat-list{display:grid;gap:16px}
+.repeat-card{padding:18px;background:#f0f2ec;border-radius:10px}
+.repeat-add{padding:11px 15px;margin:14px 0 10px;color:#303b27;font-size:13px;cursor:pointer}
+.repeat-remove{border:0;background:none;color:#616956;font-size:12px;padding:10px 0 0;cursor:pointer;text-decoration:underline}
+.draft-save{border:0;background:transparent;color:#4d5c40;font:inherit;font-size:12px;text-decoration:underline;padding:12px 0;cursor:pointer}
+.inline-save #editStatus{flex-basis:100%;margin:0}
+.delete-resume{border:1px solid #d9bdb8;background:#fff;color:#85453c;border-radius:8px;padding:12px 18px;margin-bottom:24px;cursor:pointer}
+.project-card+.project-card{margin-top:16px}
+.inline-field input::placeholder,.inline-field textarea::placeholder{color:#72796c;opacity:1}
+
+.owner-notice[hidden]{display:none}
+.repeat-card{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:14px;align-items:start}
+.repeat-controls{display:flex;gap:6px;padding-top:26px}
+.repeat-control{display:grid;place-items:center;width:32px;height:32px;border:1px solid #cbd2c3;background:#fff;color:#45523a;border-radius:7px;font-size:20px;line-height:1;cursor:pointer}
+.repeat-control:hover{background:#dfe6d7}
+@media(max-width:680px){.repeat-card{padding:12px;gap:8px}.repeat-controls{flex-direction:column}.repeat-control{width:30px;height:30px}}
+
+.tenure-controls{display:flex;gap:10px}.tenure-controls input{flex:1;min-width:0}.tenure-controls select{flex:1}
+.tenure-controls input[hidden]{display:none}
+.resume-save-toast{position:fixed;bottom:28px;left:50%;transform:translateX(-50%);z-index:30;padding:15px 24px;background:#34432c;color:#fff;border-radius:10px;box-shadow:0 8px 32px #0002;pointer-events:none}
+.resume-save-copy{position:fixed;top:12vh;left:50%;width:900px;height:850px;margin-left:-450px;overflow:hidden;background:#fafbf8;border:1px solid #cbd3c4;border-radius:12px;box-shadow:0 20px 65px #0003;z-index:25;pointer-events:none;transform-origin:top center;animation:resume-copy-save 1s ease-in-out forwards}
+.resume-save-copy>main{padding:24px}.resume-save-copy .owner-banner,.resume-save-copy .owner-notice,.resume-save-copy .resume-sidebar{display:none}.resume-save-copy .resume-layout{display:block}.resume-save-copy .resume-sections{position:static}
+@keyframes resume-copy-save{0%{opacity:0;transform:scale(.48) translateY(30px)}20%{opacity:1;transform:scale(.5) translateY(-10px)}45%{opacity:1;transform:scale(.48) translate(20px,0);box-shadow:-12px 12px 0 #e3e8dc,0 20px 65px #0003}100%{opacity:0;transform:scale(.12) translate(500px,800px)}}
+@media(max-width:680px){.resume-save-copy{animation-name:resume-copy-save-mobile}.resume-save-toast{width:max-content;max-width:90vw;font-size:13px;bottom:18px}}
+@keyframes resume-copy-save-mobile{0%{opacity:0;transform:scale(.28)}25%{opacity:1;transform:scale(.3)}50%{opacity:1;transform:scale(.28) translate(20px,0);box-shadow:-12px 12px 0 #e3e8dc}100%{opacity:0;transform:scale(.1) translateY(800px)}}
+@media(prefers-reduced-motion:reduce){.resume-save-copy{display:none;animation:none}}
+@media print{.resume-save-copy,.resume-save-toast{display:none!important}}
