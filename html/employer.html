@@ -1,0 +1,33 @@
+<!DOCTYPE html><html lang="ru"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Кабинет работодателя — место</title><link rel="stylesheet" href="../css/styles.css"><link rel="stylesheet" href="../css/employer.css"><link rel="stylesheet" href="../css/chat.css"></head><body><div class="wrap"><header><a class="logo" href="./index.html" aria-label="место — главная"><span class="mark"></span>место</a><nav><a href="index.html#vacancies" id="allNav">Вакансии</a><a href="index.html#workers" class="active" id="workersNav">Работники</a></nav><span class="prototype">ПРОТОТИП</span><button type="button" class="nav-btn login-button" id="openAuth" aria-haspopup="dialog">Войти</button></header>
+<main class="employer-page"><div class="dashboard-heading"><div><div class="eyebrow">Личный кабинет работодателя</div><h1 id="employerCompany">Ваши вакансии</h1><p id="employerContact">Управляйте вакансиями и находите людей в команду.</p></div><a class="primary" href="vacancy-create.html">+ Создать вакансию</a></div>
+<div class="dashboard-notice" id="employerNotice">Демокабинет: вакансии сохраняются в этом браузере. Опубликованные вакансии доступны для отклика в общем списке этого браузера.</div>
+<div class="dashboard-stats"><div><span>Всего вакансий</span><strong id="vacancyTotal">0</strong></div><div><span>Черновики</span><strong id="draftTotal">0</strong></div><div><span>Публикация</span><strong class="stat-note">Деморежим</strong></div></div>
+<section class="dashboard-list"><div class="dashboard-list-head"><h2>Мои вакансии</h2><label class="dashboard-search"> <input id="vacancySearch" type="search" aria-label="Поиск моих вакансий" placeholder="Найти по названию"></label></div><p id="dashboardStatus" role="status"></p><div id="employerVacancies" aria-live="polite"></div></section>
+</main><footer class="footer"><span><b>место</b> · У каждого есть своё.</span><a href="index.html#workers">Перейти к поиску работников ↗</a></footer></div><dialog id="authModal" aria-labelledby="authTitle">
+<button type="button" class="close" id="closeAuth" aria-label="Закрыть окно входа">×</button>
+<div class="eyebrow">Личный кабинет</div><h2 id="authTitle">Рады вас видеть</h2>
+<div class="auth-tabs" role="tablist" aria-label="Вход или регистрация">
+<button type="button" role="tab" id="loginTab" aria-controls="loginPanel" aria-selected="true">Войти</button>
+<button type="button" role="tab" id="registerTab" aria-controls="registerPanel" aria-selected="false" tabindex="-1">Зарегистрироваться</button>
+</div>
+<div id="loginPanel" role="tabpanel" aria-labelledby="loginTab">
+<form id="loginForm" class="auth-form">
+<label for="loginEmail">Электронная почта *</label><input id="loginEmail" type="email" autocomplete="username" placeholder="name@example.com" required>
+<label for="loginPassword">Пароль *</label><input id="loginPassword" type="password" autocomplete="current-password" placeholder="Введите пароль" required>
+<button type="submit" class="primary">Войти</button>
+</form></div>
+<div id="registerPanel" role="tabpanel" aria-labelledby="registerTab" hidden>
+<form id="registerForm" class="auth-form">
+<label for="registerName">Ваше имя *</label><input id="registerName" type="text" autocomplete="name" placeholder="Как к вам обращаться" required maxlength="100">
+<label for="registerRole">Я хочу *</label><select id="registerRole"><option value="applicant">Найти работу</option><option value="employer">Найти работников</option></select>
+<div id="employerRegistrationFields" class="auth-form" hidden>
+<label for="registerEmployerType">Тип работодателя *</label><select id="registerEmployerType"><option value="company">Компания</option><option value="entrepreneur">Индивидуальный предприниматель</option><option value="private">Частный работодатель</option></select>
+<label for="registerCompany">Название компании / имя работодателя *</label><input id="registerCompany" type="text" maxlength="150" placeholder="Название для кандидатов">
+<p class="auth-note">Следующий шаг — личный кабинет работодателя. Используйте демонстрационные данные.</p>
+</div><label for="registerEmail">Электронная почта *</label><input id="registerEmail" type="email" autocomplete="email" placeholder="name@example.com" required>
+<label for="registerPassword">Пароль *</label><input id="registerPassword" type="password" autocomplete="new-password" placeholder="Не менее 8 символов" minlength="8" required>
+<button type="submit" class="primary">Зарегистрироваться</button>
+</form></div>
+<p class="auth-note">Деморежим: реальный аккаунт не создаётся. Данные работодателя сохраняются на время сеанса в этом браузере для заполнения вакансии. Для соискателя подтверждение email имитируется кодом в демописьме. Пароль не сохраняется и не отправляется.</p>
+<section id="emailVerification" hidden aria-labelledby="verifyHeading"><h3 id="verifyHeading">Подтвердите почту</h3><p id="verifyEmail"></p><form id="verifyForm" class="auth-form"><label for="emailCode">Код из письма *</label><input id="emailCode" inputmode="numeric" autocomplete="one-time-code" pattern="[0-9]{6}" maxlength="6" required placeholder="6 цифр"><button type="submit" class="primary">Подтвердить и в кабинет</button></form><details class="demo-mail"><summary>Открыть демонстрационное письмо</summary><p>Реальное письмо не отправлялось. Для проверки сценария используйте код:</p><strong id="demoEmailCode"></strong></details><div class="verification-actions"><button type="button" id="resendEmailCode">Отправить код повторно</button><button type="button" id="changeVerifyEmail">Изменить email</button></div><p id="verifyStatus" role="status"></p></section><p id="authStatus" class="auth-status" role="status" aria-live="polite"></p>
+</dialog><script src="../js/user-store.js" defer></script><script src="../js/employer-store.js" defer></script><script src="../js/assessment-store.js" defer></script><script src="../js/chat.js" defer></script><script src="../js/employer.js" defer></script><script src="../js/auth.js" defer></script></body></html>
