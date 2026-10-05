@@ -1,0 +1,10 @@
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+
+    App\\Service\\AiEvaluationService:
+        arguments:
+            $aiApiKey: '%env(AI_API_KEY)%'
+            $aiApiBaseUrl: '%env(AI_API_BASE_URL)%'
+            $aiModel: '%env(AI_MODEL)%'

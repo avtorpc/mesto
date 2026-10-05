@@ -1,0 +1,8 @@
+.env
+.env.local
+.env.*.local
+/vendor/
+/var/
+/public/uploads/
+.DS_Store
+mesto-for-transfer.zip
