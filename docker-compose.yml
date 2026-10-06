@@ -4,6 +4,8 @@ services:
       context: .
       dockerfile: docker/php/Dockerfile
     working_dir: /var/www/html
+    env_file:
+      - .env.local
     volumes:
       - .:/var/www/html
       - symfony_vendor:/var/www/html/vendor
@@ -13,9 +15,6 @@ services:
       APP_ENV: ${APP_ENV:-dev}
       APP_SECRET: ${APP_SECRET:-change-me-for-local-development}
       DATABASE_URL: postgresql://${POSTGRES_USER:-app}:${POSTGRES_PASSWORD:-app}@database:5432/${POSTGRES_DB:-app}?serverVersion=16&charset=utf8
-      AI_API_KEY: ${AI_API_KEY:-}
-      AI_API_BASE_URL: ${AI_API_BASE_URL:-https://api.openai.com/v1}
-      AI_MODEL: ${AI_MODEL:-}
     depends_on:
       database:
         condition: service_healthy
