@@ -1,0 +1,295 @@
+{
+  "schema_version": 1,
+  "code": "backend_order_php_postgresql",
+  "version": 1,
+  "status": "draft_requires_control_validation",
+  "catalog_version": "draft-2026-10-05",
+  "specialization_ids": [
+    "backend"
+  ],
+  "target_grade": "middle",
+  "grade_confirmation_enabled": false,
+  "competency_ids": [
+    "program-implementation",
+    "sql-queries",
+    "api-design",
+    "transactions",
+    "test-automation"
+  ],
+  "technologies": [
+    {
+      "code": "php",
+      "role": "assessed",
+      "version": "to_be_fixed_before_publication"
+    },
+    {
+      "code": "postgresql",
+      "role": "assessed",
+      "version": "to_be_fixed_before_publication"
+    },
+    {
+      "code": "docker",
+      "role": "environment_only",
+      "version": "to_be_fixed_before_publication"
+    }
+  ],
+  "assignment_contract": {
+    "goal": "API оформления заказа одного товара",
+    "input": {
+      "product_id": "положительное целое число",
+      "quantity": "положительное целое число"
+    },
+    "success": "Создать один заказ и уменьшить остаток указанного товара на quantity",
+    "errors": [
+      "неверный ввод",
+      "отсутствующий товар",
+      "недостаточный остаток"
+    ],
+    "error_effect": "Не создавать заказ и не менять остатки",
+    "failure_scenarios": [
+      "сбой после записи заказа до изменения остатка",
+      "сбой после изменения остатка до фиксации транзакции"
+    ],
+    "failure_effect": "Состояние заказов и остатков совпадает с исходным",
+    "candidate_deliverables": [
+      "код",
+      "инструкция запуска",
+      "автоматические тесты"
+    ],
+    "excluded": [
+      "конкурентные заказы",
+      "повторная доставка запросов",
+      "платежи",
+      "квалификация Docker"
+    ]
+  },
+  "scale_code": "checks_0_2_v1",
+  "test_criteria": [
+    {
+      "id": "backend_order_php_postgresql_v1_functional_correctness",
+      "criterion_code": "functional_correctness",
+      "criterion_version": 1,
+      "competency_id": "program-implementation",
+      "assessed_technology_codes": [
+        "php"
+      ],
+      "technology_note": "Подтверждение относится только к проверенному аспекту технологии",
+      "weight": 1,
+      "checks": [
+        {
+          "id": "happy_single",
+          "condition": "При товаре 1 с остатком 10 и quantity=1 создан один заказ, остаток 9",
+          "blocking": true,
+          "expected_evidence": [
+            "результат запуска",
+            "контрольное состояние или отчёт проверки"
+          ]
+        },
+        {
+          "id": "happy_boundary",
+          "condition": "При товаре 1 с остатком 10 и quantity=10 создан один заказ, остаток 0",
+          "blocking": false,
+          "expected_evidence": [
+            "результат запуска",
+            "контрольное состояние или отчёт проверки"
+          ]
+        }
+      ],
+      "verification_method": "runtime_and_review",
+      "critical": true
+    },
+    {
+      "id": "backend_order_php_postgresql_v1_data_operations",
+      "criterion_code": "data_operations",
+      "criterion_version": 1,
+      "competency_id": "sql-queries",
+      "assessed_technology_codes": [
+        "postgresql"
+      ],
+      "technology_note": "Подтверждение относится только к проверенному аспекту технологии",
+      "weight": 1,
+      "checks": [
+        {
+          "id": "persist_order",
+          "condition": "После успешного заказа запись содержит ожидаемые product_id и quantity",
+          "blocking": true,
+          "expected_evidence": [
+            "результат запуска",
+            "контрольное состояние или отчёт проверки"
+          ]
+        },
+        {
+          "id": "unrelated_stock",
+          "condition": "Остатки других товаров не изменены",
+          "blocking": false,
+          "expected_evidence": [
+            "результат запуска",
+            "контрольное состояние или отчёт проверки"
+          ]
+        }
+      ],
+      "verification_method": "runtime_and_review",
+      "critical": true
+    },
+    {
+      "id": "backend_order_php_postgresql_v1_input_validation",
+      "criterion_code": "input_validation",
+      "criterion_version": 1,
+      "competency_id": "api-design",
+      "assessed_technology_codes": [
+        "php"
+      ],
+      "technology_note": "Подтверждение относится только к проверенному аспекту технологии",
+      "weight": 1,
+      "checks": [
+        {
+          "id": "invalid_input",
+          "condition": "Нулевое, отрицательное, дробное quantity и неверный формат product_id отклонены без изменений",
+          "blocking": false,
+          "expected_evidence": [
+            "результат запуска",
+            "контрольное состояние или отчёт проверки"
+          ]
+        },
+        {
+          "id": "missing_product",
+          "condition": "Несуществующий положительный product_id отклонён без изменений",
+          "blocking": false,
+          "expected_evidence": [
+            "результат запуска",
+            "контрольное состояние или отчёт проверки"
+          ]
+        },
+        {
+          "id": "insufficient_stock",
+          "condition": "Quantity больше остатка отклонено без изменений",
+          "blocking": false,
+          "expected_evidence": [
+            "результат запуска",
+            "контрольное состояние или отчёт проверки"
+          ]
+        }
+      ],
+      "verification_method": "runtime_and_review",
+      "critical": false
+    },
+    {
+      "id": "backend_order_php_postgresql_v1_transaction_atomicity",
+      "criterion_code": "transaction_atomicity",
+      "criterion_version": 1,
+      "competency_id": "transactions",
+      "assessed_technology_codes": [
+        "php",
+        "postgresql"
+      ],
+      "technology_note": "Подтверждение относится только к проверенному аспекту технологии",
+      "weight": 1,
+      "checks": [
+        {
+          "id": "rollback_after_order",
+          "condition": "Инъекция сбоя после записи заказа сохраняет исходное состояние заказов и остатков",
+          "blocking": true,
+          "expected_evidence": [
+            "результат запуска",
+            "контрольное состояние или отчёт проверки"
+          ]
+        },
+        {
+          "id": "rollback_before_commit",
+          "condition": "Инъекция сбоя после уменьшения остатка до commit сохраняет исходное состояние",
+          "blocking": true,
+          "expected_evidence": [
+            "результат запуска",
+            "контрольное состояние или отчёт проверки"
+          ]
+        }
+      ],
+      "verification_method": "runtime_and_review",
+      "critical": true
+    },
+    {
+      "id": "backend_order_php_postgresql_v1_test_effectiveness",
+      "criterion_code": "test_effectiveness",
+      "criterion_version": 1,
+      "competency_id": "test-automation",
+      "assessed_technology_codes": [],
+      "technology_note": "Фактический инструмент тестирования фиксируется в попытке; без оценки инструмента его знание не подтверждается",
+      "weight": 1,
+      "checks": [
+        {
+          "id": "tests_on_reference",
+          "condition": "Тесты кандидата воспроизводимо проходят на корректном контрольном решении",
+          "blocking": false,
+          "expected_evidence": [
+            "результат запуска",
+            "контрольное состояние или отчёт проверки"
+          ]
+        },
+        {
+          "id": "tests_detect_invalid",
+          "condition": "Тесты обнаруживают контрольный дефект: quantity=0 допускается",
+          "blocking": false,
+          "expected_evidence": [
+            "результат запуска",
+            "контрольное состояние или отчёт проверки"
+          ]
+        },
+        {
+          "id": "tests_detect_partial_write",
+          "condition": "Тесты обнаруживают контрольный дефект: заказ сохраняется при сбое изменения остатка",
+          "blocking": false,
+          "expected_evidence": [
+            "результат запуска",
+            "контрольное состояние или отчёт проверки"
+          ]
+        }
+      ],
+      "verification_method": "runtime_and_review",
+      "critical": false
+    }
+  ],
+  "publication_requirements": [
+    "зафиксировать версии PHP и PostgreSQL",
+    "зафиксировать точный HTTP-контракт и ответы ошибок",
+    "подготовить фикстуры и механизм инъекции сбоя",
+    "проверить корректные альтернативы и решения с известными дефектами",
+    "утвердить проверки и варианты задания ответственным автором"
+  ],
+  "generation_policy": {
+    "allowed": "Менять сюжет, названия и допустимые параметры внутри проверенного шаблона",
+    "forbidden": [
+      "новые критерии",
+      "изменение шкалы",
+      "добавление обязательных функций",
+      "назначение грейда"
+    ],
+    "candidate_data_required": false
+  },
+  "selection_conditions": {
+    "specialization_codes": [
+      "backend"
+    ],
+    "target_grade_code": "middle",
+    "competency_codes": [
+      "program-implementation",
+      "sql-queries",
+      "api-design",
+      "transactions",
+      "test-automation"
+    ],
+    "competency_match": "exact_set",
+    "technology_variants": [
+      {
+        "code": "php_postgresql",
+        "assessed_technology_codes": [
+          "php",
+          "postgresql"
+        ],
+        "environment_technology_codes": [
+          "docker"
+        ]
+      }
+    ],
+    "technology_match": "exact_assessed_set"
+  }
+}

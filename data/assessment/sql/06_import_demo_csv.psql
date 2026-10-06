@@ -1,0 +1,8 @@
+\set ON_ERROR_STOP on
+BEGIN;
+SET LOCAL search_path TO mesto_assessment, pg_catalog;
+\copy tests (id, candidate_id, request_key, specialization_id, declared_grade_id, competency_ids, technology_context, criteria_snapshot, assignment, status, generation_metadata, created_at) FROM 'data/assessment/csv/demo/tests.csv' WITH (FORMAT csv, HEADER true, ENCODING 'UTF8');
+\copy test_attempts (id, candidate_id, test_id, answer, evaluation, status, started_at, submitted_at) FROM 'data/assessment/csv/demo/test_attempts.csv' WITH (FORMAT csv, HEADER true, ENCODING 'UTF8');
+SELECT setval(pg_get_serial_sequence('mesto_assessment.tests', 'id'), COALESCE(MAX(id), 1), MAX(id) IS NOT NULL) FROM tests;
+SELECT setval(pg_get_serial_sequence('mesto_assessment.test_attempts', 'id'), COALESCE(MAX(id), 1), MAX(id) IS NOT NULL) FROM test_attempts;
+COMMIT;

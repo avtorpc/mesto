@@ -1,0 +1,6180 @@
+{
+  "schema_version": 1,
+  "catalog_version": "draft-2026-10-05",
+  "status": "draft_not_calibrated",
+  "scale": {
+    "code": "checks_0_2_v1",
+    "version": 1,
+    "anchors": {
+      "0": "Ни одна проверка не выполнена либо провалена хотя бы одна блокирующая проверка",
+      "1": "Выполнена часть проверок; остальные не выполнены; все блокирующие выполнены",
+      "2": "Все проверки выполнены"
+    },
+    "unknown": null,
+    "unknown_rule": "Хотя бы одна необходимая проверка не имеет достаточных оснований: score=null, status=awaiting_review; не подменять нулём",
+    "check_statuses": [
+      "passed",
+      "failed",
+      "unknown"
+    ],
+    "scoring_owner": "platform",
+    "ai_role": "propose_check_findings_with_evidence_only"
+  },
+  "criteria": [
+    {
+      "code": "functional_correctness",
+      "name": "Реализация программной логики",
+      "competency_ids": [
+        "program-implementation"
+      ],
+      "group": "2.1. Разработка программ",
+      "version": 1,
+      "status": "draft",
+      "scale_code": "checks_0_2_v1",
+      "check_templates": [
+        "Результат соответствует контракту на допустимых входных данных",
+        "Граничные допустимые входные данные дают ожидаемый результат"
+      ],
+      "evidence_requirements": "Запуск, входы и фактические выходы",
+      "technology_binding": "explicit_per_task_criterion",
+      "verification_method": "runtime_and_review",
+      "allowed_target_grades": [
+        "junior",
+        "middle",
+        "senior"
+      ]
+    },
+    {
+      "code": "algorithm_correctness",
+      "name": "Алгоритмы и структуры данных",
+      "competency_ids": [
+        "algorithms"
+      ],
+      "group": "2.1. Разработка программ",
+      "version": 1,
+      "status": "draft",
+      "scale_code": "checks_0_2_v1",
+      "check_templates": [
+        "Результат совпадает с эталоном на контрольных наборах",
+        "Решение соблюдает заданные ограничения времени и памяти"
+      ],
+      "evidence_requirements": "Контрольные наборы, замеры ресурсов, разбор алгоритма",
+      "technology_binding": "explicit_per_task_criterion",
+      "verification_method": "runtime_and_review",
+      "allowed_target_grades": [
+        "junior",
+        "middle",
+        "senior"
+      ]
+    },
+    {
+      "code": "change_contract",
+      "name": "Чтение и изменение чужого кода",
+      "competency_ids": [
+        "code-maintenance"
+      ],
+      "group": "2.1. Разработка программ",
+      "version": 1,
+      "status": "draft",
+      "scale_code": "checks_0_2_v1",
+      "check_templates": [
+        "Запрошенное изменение выполняет новый контракт",
+        "Оговорённые прежние сценарии продолжают работать"
+      ],
+      "evidence_requirements": "Разница кода, новые и регрессионные проверки",
+      "technology_binding": "explicit_per_task_criterion",
+      "verification_method": "expert_review",
+      "allowed_target_grades": [
+        "junior",
+        "middle",
+        "senior"
+      ]
+    },
+    {
+      "code": "defect_resolution",
+      "name": "Поиск и исправление ошибок",
+      "competency_ids": [
+        "debugging"
+      ],
+      "group": "2.1. Разработка программ",
+      "version": 1,
+      "status": "draft",
+      "scale_code": "checks_0_2_v1",
+      "check_templates": [
+        "Исходный дефект воспроизведён и его причина подтверждена",
+        "Исправление устраняет дефект без оговорённых регрессий"
+      ],
+      "evidence_requirements": "Воспроизведение до и после, контрольные проверки",
+      "technology_binding": "explicit_per_task_criterion",
+      "verification_method": "expert_review",
+      "allowed_target_grades": [
+        "junior",
+        "middle",
+        "senior"
+      ]
+    },
+    {
+      "code": "behavior_preservation",
+      "name": "Рефакторинг",
+      "competency_ids": [
+        "refactoring"
+      ],
+      "group": "2.1. Разработка программ",
+      "version": 1,
+      "status": "draft",
+      "scale_code": "checks_0_2_v1",
+      "check_templates": [
+        "Оговорённое внешнее поведение сохранено",
+        "Заявленное структурное изменение выполнено по конкретным ограничениям задания"
+      ],
+      "evidence_requirements": "Разница кода, регрессионные проверки, перечень ограничений",
+      "technology_binding": "explicit_per_task_criterion",
+      "verification_method": "expert_review",
+      "allowed_target_grades": [
+        "junior",
+        "middle",
+        "senior"
+      ]
+    },
+    {
+      "code": "api_contract",
+      "name": "Проектирование и реализация API",
+      "competency_ids": [
+        "api-design"
+      ],
+      "group": "2.2. Backend и интеграции",
+      "version": 1,
+      "status": "draft",
+      "scale_code": "checks_0_2_v1",
+      "check_templates": [
+        "Ответы соответствуют заданной структуре и кодам состояния",
+        "Ошибочные запросы обработаны согласно контракту"
+      ],
+      "evidence_requirements": "Запросы, ответы, проверка схемы",
+      "technology_binding": "explicit_per_task_criterion",
+      "verification_method": "expert_review",
+      "allowed_target_grades": [
+        "junior",
+        "middle",
+        "senior"
+      ]
+    },
+    {
+      "code": "business_rules",
+      "name": "Моделирование бизнес-логики",
+      "competency_ids": [
+        "business-logic"
+      ],
+      "group": "2.2. Backend и интеграции",
+      "version": 1,
+      "status": "draft",
+      "scale_code": "checks_0_2_v1",
+      "check_templates": [
+        "Допустимые переходы состояния выполняют заданные правила",
+        "Запрещённые переходы не создают недопустимое состояние"
+      ],
+      "evidence_requirements": "Таблица переходов, результаты выполнения",
+      "technology_binding": "explicit_per_task_criterion",
+      "verification_method": "expert_review",
+      "allowed_target_grades": [
+        "junior",
+        "middle",
+        "senior"
+      ]
+    },
+    {
+      "code": "integration_contract",
+      "name": "Интеграция сервисов",
+      "competency_ids": [
+        "service-integration"
+      ],
+      "group": "2.2. Backend и интеграции",
+      "version": 1,
+      "status": "draft",
+      "scale_code": "checks_0_2_v1",
+      "check_templates": [
+        "Корректный обмен соответствует контракту внешней системы",
+        "Указанные сбои внешней системы обрабатываются по условию"
+      ],
+      "evidence_requirements": "Стенд или заглушка, трасса запросов, итоговое состояние",
+      "technology_binding": "explicit_per_task_criterion",
+      "verification_method": "runtime_and_review",
+      "allowed_target_grades": [
+        "junior",
+        "middle",
+        "senior"
+      ]
+    },
+    {
+      "code": "async_execution",
+      "name": "Асинхронная обработка",
+      "competency_ids": [
+        "async-processing"
+      ],
+      "group": "2.2. Backend и интеграции",
+      "version": 1,
+      "status": "draft",
+      "scale_code": "checks_0_2_v1",
+      "check_templates": [
+        "Фоновая задача выполняется и её результат доступен по условию",
+        "Указанные ошибки выполнения и повторная доставка обработаны по условию"
+      ],
+      "evidence_requirements": "События очереди, журналы, результаты повторов",
+      "technology_binding": "explicit_per_task_criterion",
+      "verification_method": "expert_review",
+      "allowed_target_grades": [
+        "junior",
+        "middle",
+        "senior"
+      ]
+    },
+    {
+      "code": "access_enforcement",
+      "name": "Контроль доступа в приложении",
+      "competency_ids": [
+        "application-access"
+      ],
+      "group": "2.2. Backend и интеграции",
+      "version": 1,
+      "status": "draft",
+      "scale_code": "checks_0_2_v1",
+      "check_templates": [
+        "Разрешённые действия доступны указанным ролям",
+        "Запрещённые действия и доступ к чужим данным блокируются"
+      ],
+      "evidence_requirements": "Матрица ролей, проверки запросов и состояния",
+      "technology_binding": "explicit_per_task_criterion",
+      "verification_method": "expert_review",
+      "allowed_target_grades": [
+        "junior",
+        "middle",
+        "senior"
+      ]
+    },
+    {
+      "code": "layout_conformance",
+      "name": "Создание интерфейса по макету",
+      "competency_ids": [
+        "layout"
+      ],
+      "group": "2.3. Frontend и мобильные интерфейсы",
+      "version": 1,
+      "status": "draft",
+      "scale_code": "checks_0_2_v1",
+      "check_templates": [
+        "Разметка соответствует перечисленным параметрам макета и контрольным размерам экрана",
+        "Оговорённые состояния элементов отображаются корректно"
+      ],
+      "evidence_requirements": "Снимки контрольных состояний, измерения по макету",
+      "technology_binding": "explicit_per_task_criterion",
+      "verification_method": "expert_review",
+      "allowed_target_grades": [
+        "junior",
+        "middle",
+        "senior"
+      ]
+    },
+    {
+      "code": "state_transitions",
+      "name": "Управление состоянием приложения",
+      "competency_ids": [
+        "client-state"
+      ],
+      "group": "2.3. Frontend и мобильные интерфейсы",
+      "version": 1,
+      "status": "draft",
+      "scale_code": "checks_0_2_v1",
+      "check_templates": [
+        "Действия пользователя приводят к заданным состояниям",
+        "Повторные действия и указанные отмены не нарушают состояние"
+      ],
+      "evidence_requirements": "Сценарии взаимодействия, снимки состояния",
+      "technology_binding": "explicit_per_task_criterion",
+      "verification_method": "expert_review",
+      "allowed_target_grades": [
+        "junior",
+        "middle",
+        "senior"
+      ]
+    },
+    {
+      "code": "client_api_states",
+      "name": "Взаимодействие клиента с API",
+      "competency_ids": [
+        "client-api"
+      ],
+      "group": "2.3. Frontend и мобильные интерфейсы",
+      "version": 1,
+      "status": "draft",
+      "scale_code": "checks_0_2_v1",
+      "check_templates": [
+        "Загрузка и успешный ответ отображаются согласно условию",
+        "Ошибка, повтор и отмена обрабатываются по заданным правилам"
+      ],
+      "evidence_requirements": "Ответы стенда, сценарии интерфейса",
+      "technology_binding": "explicit_per_task_criterion",
+      "verification_method": "expert_review",
+      "allowed_target_grades": [
+        "junior",
+        "middle",
+        "senior"
+      ]
+    },
+    {
+      "code": "accessibility_scenarios",
+      "name": "Доступность интерфейса",
+      "competency_ids": [
+        "interface-accessibility"
+      ],
+      "group": "2.3. Frontend и мобильные интерфейсы",
+      "version": 1,
+      "status": "draft",
+      "scale_code": "checks_0_2_v1",
+      "check_templates": [
+        "Заданный сценарий выполняется с клавиатуры с ожидаемым фокусом",
+        "Оговорённые элементы имеют требуемые доступные имена и состояния"
+      ],
+      "evidence_requirements": "Проверки клавиатуры, дерево доступности",
+      "technology_binding": "explicit_per_task_criterion",
+      "verification_method": "expert_review",
+      "allowed_target_grades": [
+        "junior",
+        "middle",
+        "senior"
+      ]
+    },
+    {
+      "code": "platform_interaction",
+      "name": "Платформенные функции приложения",
+      "competency_ids": [
+        "client-platform"
+      ],
+      "group": "2.3. Frontend и мобильные интерфейсы",
+      "version": 1,
+      "status": "draft",
+      "scale_code": "checks_0_2_v1",
+      "check_templates": [
+        "Функция устройства выполняет заданный сценарий",
+        "Отказ в разрешении и отсутствие возможности обработаны по условию"
+      ],
+      "evidence_requirements": "Стенд устройства или симулятор, сценарии разрешений",
+      "technology_binding": "explicit_per_task_criterion",
+      "verification_method": "runtime_and_review",
+      "allowed_target_grades": [
+        "junior",
+        "middle",
+        "senior"
+      ]
+    },
+    {
+      "code": "data_operations",
+      "name": "Работа с запросами",
+      "competency_ids": [
+        "sql-queries"
+      ],
+      "group": "2.4. Базы данных",
+      "version": 1,
+      "status": "draft",
+      "scale_code": "checks_0_2_v1",
+      "check_templates": [
+        "Результат запросов и изменений совпадает с ожидаемыми данными",
+        "Пустые, повторяющиеся и предельные данные обработаны по заданному контракту"
+      ],
+      "evidence_requirements": "Контрольные наборы БД, фактические результаты",
+      "technology_binding": "explicit_per_task_criterion",
+      "verification_method": "runtime_and_review",
+      "allowed_target_grades": [
+        "junior",
+        "middle",
+        "senior"
+      ]
+    },
+    {
+      "code": "schema_constraints",
+      "name": "Моделирование структуры данных",
+      "competency_ids": [
+        "data-modeling"
+      ],
+      "group": "2.4. Базы данных",
+      "version": 1,
+      "status": "draft",
+      "scale_code": "checks_0_2_v1",
+      "check_templates": [
+        "Схема представляет все заданные сущности и связи",
+        "Оговорённые недопустимые состояния блокируются ограничениями"
+      ],
+      "evidence_requirements": "Схема, операции с контрольными допустимыми и недопустимыми данными",
+      "technology_binding": "explicit_per_task_criterion",
+      "verification_method": "expert_review",
+      "allowed_target_grades": [
+        "junior",
+        "middle",
+        "senior"
+      ]
+    },
+    {
+      "code": "transaction_atomicity",
+      "name": "Транзакции и целостность",
+      "competency_ids": [
+        "transactions"
+      ],
+      "group": "2.4. Базы данных",
+      "version": 1,
+      "status": "draft",
+      "scale_code": "checks_0_2_v1",
+      "check_templates": [
+        "Успешная операция сохраняет требуемое согласованное состояние",
+        "При указанных сбоях отсутствуют запрещённые частичные изменения"
+      ],
+      "evidence_requirements": "Инъекция сбоя, состояние БД до и после",
+      "technology_binding": "explicit_per_task_criterion",
+      "verification_method": "runtime_and_review",
+      "allowed_target_grades": [
+        "junior",
+        "middle",
+        "senior"
+      ]
+    },
+    {
+      "code": "query_efficiency",
+      "name": "Анализ производительности запросов",
+      "competency_ids": [
+        "query-performance"
+      ],
+      "group": "2.4. Базы данных",
+      "version": 1,
+      "status": "draft",
+      "scale_code": "checks_0_2_v1",
+      "check_templates": [
+        "Измерение выполнено на заданных данных и по воспроизводимой процедуре",
+        "Изменение сохраняет результат и удовлетворяет заданному ограничению производительности"
+      ],
+      "evidence_requirements": "Планы выполнения, результаты запросов, замеры",
+      "technology_binding": "explicit_per_task_criterion",
+      "verification_method": "expert_review",
+      "allowed_target_grades": [
+        "junior",
+        "middle",
+        "senior"
+      ]
+    },
+    {
+      "code": "database_restore",
+      "name": "Сохранность и восстановление БД",
+      "competency_ids": [
+        "database-recovery"
+      ],
+      "group": "2.4. Базы данных",
+      "version": 1,
+      "status": "draft",
+      "scale_code": "checks_0_2_v1",
+      "check_templates": [
+        "Контрольные данные восстанавливаются в указанную точку",
+        "Восстановленные данные проходят заданные проверки целостности"
+      ],
+      "evidence_requirements": "Резервная копия, журнал восстановления, сверка данных",
+      "technology_binding": "explicit_per_task_criterion",
+      "verification_method": "expert_review",
+      "allowed_target_grades": [
+        "junior",
+        "middle",
+        "senior"
+      ]
+    },
+    {
+      "code": "scenario_coverage",
+      "name": "Проектирование проверок",
+      "competency_ids": [
+        "test-design"
+      ],
+      "group": "2.5. Тестирование",
+      "version": 1,
+      "status": "draft",
+      "scale_code": "checks_0_2_v1",
+      "check_templates": [
+        "Сценарии покрывают перечисленные требования и границы",
+        "Для каждого сценария указан проверяемый ожидаемый результат"
+      ],
+      "evidence_requirements": "Матрица требований и сценариев, экспертная сверка",
+      "technology_binding": "explicit_per_task_criterion",
+      "verification_method": "expert_review",
+      "allowed_target_grades": [
+        "junior",
+        "middle",
+        "senior"
+      ]
+    },
+    {
+      "code": "test_effectiveness",
+      "name": "Автоматизация проверок",
+      "competency_ids": [
+        "test-automation"
+      ],
+      "group": "2.5. Тестирование",
+      "version": 1,
+      "status": "draft",
+      "scale_code": "checks_0_2_v1",
+      "check_templates": [
+        "Проверки воспроизводимо выполняются на корректном решении",
+        "Проверки обнаруживают оговорённые контрольные дефекты"
+      ],
+      "evidence_requirements": "Запуск тестов на эталоне и заданных мутантах",
+      "technology_binding": "explicit_per_task_criterion",
+      "verification_method": "runtime_and_review",
+      "allowed_target_grades": [
+        "junior",
+        "middle",
+        "senior"
+      ]
+    },
+    {
+      "code": "defect_reproducibility",
+      "name": "Описание дефектов",
+      "competency_ids": [
+        "defect-reporting"
+      ],
+      "group": "2.5. Тестирование",
+      "version": 1,
+      "status": "draft",
+      "scale_code": "checks_0_2_v1",
+      "check_templates": [
+        "По описанию воспроизводится заданный дефект",
+        "Фактическое и ожидаемое поведение, условия и последствия разделены"
+      ],
+      "evidence_requirements": "Повтор по инструкции, карточка дефекта",
+      "technology_binding": "explicit_per_task_criterion",
+      "verification_method": "expert_review",
+      "allowed_target_grades": [
+        "junior",
+        "middle",
+        "senior"
+      ]
+    },
+    {
+      "code": "load_experiment",
+      "name": "Нагрузочные проверки",
+      "competency_ids": [
+        "performance-testing"
+      ],
+      "group": "2.5. Тестирование",
+      "version": 1,
+      "status": "draft",
+      "scale_code": "checks_0_2_v1",
+      "check_templates": [
+        "Нагрузка и измерения соответствуют заданному сценарию",
+        "Выводы о показателях подтверждены измерениями и оговорёнными ограничениями"
+      ],
+      "evidence_requirements": "Конфигурация нагрузки, сырые замеры, отчёт",
+      "technology_binding": "explicit_per_task_criterion",
+      "verification_method": "runtime_and_review",
+      "allowed_target_grades": [
+        "junior",
+        "middle",
+        "senior"
+      ]
+    },
+    {
+      "code": "coverage_gaps",
+      "name": "Оценка покрытия и качества",
+      "competency_ids": [
+        "quality-assessment"
+      ],
+      "group": "2.5. Тестирование",
+      "version": 1,
+      "status": "draft",
+      "scale_code": "checks_0_2_v1",
+      "check_templates": [
+        "Найдены оговорённые непроверенные риски в предоставленном наборе",
+        "Предложенные проверки адресуют эти риски и имеют ожидаемые результаты"
+      ],
+      "evidence_requirements": "Матрица покрытия, контрольный список рисков, экспертная сверка",
+      "technology_binding": "explicit_per_task_criterion",
+      "verification_method": "expert_review",
+      "allowed_target_grades": [
+        "junior",
+        "middle",
+        "senior"
+      ]
+    },
+    {
+      "code": "reproducible_deployment",
+      "name": "Развёртывание приложения",
+      "competency_ids": [
+        "deployment"
+      ],
+      "group": "2.6. Инфраструктура и эксплуатация",
+      "version": 1,
+      "status": "draft",
+      "scale_code": "checks_0_2_v1",
+      "check_templates": [
+        "Приложение запускается по инструкции в чистом заданном окружении",
+        "Проверка готовности и конфигурация соответствуют условию"
+      ],
+      "evidence_requirements": "Сборка, журнал запуска, проверки готовности",
+      "technology_binding": "explicit_per_task_criterion",
+      "verification_method": "runtime_and_review",
+      "allowed_target_grades": [
+        "junior",
+        "middle",
+        "senior"
+      ]
+    },
+    {
+      "code": "pipeline_execution",
+      "name": "Автоматизация сборки и доставки",
+      "competency_ids": [
+        "delivery-automation"
+      ],
+      "group": "2.6. Инфраструктура и эксплуатация",
+      "version": 1,
+      "status": "draft",
+      "scale_code": "checks_0_2_v1",
+      "check_templates": [
+        "Конвейер выполняет заданные этапы и производит нужный артефакт",
+        "Оговорённый провал проверки блокирует выпуск"
+      ],
+      "evidence_requirements": "Конфигурация конвейера, журнал успешного и ошибочного запуска",
+      "technology_binding": "explicit_per_task_criterion",
+      "verification_method": "runtime_and_review",
+      "allowed_target_grades": [
+        "junior",
+        "middle",
+        "senior"
+      ]
+    },
+    {
+      "code": "diagnostic_visibility",
+      "name": "Наблюдаемость",
+      "competency_ids": [
+        "observability"
+      ],
+      "group": "2.6. Инфраструктура и эксплуатация",
+      "version": 1,
+      "status": "draft",
+      "scale_code": "checks_0_2_v1",
+      "check_templates": [
+        "Предусмотренные события отражаются в заданных логах и метриках",
+        "По этим данным обнаруживается и локализуется контрольное отклонение"
+      ],
+      "evidence_requirements": "События стенда, диагностические данные, разбор",
+      "technology_binding": "explicit_per_task_criterion",
+      "verification_method": "expert_review",
+      "allowed_target_grades": [
+        "junior",
+        "middle",
+        "senior"
+      ]
+    },
+    {
+      "code": "incident_root_cause",
+      "name": "Диагностика эксплуатационного сбоя",
+      "competency_ids": [
+        "incident-diagnosis"
+      ],
+      "group": "2.6. Инфраструктура и эксплуатация",
+      "version": 1,
+      "status": "draft",
+      "scale_code": "checks_0_2_v1",
+      "check_templates": [
+        "Причина контрольного сбоя согласуется с предоставленными доказательствами",
+        "Предложенная проверка причины и исправление подтверждаются на стенде"
+      ],
+      "evidence_requirements": "Журналы, метрики, эксперимент проверки гипотезы",
+      "technology_binding": "explicit_per_task_criterion",
+      "verification_method": "expert_review",
+      "allowed_target_grades": [
+        "junior",
+        "middle",
+        "senior"
+      ]
+    },
+    {
+      "code": "service_restore",
+      "name": "Восстановление работоспособности",
+      "competency_ids": [
+        "system-recovery"
+      ],
+      "group": "2.6. Инфраструктура и эксплуатация",
+      "version": 1,
+      "status": "draft",
+      "scale_code": "checks_0_2_v1",
+      "check_templates": [
+        "Восстановление или откат возвращает сервис в заданное рабочее состояние",
+        "Проверены оговорённые ограничения целостности и времени восстановления"
+      ],
+      "evidence_requirements": "Журнал действий, проверки сервиса и данных, замеры",
+      "technology_binding": "explicit_per_task_criterion",
+      "verification_method": "expert_review",
+      "allowed_target_grades": [
+        "junior",
+        "middle",
+        "senior"
+      ]
+    },
+    {
+      "code": "network_fault_location",
+      "name": "Диагностика соединений",
+      "competency_ids": [
+        "network-diagnosis"
+      ],
+      "group": "2.7. Сети",
+      "version": 1,
+      "status": "draft",
+      "scale_code": "checks_0_2_v1",
+      "check_templates": [
+        "Локализован участок и причина контрольной проблемы связи",
+        "Диагностические измерения подтверждают вывод и исключают заданные альтернативы"
+      ],
+      "evidence_requirements": "Трассировки, сетевые проверки, контрольный разбор",
+      "technology_binding": "explicit_per_task_criterion",
+      "verification_method": "expert_review",
+      "allowed_target_grades": [
+        "junior",
+        "middle",
+        "senior"
+      ]
+    },
+    {
+      "code": "network_policy",
+      "name": "Настройка сетевого взаимодействия",
+      "competency_ids": [
+        "network-configuration"
+      ],
+      "group": "2.7. Сети",
+      "version": 1,
+      "status": "draft",
+      "scale_code": "checks_0_2_v1",
+      "check_templates": [
+        "Разрешённые соединения работают по заданной матрице",
+        "Запрещённые соединения блокируются"
+      ],
+      "evidence_requirements": "Конфигурация, результаты проверки связности",
+      "technology_binding": "explicit_per_task_criterion",
+      "verification_method": "runtime_and_review",
+      "allowed_target_grades": [
+        "junior",
+        "middle",
+        "senior"
+      ]
+    },
+    {
+      "code": "network_requirements",
+      "name": "Проектирование сети",
+      "competency_ids": [
+        "network-design"
+      ],
+      "group": "2.7. Сети",
+      "version": 1,
+      "status": "draft",
+      "scale_code": "checks_0_2_v1",
+      "check_templates": [
+        "Схема обеспечивает заданные потоки и ограничения",
+        "Рассмотрены указанные отказные сценарии и ограничения пропускной способности"
+      ],
+      "evidence_requirements": "Схема, расчёты, экспертная проверка сценариев",
+      "technology_binding": "explicit_per_task_criterion",
+      "verification_method": "expert_review",
+      "allowed_target_grades": [
+        "junior",
+        "middle",
+        "senior"
+      ]
+    },
+    {
+      "code": "vulnerability_evidence",
+      "name": "Анализ уязвимостей",
+      "competency_ids": [
+        "vulnerability-analysis"
+      ],
+      "group": "2.8. Информационная безопасность",
+      "version": 1,
+      "status": "draft",
+      "scale_code": "checks_0_2_v1",
+      "check_templates": [
+        "Контрольная уязвимость подтверждена воспроизводимым сценарием на учебном стенде",
+        "Исправление блокирует этот сценарий и сохраняет разрешённое поведение"
+      ],
+      "evidence_requirements": "Учебный стенд, воспроизведение до и после",
+      "technology_binding": "explicit_per_task_criterion",
+      "verification_method": "expert_review",
+      "allowed_target_grades": [
+        "junior",
+        "middle",
+        "senior"
+      ]
+    },
+    {
+      "code": "event_analysis",
+      "name": "Анализ событий безопасности",
+      "competency_ids": [
+        "security-events"
+      ],
+      "group": "2.8. Информационная безопасность",
+      "version": 1,
+      "status": "draft",
+      "scale_code": "checks_0_2_v1",
+      "check_templates": [
+        "Вывод о контрольном событии подтверждён указанными источниками",
+        "Последовательность событий и оговорённые альтернативы разобраны без вымышленных фактов"
+      ],
+      "evidence_requirements": "Набор событий, ссылки на записи, экспертная сверка",
+      "technology_binding": "explicit_per_task_criterion",
+      "verification_method": "expert_review",
+      "allowed_target_grades": [
+        "junior",
+        "middle",
+        "senior"
+      ]
+    },
+    {
+      "code": "security_policy",
+      "name": "Настройка защиты",
+      "competency_ids": [
+        "security-configuration"
+      ],
+      "group": "2.8. Информационная безопасность",
+      "version": 1,
+      "status": "draft",
+      "scale_code": "checks_0_2_v1",
+      "check_templates": [
+        "Заданные защитные ограничения применены",
+        "Проверки подтверждают блокировку запрещённых и сохранение разрешённых действий"
+      ],
+      "evidence_requirements": "Изолированный стенд, конфигурация, проверки политики",
+      "technology_binding": "explicit_per_task_criterion",
+      "verification_method": "expert_review",
+      "allowed_target_grades": [
+        "junior",
+        "middle",
+        "senior"
+      ]
+    },
+    {
+      "code": "threat_controls",
+      "name": "Оценка рисков и угроз",
+      "competency_ids": [
+        "security-risk"
+      ],
+      "group": "2.8. Информационная безопасность",
+      "version": 1,
+      "status": "draft",
+      "scale_code": "checks_0_2_v1",
+      "check_templates": [
+        "Для заданных активов описаны угрозы и основания оценки риска",
+        "Меры защиты связаны с угрозами и оговорёнными ограничениями"
+      ],
+      "evidence_requirements": "Модель угроз, матрица рисков, экспертная шкала",
+      "technology_binding": "explicit_per_task_criterion",
+      "verification_method": "expert_review",
+      "allowed_target_grades": [
+        "junior",
+        "middle",
+        "senior"
+      ]
+    },
+    {
+      "code": "data_cleaning",
+      "name": "Подготовка данных",
+      "competency_ids": [
+        "data-preparation"
+      ],
+      "group": "2.9. Данные и аналитика",
+      "version": 1,
+      "status": "draft",
+      "scale_code": "checks_0_2_v1",
+      "check_templates": [
+        "Заданные дефекты данных исправлены по указанным правилам",
+        "Корректные значения и оговорённые связи сохранены"
+      ],
+      "evidence_requirements": "Исходный набор, итоговый набор, контрольные сверки",
+      "technology_binding": "explicit_per_task_criterion",
+      "verification_method": "expert_review",
+      "allowed_target_grades": [
+        "junior",
+        "middle",
+        "senior"
+      ]
+    },
+    {
+      "code": "analysis_validity",
+      "name": "Исследование данных",
+      "competency_ids": [
+        "data-analysis"
+      ],
+      "group": "2.9. Данные и аналитика",
+      "version": 1,
+      "status": "draft",
+      "scale_code": "checks_0_2_v1",
+      "check_templates": [
+        "Расчёты воспроизводятся на предоставленных данных",
+        "Вывод отвечает вопросу и ограничен фактическими результатами"
+      ],
+      "evidence_requirements": "Данные, расчёты, ссылки на основания вывода",
+      "technology_binding": "explicit_per_task_criterion",
+      "verification_method": "expert_review",
+      "allowed_target_grades": [
+        "junior",
+        "middle",
+        "senior"
+      ]
+    },
+    {
+      "code": "pipeline_integrity",
+      "name": "Потоки и преобразование данных",
+      "competency_ids": [
+        "data-pipelines"
+      ],
+      "group": "2.9. Данные и аналитика",
+      "version": 1,
+      "status": "draft",
+      "scale_code": "checks_0_2_v1",
+      "check_templates": [
+        "Преобразование выдаёт ожидаемые данные на контрольном наборе",
+        "Оговорённые повторы и сбои не создают запрещённых потерь или дубликатов"
+      ],
+      "evidence_requirements": "Входы, выходы, журнал повторного выполнения",
+      "technology_binding": "explicit_per_task_criterion",
+      "verification_method": "runtime_and_review",
+      "allowed_target_grades": [
+        "junior",
+        "middle",
+        "senior"
+      ]
+    },
+    {
+      "code": "report_accuracy",
+      "name": "Визуализация и отчётность",
+      "competency_ids": [
+        "data-visualization"
+      ],
+      "group": "2.9. Данные и аналитика",
+      "version": 1,
+      "status": "draft",
+      "scale_code": "checks_0_2_v1",
+      "check_templates": [
+        "Значения и подписи соответствуют контрольным данным",
+        "Представление позволяет ответить на заданный вопрос без оговорённых искажений"
+      ],
+      "evidence_requirements": "Отчёт, сверка значений, экспертная проверка сценария",
+      "technology_binding": "explicit_per_task_criterion",
+      "verification_method": "expert_review",
+      "allowed_target_grades": [
+        "junior",
+        "middle",
+        "senior"
+      ]
+    },
+    {
+      "code": "experiment_validity",
+      "name": "Анализ эксперимента",
+      "competency_ids": [
+        "experiment-analysis"
+      ],
+      "group": "2.9. Данные и аналитика",
+      "version": 1,
+      "status": "draft",
+      "scale_code": "checks_0_2_v1",
+      "check_templates": [
+        "Расчёт эффекта и неопределённости выполнен по заданному плану",
+        "Вывод учитывает перечисленные ограничения данных и дизайна эксперимента"
+      ],
+      "evidence_requirements": "План, воспроизводимые расчёты, экспертная сверка",
+      "technology_binding": "explicit_per_task_criterion",
+      "verification_method": "expert_review",
+      "allowed_target_grades": [
+        "junior",
+        "middle",
+        "senior"
+      ]
+    },
+    {
+      "code": "model_baseline",
+      "name": "Разработка модели",
+      "competency_ids": [
+        "model-development"
+      ],
+      "group": "2.10. Машинное обучение и ИИ",
+      "version": 1,
+      "status": "draft",
+      "scale_code": "checks_0_2_v1",
+      "check_templates": [
+        "Обучение воспроизводится с заданным разделением данных без оговорённой утечки",
+        "Результат сравнен с фиксированным базовым решением по заданной процедуре"
+      ],
+      "evidence_requirements": "Код, разбиение, метрики контрольного запуска",
+      "technology_binding": "explicit_per_task_criterion",
+      "verification_method": "expert_review",
+      "allowed_target_grades": [
+        "junior",
+        "middle",
+        "senior"
+      ]
+    },
+    {
+      "code": "model_error_analysis",
+      "name": "Оценка качества модели",
+      "competency_ids": [
+        "model-evaluation"
+      ],
+      "group": "2.10. Машинное обучение и ИИ",
+      "version": 1,
+      "status": "draft",
+      "scale_code": "checks_0_2_v1",
+      "check_templates": [
+        "Метрики рассчитаны на заданной независимой выборке",
+        "Разбор ошибок и выделенных групп подтверждён примерами и расчётами"
+      ],
+      "evidence_requirements": "Выборка, метрики, контрольные примеры ошибок",
+      "technology_binding": "explicit_per_task_criterion",
+      "verification_method": "expert_review",
+      "allowed_target_grades": [
+        "junior",
+        "middle",
+        "senior"
+      ]
+    },
+    {
+      "code": "model_serving",
+      "name": "Внедрение модели",
+      "competency_ids": [
+        "model-deployment"
+      ],
+      "group": "2.10. Машинное обучение и ИИ",
+      "version": 1,
+      "status": "draft",
+      "scale_code": "checks_0_2_v1",
+      "check_templates": [
+        "Модель выдаёт ожидаемый формат результата в заданном приложении",
+        "Оговорённые ограничения запуска, версии и ресурсов проверены"
+      ],
+      "evidence_requirements": "Артефакт, среда запуска, запросы и замеры",
+      "technology_binding": "explicit_per_task_criterion",
+      "verification_method": "expert_review",
+      "allowed_target_grades": [
+        "junior",
+        "middle",
+        "senior"
+      ]
+    },
+    {
+      "code": "ai_scenario_evaluation",
+      "name": "Проверка приложения с ИИ",
+      "competency_ids": [
+        "ai-application-evaluation"
+      ],
+      "group": "2.10. Машинное обучение и ИИ",
+      "version": 1,
+      "status": "draft",
+      "scale_code": "checks_0_2_v1",
+      "check_templates": [
+        "Контрольный набор покрывает перечисленные сценарии приложения",
+        "Ошибки и ограничения описаны на основании фактических ответов по фиксированной шкале"
+      ],
+      "evidence_requirements": "Набор сценариев, ответы, версия модели и шкалы",
+      "technology_binding": "explicit_per_task_criterion",
+      "verification_method": "expert_review",
+      "allowed_target_grades": [
+        "junior",
+        "middle",
+        "senior"
+      ]
+    },
+    {
+      "code": "requirements_testability",
+      "name": "Выявление и формализация требований",
+      "competency_ids": [
+        "requirements"
+      ],
+      "group": "2.11. Анализ требований и архитектура",
+      "version": 1,
+      "status": "draft",
+      "scale_code": "checks_0_2_v1",
+      "check_templates": [
+        "Требования отражают заданную потребность без оговорённых противоречий",
+        "Условия приёмки проверяемы, неоднозначности обозначены"
+      ],
+      "evidence_requirements": "Кейс, требования, матрица приёмки, экспертная сверка",
+      "technology_binding": "explicit_per_task_criterion",
+      "verification_method": "expert_review",
+      "allowed_target_grades": [
+        "junior",
+        "middle",
+        "senior"
+      ]
+    },
+    {
+      "code": "process_consistency",
+      "name": "Моделирование процессов",
+      "competency_ids": [
+        "process-modeling"
+      ],
+      "group": "2.11. Анализ требований и архитектура",
+      "version": 1,
+      "status": "draft",
+      "scale_code": "checks_0_2_v1",
+      "check_templates": [
+        "Модель содержит заданные состояния, участников и переходы",
+        "Исключительные сценарии не приводят к оговорённым противоречиям"
+      ],
+      "evidence_requirements": "Модель, прохождение сценариев, экспертная сверка",
+      "technology_binding": "explicit_per_task_criterion",
+      "verification_method": "expert_review",
+      "allowed_target_grades": [
+        "junior",
+        "middle",
+        "senior"
+      ]
+    },
+    {
+      "code": "architecture_constraints",
+      "name": "Архитектурное решение",
+      "competency_ids": [
+        "architecture-design"
+      ],
+      "group": "2.11. Анализ требований и архитектура",
+      "version": 1,
+      "status": "draft",
+      "scale_code": "checks_0_2_v1",
+      "check_templates": [
+        "Решение удовлетворяет указанным функциональным и ресурсным ограничениям",
+        "Компромиссы обоснованы сравнением допустимых альтернатив по заданным вопросам"
+      ],
+      "evidence_requirements": "Схема, расчёты, альтернативы, экспертная шкала",
+      "technology_binding": "explicit_per_task_criterion",
+      "verification_method": "expert_review",
+      "allowed_target_grades": [
+        "junior",
+        "middle",
+        "senior"
+      ]
+    },
+    {
+      "code": "architecture_risks",
+      "name": "Оценка чужого решения",
+      "competency_ids": [
+        "architecture-review"
+      ],
+      "group": "2.11. Анализ требований и архитектура",
+      "version": 1,
+      "status": "draft",
+      "scale_code": "checks_0_2_v1",
+      "check_templates": [
+        "Найдены контрольные риски и нарушения заданных ограничений",
+        "Предложенные изменения адресуют риски и учитывают оговорённые последствия"
+      ],
+      "evidence_requirements": "Материалы кейса, список рисков, экспертная сверка",
+      "technology_binding": "explicit_per_task_criterion",
+      "verification_method": "expert_review",
+      "allowed_target_grades": [
+        "junior",
+        "middle",
+        "senior"
+      ]
+    },
+    {
+      "code": "user_flow_completion",
+      "name": "Проектирование взаимодействия",
+      "competency_ids": [
+        "interaction-design"
+      ],
+      "group": "2.12. Дизайн и исследования",
+      "version": 1,
+      "status": "draft",
+      "scale_code": "checks_0_2_v1",
+      "check_templates": [
+        "Прототип позволяет пройти заданный пользовательский сценарий",
+        "Оговорённые ошибки и возвраты имеют определённое поведение"
+      ],
+      "evidence_requirements": "Прототип, прохождение сценариев, экспертная шкала",
+      "technology_binding": "explicit_per_task_criterion",
+      "verification_method": "expert_review",
+      "allowed_target_grades": [
+        "junior",
+        "middle",
+        "senior"
+      ]
+    },
+    {
+      "code": "visual_constraints",
+      "name": "Проектирование интерфейса",
+      "competency_ids": [
+        "visual-design"
+      ],
+      "group": "2.12. Дизайн и исследования",
+      "version": 1,
+      "status": "draft",
+      "scale_code": "checks_0_2_v1",
+      "check_templates": [
+        "Интерфейс соблюдает перечисленные визуальные ограничения и состояния",
+        "Оговорённые правила иерархии и согласованности применены к контрольным экранам"
+      ],
+      "evidence_requirements": "Макеты, перечень ограничений, экспертная сверка",
+      "technology_binding": "explicit_per_task_criterion",
+      "verification_method": "expert_review",
+      "allowed_target_grades": [
+        "junior",
+        "middle",
+        "senior"
+      ]
+    },
+    {
+      "code": "research_traceability",
+      "name": "Исследование пользователей",
+      "competency_ids": [
+        "user-research"
+      ],
+      "group": "2.12. Дизайн и исследования",
+      "version": 1,
+      "status": "draft",
+      "scale_code": "checks_0_2_v1",
+      "check_templates": [
+        "План исследования соответствует заданному вопросу и ограничениям",
+        "Выводы прослеживаются до предоставленных наблюдений и учитывают ограничения выборки"
+      ],
+      "evidence_requirements": "План, материалы наблюдений, экспертная шкала",
+      "technology_binding": "explicit_per_task_criterion",
+      "verification_method": "expert_review",
+      "allowed_target_grades": [
+        "junior",
+        "middle",
+        "senior"
+      ]
+    },
+    {
+      "code": "component_consistency",
+      "name": "Работа с дизайн-системой",
+      "competency_ids": [
+        "design-systems"
+      ],
+      "group": "2.12. Дизайн и исследования",
+      "version": 1,
+      "status": "draft",
+      "scale_code": "checks_0_2_v1",
+      "check_templates": [
+        "Компоненты и варианты покрывают заданные состояния",
+        "Повторное применение соблюдает определённые правила токенов и поведения"
+      ],
+      "evidence_requirements": "Библиотека, контрольные экраны, экспертная сверка",
+      "technology_binding": "explicit_per_task_criterion",
+      "verification_method": "expert_review",
+      "allowed_target_grades": [
+        "junior",
+        "middle",
+        "senior"
+      ]
+    },
+    {
+      "code": "device_behavior",
+      "name": "Программирование устройств",
+      "competency_ids": [
+        "device-programming"
+      ],
+      "group": "2.13. Устройства, игры и вычисления",
+      "version": 1,
+      "status": "draft",
+      "scale_code": "checks_0_2_v1",
+      "check_templates": [
+        "Устройство или симулятор выполняет заданные последовательности входов и выходов",
+        "Оговорённые ошибки и ресурсные ограничения обработаны"
+      ],
+      "evidence_requirements": "Стенд, входные сигналы, трасса поведения",
+      "technology_binding": "explicit_per_task_criterion",
+      "verification_method": "runtime_and_review",
+      "allowed_target_grades": [
+        "junior",
+        "middle",
+        "senior"
+      ]
+    },
+    {
+      "code": "timing_constraints",
+      "name": "Работа с временными ограничениями",
+      "competency_ids": [
+        "real-time-behavior"
+      ],
+      "group": "2.13. Устройства, игры и вычисления",
+      "version": 1,
+      "status": "draft",
+      "scale_code": "checks_0_2_v1",
+      "check_templates": [
+        "Заданные операции укладываются в фиксированные временные пределы",
+        "Оговорённые условия нагрузки и нарушения времени проверены"
+      ],
+      "evidence_requirements": "Трассы, контрольная нагрузка, замеры",
+      "technology_binding": "explicit_per_task_criterion",
+      "verification_method": "expert_review",
+      "allowed_target_grades": [
+        "junior",
+        "middle",
+        "senior"
+      ]
+    },
+    {
+      "code": "interactive_rules",
+      "name": "Интерактивные и игровые системы",
+      "competency_ids": [
+        "interactive-systems"
+      ],
+      "group": "2.13. Устройства, игры и вычисления",
+      "version": 1,
+      "status": "draft",
+      "scale_code": "checks_0_2_v1",
+      "check_templates": [
+        "Механика выполняет заданные переходы и правила",
+        "Оговорённые столкновения, повторы и крайние состояния обработаны"
+      ],
+      "evidence_requirements": "Сценарии стенда, состояние системы",
+      "technology_binding": "explicit_per_task_criterion",
+      "verification_method": "expert_review",
+      "allowed_target_grades": [
+        "junior",
+        "middle",
+        "senior"
+      ]
+    },
+    {
+      "code": "computational_accuracy",
+      "name": "Графические и вычислительные задачи",
+      "competency_ids": [
+        "graphics-computing"
+      ],
+      "group": "2.13. Устройства, игры и вычисления",
+      "version": 1,
+      "status": "draft",
+      "scale_code": "checks_0_2_v1",
+      "check_templates": [
+        "Результат соответствует контрольному образцу с заданным допуском",
+        "Заданные ограничения ресурсов соблюдены на контрольных данных"
+      ],
+      "evidence_requirements": "Образцы, числовая сверка, замеры",
+      "technology_binding": "explicit_per_task_criterion",
+      "verification_method": "expert_review",
+      "allowed_target_grades": [
+        "junior",
+        "middle",
+        "senior"
+      ]
+    },
+    {
+      "code": "instruction_reproducibility",
+      "name": "Техническая документация",
+      "competency_ids": [
+        "technical-docs"
+      ],
+      "group": "2.14. Документация, поддержка и внедрение",
+      "version": 1,
+      "status": "draft",
+      "scale_code": "checks_0_2_v1",
+      "check_templates": [
+        "По инструкции воспроизводится заданный сценарий в указанной среде",
+        "Предусловия, ограничения и оговорённые ошибки отражены"
+      ],
+      "evidence_requirements": "Независимый проход по инструкции, контрольный список",
+      "technology_binding": "explicit_per_task_criterion",
+      "verification_method": "expert_review",
+      "allowed_target_grades": [
+        "junior",
+        "middle",
+        "senior"
+      ]
+    },
+    {
+      "code": "support_diagnosis",
+      "name": "Разбор обращения пользователя",
+      "competency_ids": [
+        "support-analysis"
+      ],
+      "group": "2.14. Документация, поддержка и внедрение",
+      "version": 1,
+      "status": "draft",
+      "scale_code": "checks_0_2_v1",
+      "check_templates": [
+        "Уточнения и диагностика позволяют различить заданные причины обращения",
+        "Ответ предлагает проверяемые действия в пределах предоставленных фактов"
+      ],
+      "evidence_requirements": "Кейс обращения, диагностическое дерево, экспертная сверка",
+      "technology_binding": "explicit_per_task_criterion",
+      "verification_method": "expert_review",
+      "allowed_target_grades": [
+        "junior",
+        "middle",
+        "senior"
+      ]
+    },
+    {
+      "code": "rollout_readiness",
+      "name": "План внедрения",
+      "competency_ids": [
+        "implementation-plan"
+      ],
+      "group": "2.14. Документация, поддержка и внедрение",
+      "version": 1,
+      "status": "draft",
+      "scale_code": "checks_0_2_v1",
+      "check_templates": [
+        "План содержит заданные этапы, зависимости и условия готовности",
+        "Оговорённые риски, проверка результата и откат имеют конкретные действия"
+      ],
+      "evidence_requirements": "План внедрения, контрольные сценарии, экспертная шкала",
+      "technology_binding": "explicit_per_task_criterion",
+      "verification_method": "expert_review",
+      "allowed_target_grades": [
+        "junior",
+        "middle",
+        "senior"
+      ]
+    },
+    {
+      "code": "priority_rationale",
+      "name": "Приоритизация задач",
+      "competency_ids": [
+        "prioritization"
+      ],
+      "group": "2.15. Продукты, проекты и управление",
+      "version": 1,
+      "status": "draft",
+      "scale_code": "checks_0_2_v1",
+      "check_templates": [
+        "Приоритеты прослеживаются до заданных целей и ограничений",
+        "Выбор учитывает оговорённые зависимости и альтернативы"
+      ],
+      "evidence_requirements": "Данные кейса, расчёт или правило выбора, экспертная шкала",
+      "technology_binding": "explicit_per_task_criterion",
+      "verification_method": "expert_review",
+      "allowed_target_grades": [
+        "junior",
+        "middle",
+        "senior"
+      ]
+    },
+    {
+      "code": "plan_feasibility",
+      "name": "Планирование работ",
+      "competency_ids": [
+        "project-planning"
+      ],
+      "group": "2.15. Продукты, проекты и управление",
+      "version": 1,
+      "status": "draft",
+      "scale_code": "checks_0_2_v1",
+      "check_templates": [
+        "План учитывает заданные зависимости и доступные ресурсы",
+        "Оговорённые риски и изменения разобраны с проверяемыми последствиями"
+      ],
+      "evidence_requirements": "План, расчёты загрузки и сроков, экспертная сверка",
+      "technology_binding": "explicit_per_task_criterion",
+      "verification_method": "expert_review",
+      "allowed_target_grades": [
+        "junior",
+        "middle",
+        "senior"
+      ]
+    },
+    {
+      "code": "metric_alignment",
+      "name": "Определение продуктовых показателей",
+      "competency_ids": [
+        "product-metrics"
+      ],
+      "group": "2.15. Продукты, проекты и управление",
+      "version": 1,
+      "status": "draft",
+      "scale_code": "checks_0_2_v1",
+      "check_templates": [
+        "Метрики связаны с указанной целью и имеют определение расчёта",
+        "Оговорённые искажения и ограничения интерпретации объяснены"
+      ],
+      "evidence_requirements": "Данные кейса, формулы, контрольный расчёт",
+      "technology_binding": "explicit_per_task_criterion",
+      "verification_method": "expert_review",
+      "allowed_target_grades": [
+        "junior",
+        "middle",
+        "senior"
+      ]
+    },
+    {
+      "code": "decision_evidence",
+      "name": "Объяснение и защита решения",
+      "competency_ids": [
+        "decision-explanation"
+      ],
+      "group": "2.15. Продукты, проекты и управление",
+      "version": 1,
+      "status": "draft",
+      "scale_code": "checks_0_2_v1",
+      "check_templates": [
+        "Объяснение согласуется с фактически выполненным решением",
+        "Ответы на заданные вопросы подтверждены примерами или расчётами"
+      ],
+      "evidence_requirements": "Решение, вопросы, ответы и ссылки на доказательства",
+      "technology_binding": "explicit_per_task_criterion",
+      "verification_method": "expert_review",
+      "allowed_target_grades": [
+        "junior",
+        "middle",
+        "senior"
+      ]
+    },
+    {
+      "code": "input_validation",
+      "name": "Проверка входных данных",
+      "competency_ids": [
+        "api-design"
+      ],
+      "group": "Дополнительные критерии",
+      "version": 1,
+      "status": "draft",
+      "scale_code": "checks_0_2_v1",
+      "check_templates": [
+        "Входы с заданными нарушениями формата отклоняются",
+        "Недопустимый ввод не создаёт запрещённых изменений"
+      ],
+      "evidence_requirements": "Запросы и состояние до и после",
+      "technology_binding": "explicit_per_task_criterion",
+      "verification_method": "runtime_and_review",
+      "allowed_target_grades": [
+        "junior",
+        "middle",
+        "senior"
+      ]
+    },
+    {
+      "code": "sql_parameterization",
+      "name": "Параметризация запросов",
+      "competency_ids": [
+        "sql-queries"
+      ],
+      "group": "Дополнительные критерии",
+      "version": 1,
+      "status": "draft",
+      "scale_code": "checks_0_2_v1",
+      "check_templates": [
+        "Переданные значения не меняют структуру SQL-запроса",
+        "Контрольные значения обрабатываются как данные с ожидаемым результатом"
+      ],
+      "evidence_requirements": "Запросы учебного стенда и разбор построения SQL",
+      "technology_binding": "explicit_per_task_criterion",
+      "verification_method": "runtime_and_review",
+      "allowed_target_grades": [
+        "junior",
+        "middle",
+        "senior"
+      ]
+    },
+    {
+      "code": "concurrency_consistency",
+      "name": "Согласованность конкурентных операций",
+      "competency_ids": [
+        "transactions"
+      ],
+      "group": "Дополнительные критерии",
+      "version": 1,
+      "status": "draft",
+      "scale_code": "checks_0_2_v1",
+      "check_templates": [
+        "Заданные параллельные операции сохраняют инварианты",
+        "Оговорённые конфликты обрабатываются без запрещённых результатов"
+      ],
+      "evidence_requirements": "Воспроизводимое расписание операций и состояние БД",
+      "technology_binding": "explicit_per_task_criterion",
+      "verification_method": "runtime_and_review",
+      "allowed_target_grades": [
+        "junior",
+        "middle",
+        "senior"
+      ]
+    },
+    {
+      "code": "request_idempotency",
+      "name": "Повторное выполнение запроса",
+      "competency_ids": [
+        "service-integration"
+      ],
+      "group": "Дополнительные критерии",
+      "version": 1,
+      "status": "draft",
+      "scale_code": "checks_0_2_v1",
+      "check_templates": [
+        "Повтор с тем же ключом не дублирует заданный эффект",
+        "Конфликтующее содержимое с тем же ключом обработано по контракту"
+      ],
+      "evidence_requirements": "Повторные запросы и итоговое состояние",
+      "technology_binding": "explicit_per_task_criterion",
+      "verification_method": "runtime_and_review",
+      "allowed_target_grades": [
+        "junior",
+        "middle",
+        "senior"
+      ]
+    },
+    {
+      "code": "container_configuration",
+      "name": "Конфигурация контейнера",
+      "competency_ids": [
+        "deployment"
+      ],
+      "group": "Дополнительные критерии",
+      "version": 1,
+      "status": "draft",
+      "scale_code": "checks_0_2_v1",
+      "check_templates": [
+        "Образ собирается и запускается в заданной среде",
+        "Параметры, ресурсы и доступы соответствуют ограничениям задания"
+      ],
+      "evidence_requirements": "Файл сборки, конфигурация и контрольный запуск",
+      "technology_binding": "explicit_per_task_criterion",
+      "verification_method": "runtime_and_review",
+      "allowed_target_grades": [
+        "junior",
+        "middle",
+        "senior"
+      ]
+    },
+    {
+      "code": "orchestration_recovery",
+      "name": "Восстановление в оркестраторе",
+      "competency_ids": [
+        "system-recovery"
+      ],
+      "group": "Дополнительные критерии",
+      "version": 1,
+      "status": "draft",
+      "scale_code": "checks_0_2_v1",
+      "check_templates": [
+        "Заданный отказ экземпляра приводит к предусмотренному восстановлению",
+        "Готовность, трафик и данные после восстановления соответствуют условию"
+      ],
+      "evidence_requirements": "Манифесты, события, проверки сервиса",
+      "technology_binding": "explicit_per_task_criterion",
+      "verification_method": "runtime_and_review",
+      "allowed_target_grades": [
+        "junior",
+        "middle",
+        "senior"
+      ]
+    },
+    {
+      "code": "code_readability",
+      "name": "Прослеживаемость структуры кода",
+      "competency_ids": [
+        "code-maintenance"
+      ],
+      "group": "Дополнительные критерии",
+      "version": 1,
+      "status": "draft",
+      "scale_code": "checks_0_2_v1",
+      "check_templates": [
+        "Указанные точки изменения локализуются по именам и структуре",
+        "Перечисленные ограничения структуры соблюдены без изменения поведения"
+      ],
+      "evidence_requirements": "Код, контрольные вопросы и регрессионные проверки",
+      "technology_binding": "explicit_per_task_criterion",
+      "verification_method": "expert_review",
+      "allowed_target_grades": [
+        "junior",
+        "middle",
+        "senior"
+      ]
+    }
+  ],
+  "specialization_links": [
+    {
+      "specialization_id": "backend",
+      "name": "Backend-разработчик",
+      "direction": 1,
+      "competency_ids": [
+        "program-implementation",
+        "debugging",
+        "api-design",
+        "business-logic",
+        "service-integration",
+        "async-processing",
+        "application-access",
+        "sql-queries",
+        "data-modeling",
+        "transactions",
+        "test-automation"
+      ],
+      "relation": "suggested_applicability_not_mandatory",
+      "criterion_codes": [
+        "functional_correctness",
+        "defect_resolution",
+        "api_contract",
+        "business_rules",
+        "integration_contract",
+        "async_execution",
+        "access_enforcement",
+        "data_operations",
+        "schema_constraints",
+        "transaction_atomicity",
+        "test_effectiveness",
+        "input_validation",
+        "sql_parameterization",
+        "concurrency_consistency",
+        "request_idempotency"
+      ]
+    },
+    {
+      "specialization_id": "frontend",
+      "name": "Frontend-разработчик",
+      "direction": 1,
+      "competency_ids": [
+        "program-implementation",
+        "debugging",
+        "layout",
+        "client-state",
+        "client-api",
+        "interface-accessibility",
+        "test-automation"
+      ],
+      "relation": "suggested_applicability_not_mandatory",
+      "criterion_codes": [
+        "functional_correctness",
+        "defect_resolution",
+        "layout_conformance",
+        "state_transitions",
+        "client_api_states",
+        "accessibility_scenarios",
+        "test_effectiveness"
+      ]
+    },
+    {
+      "specialization_id": "fullstack",
+      "name": "Full Stack-разработчик",
+      "direction": 1,
+      "competency_ids": [
+        "program-implementation",
+        "debugging",
+        "api-design",
+        "business-logic",
+        "service-integration",
+        "application-access",
+        "sql-queries",
+        "data-modeling",
+        "transactions",
+        "layout",
+        "client-state",
+        "client-api",
+        "interface-accessibility",
+        "test-automation"
+      ],
+      "relation": "suggested_applicability_not_mandatory",
+      "criterion_codes": [
+        "functional_correctness",
+        "defect_resolution",
+        "api_contract",
+        "business_rules",
+        "integration_contract",
+        "access_enforcement",
+        "layout_conformance",
+        "state_transitions",
+        "client_api_states",
+        "accessibility_scenarios",
+        "data_operations",
+        "schema_constraints",
+        "transaction_atomicity",
+        "test_effectiveness",
+        "input_validation",
+        "sql_parameterization",
+        "concurrency_consistency",
+        "request_idempotency"
+      ]
+    },
+    {
+      "specialization_id": "integration",
+      "name": "Разработчик интеграций",
+      "direction": 1,
+      "competency_ids": [
+        "program-implementation",
+        "api-design",
+        "service-integration",
+        "async-processing",
+        "transactions",
+        "test-automation"
+      ],
+      "relation": "suggested_applicability_not_mandatory",
+      "criterion_codes": [
+        "functional_correctness",
+        "api_contract",
+        "integration_contract",
+        "async_execution",
+        "transaction_atomicity",
+        "test_effectiveness",
+        "input_validation",
+        "concurrency_consistency",
+        "request_idempotency"
+      ]
+    },
+    {
+      "specialization_id": "mobile",
+      "name": "Разработчик мобильных приложений",
+      "direction": 2,
+      "competency_ids": [
+        "program-implementation",
+        "algorithms",
+        "code-maintenance",
+        "debugging",
+        "refactoring",
+        "layout",
+        "client-state",
+        "client-api",
+        "interface-accessibility",
+        "client-platform",
+        "test-design",
+        "test-automation",
+        "defect-reporting",
+        "performance-testing",
+        "quality-assessment",
+        "device-programming",
+        "real-time-behavior",
+        "interactive-systems",
+        "graphics-computing"
+      ],
+      "relation": "suggested_applicability_not_mandatory",
+      "criterion_codes": [
+        "functional_correctness",
+        "algorithm_correctness",
+        "change_contract",
+        "defect_resolution",
+        "behavior_preservation",
+        "layout_conformance",
+        "state_transitions",
+        "client_api_states",
+        "accessibility_scenarios",
+        "platform_interaction",
+        "scenario_coverage",
+        "test_effectiveness",
+        "defect_reproducibility",
+        "load_experiment",
+        "coverage_gaps",
+        "device_behavior",
+        "timing_constraints",
+        "interactive_rules",
+        "computational_accuracy",
+        "code_readability"
+      ]
+    },
+    {
+      "specialization_id": "desktop",
+      "name": "Разработчик настольных приложений",
+      "direction": 2,
+      "competency_ids": [
+        "program-implementation",
+        "algorithms",
+        "code-maintenance",
+        "debugging",
+        "refactoring",
+        "layout",
+        "client-state",
+        "client-api",
+        "interface-accessibility",
+        "client-platform",
+        "test-design",
+        "test-automation",
+        "defect-reporting",
+        "performance-testing",
+        "quality-assessment",
+        "device-programming",
+        "real-time-behavior",
+        "interactive-systems",
+        "graphics-computing"
+      ],
+      "relation": "suggested_applicability_not_mandatory",
+      "criterion_codes": [
+        "functional_correctness",
+        "algorithm_correctness",
+        "change_contract",
+        "defect_resolution",
+        "behavior_preservation",
+        "layout_conformance",
+        "state_transitions",
+        "client_api_states",
+        "accessibility_scenarios",
+        "platform_interaction",
+        "scenario_coverage",
+        "test_effectiveness",
+        "defect_reproducibility",
+        "load_experiment",
+        "coverage_gaps",
+        "device_behavior",
+        "timing_constraints",
+        "interactive_rules",
+        "computational_accuracy",
+        "code_readability"
+      ]
+    },
+    {
+      "specialization_id": "systems",
+      "name": "Системный программист",
+      "direction": 2,
+      "competency_ids": [
+        "program-implementation",
+        "algorithms",
+        "code-maintenance",
+        "debugging",
+        "refactoring",
+        "layout",
+        "client-state",
+        "client-api",
+        "interface-accessibility",
+        "client-platform",
+        "test-design",
+        "test-automation",
+        "defect-reporting",
+        "performance-testing",
+        "quality-assessment",
+        "device-programming",
+        "real-time-behavior",
+        "interactive-systems",
+        "graphics-computing"
+      ],
+      "relation": "suggested_applicability_not_mandatory",
+      "criterion_codes": [
+        "functional_correctness",
+        "algorithm_correctness",
+        "change_contract",
+        "defect_resolution",
+        "behavior_preservation",
+        "layout_conformance",
+        "state_transitions",
+        "client_api_states",
+        "accessibility_scenarios",
+        "platform_interaction",
+        "scenario_coverage",
+        "test_effectiveness",
+        "defect_reproducibility",
+        "load_experiment",
+        "coverage_gaps",
+        "device_behavior",
+        "timing_constraints",
+        "interactive_rules",
+        "computational_accuracy",
+        "code_readability"
+      ]
+    },
+    {
+      "specialization_id": "sdk",
+      "name": "Разработчик библиотек и SDK",
+      "direction": 2,
+      "competency_ids": [
+        "program-implementation",
+        "algorithms",
+        "code-maintenance",
+        "debugging",
+        "refactoring",
+        "layout",
+        "client-state",
+        "client-api",
+        "interface-accessibility",
+        "client-platform",
+        "test-design",
+        "test-automation",
+        "defect-reporting",
+        "performance-testing",
+        "quality-assessment",
+        "device-programming",
+        "real-time-behavior",
+        "interactive-systems",
+        "graphics-computing"
+      ],
+      "relation": "suggested_applicability_not_mandatory",
+      "criterion_codes": [
+        "functional_correctness",
+        "algorithm_correctness",
+        "change_contract",
+        "defect_resolution",
+        "behavior_preservation",
+        "layout_conformance",
+        "state_transitions",
+        "client_api_states",
+        "accessibility_scenarios",
+        "platform_interaction",
+        "scenario_coverage",
+        "test_effectiveness",
+        "defect_reproducibility",
+        "load_experiment",
+        "coverage_gaps",
+        "device_behavior",
+        "timing_constraints",
+        "interactive_rules",
+        "computational_accuracy",
+        "code_readability"
+      ]
+    },
+    {
+      "specialization_id": "enterprise-development",
+      "name": "Разработчик корпоративных систем",
+      "direction": 3,
+      "competency_ids": [
+        "program-implementation",
+        "algorithms",
+        "code-maintenance",
+        "debugging",
+        "refactoring",
+        "api-design",
+        "business-logic",
+        "service-integration",
+        "async-processing",
+        "application-access",
+        "sql-queries",
+        "data-modeling",
+        "transactions",
+        "query-performance",
+        "database-recovery",
+        "requirements",
+        "process-modeling",
+        "architecture-design",
+        "architecture-review",
+        "technical-docs",
+        "support-analysis",
+        "implementation-plan"
+      ],
+      "relation": "suggested_applicability_not_mandatory",
+      "criterion_codes": [
+        "functional_correctness",
+        "algorithm_correctness",
+        "change_contract",
+        "defect_resolution",
+        "behavior_preservation",
+        "api_contract",
+        "business_rules",
+        "integration_contract",
+        "async_execution",
+        "access_enforcement",
+        "data_operations",
+        "schema_constraints",
+        "transaction_atomicity",
+        "query_efficiency",
+        "database_restore",
+        "requirements_testability",
+        "process_consistency",
+        "architecture_constraints",
+        "architecture_risks",
+        "instruction_reproducibility",
+        "support_diagnosis",
+        "rollout_readiness",
+        "input_validation",
+        "sql_parameterization",
+        "concurrency_consistency",
+        "request_idempotency",
+        "code_readability"
+      ]
+    },
+    {
+      "specialization_id": "erp",
+      "name": "Специалист по ERP-системам",
+      "direction": 3,
+      "competency_ids": [
+        "program-implementation",
+        "algorithms",
+        "code-maintenance",
+        "debugging",
+        "refactoring",
+        "api-design",
+        "business-logic",
+        "service-integration",
+        "async-processing",
+        "application-access",
+        "sql-queries",
+        "data-modeling",
+        "transactions",
+        "query-performance",
+        "database-recovery",
+        "requirements",
+        "process-modeling",
+        "architecture-design",
+        "architecture-review",
+        "technical-docs",
+        "support-analysis",
+        "implementation-plan"
+      ],
+      "relation": "suggested_applicability_not_mandatory",
+      "criterion_codes": [
+        "functional_correctness",
+        "algorithm_correctness",
+        "change_contract",
+        "defect_resolution",
+        "behavior_preservation",
+        "api_contract",
+        "business_rules",
+        "integration_contract",
+        "async_execution",
+        "access_enforcement",
+        "data_operations",
+        "schema_constraints",
+        "transaction_atomicity",
+        "query_efficiency",
+        "database_restore",
+        "requirements_testability",
+        "process_consistency",
+        "architecture_constraints",
+        "architecture_risks",
+        "instruction_reproducibility",
+        "support_diagnosis",
+        "rollout_readiness",
+        "input_validation",
+        "sql_parameterization",
+        "concurrency_consistency",
+        "request_idempotency",
+        "code_readability"
+      ]
+    },
+    {
+      "specialization_id": "crm",
+      "name": "Специалист по CRM-системам",
+      "direction": 3,
+      "competency_ids": [
+        "program-implementation",
+        "algorithms",
+        "code-maintenance",
+        "debugging",
+        "refactoring",
+        "api-design",
+        "business-logic",
+        "service-integration",
+        "async-processing",
+        "application-access",
+        "sql-queries",
+        "data-modeling",
+        "transactions",
+        "query-performance",
+        "database-recovery",
+        "requirements",
+        "process-modeling",
+        "architecture-design",
+        "architecture-review",
+        "technical-docs",
+        "support-analysis",
+        "implementation-plan"
+      ],
+      "relation": "suggested_applicability_not_mandatory",
+      "criterion_codes": [
+        "functional_correctness",
+        "algorithm_correctness",
+        "change_contract",
+        "defect_resolution",
+        "behavior_preservation",
+        "api_contract",
+        "business_rules",
+        "integration_contract",
+        "async_execution",
+        "access_enforcement",
+        "data_operations",
+        "schema_constraints",
+        "transaction_atomicity",
+        "query_efficiency",
+        "database_restore",
+        "requirements_testability",
+        "process_consistency",
+        "architecture_constraints",
+        "architecture_risks",
+        "instruction_reproducibility",
+        "support_diagnosis",
+        "rollout_readiness",
+        "input_validation",
+        "sql_parameterization",
+        "concurrency_consistency",
+        "request_idempotency",
+        "code_readability"
+      ]
+    },
+    {
+      "specialization_id": "ecm",
+      "name": "Специалист по электронному документообороту",
+      "direction": 3,
+      "competency_ids": [
+        "program-implementation",
+        "algorithms",
+        "code-maintenance",
+        "debugging",
+        "refactoring",
+        "api-design",
+        "business-logic",
+        "service-integration",
+        "async-processing",
+        "application-access",
+        "sql-queries",
+        "data-modeling",
+        "transactions",
+        "query-performance",
+        "database-recovery",
+        "requirements",
+        "process-modeling",
+        "architecture-design",
+        "architecture-review",
+        "technical-docs",
+        "support-analysis",
+        "implementation-plan"
+      ],
+      "relation": "suggested_applicability_not_mandatory",
+      "criterion_codes": [
+        "functional_correctness",
+        "algorithm_correctness",
+        "change_contract",
+        "defect_resolution",
+        "behavior_preservation",
+        "api_contract",
+        "business_rules",
+        "integration_contract",
+        "async_execution",
+        "access_enforcement",
+        "data_operations",
+        "schema_constraints",
+        "transaction_atomicity",
+        "query_efficiency",
+        "database_restore",
+        "requirements_testability",
+        "process_consistency",
+        "architecture_constraints",
+        "architecture_risks",
+        "instruction_reproducibility",
+        "support_diagnosis",
+        "rollout_readiness",
+        "input_validation",
+        "sql_parameterization",
+        "concurrency_consistency",
+        "request_idempotency",
+        "code_readability"
+      ]
+    },
+    {
+      "specialization_id": "rpa",
+      "name": "Разработчик RPA",
+      "direction": 3,
+      "competency_ids": [
+        "program-implementation",
+        "algorithms",
+        "code-maintenance",
+        "debugging",
+        "refactoring",
+        "api-design",
+        "business-logic",
+        "service-integration",
+        "async-processing",
+        "application-access",
+        "sql-queries",
+        "data-modeling",
+        "transactions",
+        "query-performance",
+        "database-recovery",
+        "requirements",
+        "process-modeling",
+        "architecture-design",
+        "architecture-review",
+        "technical-docs",
+        "support-analysis",
+        "implementation-plan"
+      ],
+      "relation": "suggested_applicability_not_mandatory",
+      "criterion_codes": [
+        "functional_correctness",
+        "algorithm_correctness",
+        "change_contract",
+        "defect_resolution",
+        "behavior_preservation",
+        "api_contract",
+        "business_rules",
+        "integration_contract",
+        "async_execution",
+        "access_enforcement",
+        "data_operations",
+        "schema_constraints",
+        "transaction_atomicity",
+        "query_efficiency",
+        "database_restore",
+        "requirements_testability",
+        "process_consistency",
+        "architecture_constraints",
+        "architecture_risks",
+        "instruction_reproducibility",
+        "support_diagnosis",
+        "rollout_readiness",
+        "input_validation",
+        "sql_parameterization",
+        "concurrency_consistency",
+        "request_idempotency",
+        "code_readability"
+      ]
+    },
+    {
+      "specialization_id": "low-code",
+      "name": "Разработчик на Low-code / No-code платформах",
+      "direction": 3,
+      "competency_ids": [
+        "program-implementation",
+        "algorithms",
+        "code-maintenance",
+        "debugging",
+        "refactoring",
+        "api-design",
+        "business-logic",
+        "service-integration",
+        "async-processing",
+        "application-access",
+        "sql-queries",
+        "data-modeling",
+        "transactions",
+        "query-performance",
+        "database-recovery",
+        "requirements",
+        "process-modeling",
+        "architecture-design",
+        "architecture-review",
+        "technical-docs",
+        "support-analysis",
+        "implementation-plan"
+      ],
+      "relation": "suggested_applicability_not_mandatory",
+      "criterion_codes": [
+        "functional_correctness",
+        "algorithm_correctness",
+        "change_contract",
+        "defect_resolution",
+        "behavior_preservation",
+        "api_contract",
+        "business_rules",
+        "integration_contract",
+        "async_execution",
+        "access_enforcement",
+        "data_operations",
+        "schema_constraints",
+        "transaction_atomicity",
+        "query_efficiency",
+        "database_restore",
+        "requirements_testability",
+        "process_consistency",
+        "architecture_constraints",
+        "architecture_risks",
+        "instruction_reproducibility",
+        "support_diagnosis",
+        "rollout_readiness",
+        "input_validation",
+        "sql_parameterization",
+        "concurrency_consistency",
+        "request_idempotency",
+        "code_readability"
+      ]
+    },
+    {
+      "specialization_id": "gameplay",
+      "name": "Разработчик игровой логики",
+      "direction": 4,
+      "competency_ids": [
+        "program-implementation",
+        "algorithms",
+        "code-maintenance",
+        "debugging",
+        "refactoring",
+        "layout",
+        "client-state",
+        "client-api",
+        "interface-accessibility",
+        "client-platform",
+        "test-design",
+        "test-automation",
+        "defect-reporting",
+        "performance-testing",
+        "quality-assessment",
+        "device-programming",
+        "real-time-behavior",
+        "interactive-systems",
+        "graphics-computing"
+      ],
+      "relation": "suggested_applicability_not_mandatory",
+      "criterion_codes": [
+        "functional_correctness",
+        "algorithm_correctness",
+        "change_contract",
+        "defect_resolution",
+        "behavior_preservation",
+        "layout_conformance",
+        "state_transitions",
+        "client_api_states",
+        "accessibility_scenarios",
+        "platform_interaction",
+        "scenario_coverage",
+        "test_effectiveness",
+        "defect_reproducibility",
+        "load_experiment",
+        "coverage_gaps",
+        "device_behavior",
+        "timing_constraints",
+        "interactive_rules",
+        "computational_accuracy",
+        "code_readability"
+      ]
+    },
+    {
+      "specialization_id": "game-engine",
+      "name": "Разработчик игровых движков",
+      "direction": 4,
+      "competency_ids": [
+        "program-implementation",
+        "algorithms",
+        "code-maintenance",
+        "debugging",
+        "refactoring",
+        "layout",
+        "client-state",
+        "client-api",
+        "interface-accessibility",
+        "client-platform",
+        "test-design",
+        "test-automation",
+        "defect-reporting",
+        "performance-testing",
+        "quality-assessment",
+        "device-programming",
+        "real-time-behavior",
+        "interactive-systems",
+        "graphics-computing"
+      ],
+      "relation": "suggested_applicability_not_mandatory",
+      "criterion_codes": [
+        "functional_correctness",
+        "algorithm_correctness",
+        "change_contract",
+        "defect_resolution",
+        "behavior_preservation",
+        "layout_conformance",
+        "state_transitions",
+        "client_api_states",
+        "accessibility_scenarios",
+        "platform_interaction",
+        "scenario_coverage",
+        "test_effectiveness",
+        "defect_reproducibility",
+        "load_experiment",
+        "coverage_gaps",
+        "device_behavior",
+        "timing_constraints",
+        "interactive_rules",
+        "computational_accuracy",
+        "code_readability"
+      ]
+    },
+    {
+      "specialization_id": "graphics",
+      "name": "Разработчик графических систем",
+      "direction": 4,
+      "competency_ids": [
+        "program-implementation",
+        "algorithms",
+        "code-maintenance",
+        "debugging",
+        "refactoring",
+        "layout",
+        "client-state",
+        "client-api",
+        "interface-accessibility",
+        "client-platform",
+        "test-design",
+        "test-automation",
+        "defect-reporting",
+        "performance-testing",
+        "quality-assessment",
+        "device-programming",
+        "real-time-behavior",
+        "interactive-systems",
+        "graphics-computing"
+      ],
+      "relation": "suggested_applicability_not_mandatory",
+      "criterion_codes": [
+        "functional_correctness",
+        "algorithm_correctness",
+        "change_contract",
+        "defect_resolution",
+        "behavior_preservation",
+        "layout_conformance",
+        "state_transitions",
+        "client_api_states",
+        "accessibility_scenarios",
+        "platform_interaction",
+        "scenario_coverage",
+        "test_effectiveness",
+        "defect_reproducibility",
+        "load_experiment",
+        "coverage_gaps",
+        "device_behavior",
+        "timing_constraints",
+        "interactive_rules",
+        "computational_accuracy",
+        "code_readability"
+      ]
+    },
+    {
+      "specialization_id": "game-network",
+      "name": "Разработчик сетевых игровых систем",
+      "direction": 4,
+      "competency_ids": [
+        "program-implementation",
+        "algorithms",
+        "code-maintenance",
+        "debugging",
+        "refactoring",
+        "layout",
+        "client-state",
+        "client-api",
+        "interface-accessibility",
+        "client-platform",
+        "test-design",
+        "test-automation",
+        "defect-reporting",
+        "performance-testing",
+        "quality-assessment",
+        "device-programming",
+        "real-time-behavior",
+        "interactive-systems",
+        "graphics-computing"
+      ],
+      "relation": "suggested_applicability_not_mandatory",
+      "criterion_codes": [
+        "functional_correctness",
+        "algorithm_correctness",
+        "change_contract",
+        "defect_resolution",
+        "behavior_preservation",
+        "layout_conformance",
+        "state_transitions",
+        "client_api_states",
+        "accessibility_scenarios",
+        "platform_interaction",
+        "scenario_coverage",
+        "test_effectiveness",
+        "defect_reproducibility",
+        "load_experiment",
+        "coverage_gaps",
+        "device_behavior",
+        "timing_constraints",
+        "interactive_rules",
+        "computational_accuracy",
+        "code_readability"
+      ]
+    },
+    {
+      "specialization_id": "game-tools",
+      "name": "Разработчик инструментов для игр",
+      "direction": 4,
+      "competency_ids": [
+        "program-implementation",
+        "algorithms",
+        "code-maintenance",
+        "debugging",
+        "refactoring",
+        "layout",
+        "client-state",
+        "client-api",
+        "interface-accessibility",
+        "client-platform",
+        "test-design",
+        "test-automation",
+        "defect-reporting",
+        "performance-testing",
+        "quality-assessment",
+        "device-programming",
+        "real-time-behavior",
+        "interactive-systems",
+        "graphics-computing"
+      ],
+      "relation": "suggested_applicability_not_mandatory",
+      "criterion_codes": [
+        "functional_correctness",
+        "algorithm_correctness",
+        "change_contract",
+        "defect_resolution",
+        "behavior_preservation",
+        "layout_conformance",
+        "state_transitions",
+        "client_api_states",
+        "accessibility_scenarios",
+        "platform_interaction",
+        "scenario_coverage",
+        "test_effectiveness",
+        "defect_reproducibility",
+        "load_experiment",
+        "coverage_gaps",
+        "device_behavior",
+        "timing_constraints",
+        "interactive_rules",
+        "computational_accuracy",
+        "code_readability"
+      ]
+    },
+    {
+      "specialization_id": "technical-artist",
+      "name": "Технический художник",
+      "direction": 4,
+      "competency_ids": [
+        "program-implementation",
+        "algorithms",
+        "code-maintenance",
+        "debugging",
+        "refactoring",
+        "layout",
+        "client-state",
+        "client-api",
+        "interface-accessibility",
+        "client-platform",
+        "test-design",
+        "test-automation",
+        "defect-reporting",
+        "performance-testing",
+        "quality-assessment",
+        "device-programming",
+        "real-time-behavior",
+        "interactive-systems",
+        "graphics-computing"
+      ],
+      "relation": "suggested_applicability_not_mandatory",
+      "criterion_codes": [
+        "functional_correctness",
+        "algorithm_correctness",
+        "change_contract",
+        "defect_resolution",
+        "behavior_preservation",
+        "layout_conformance",
+        "state_transitions",
+        "client_api_states",
+        "accessibility_scenarios",
+        "platform_interaction",
+        "scenario_coverage",
+        "test_effectiveness",
+        "defect_reproducibility",
+        "load_experiment",
+        "coverage_gaps",
+        "device_behavior",
+        "timing_constraints",
+        "interactive_rules",
+        "computational_accuracy",
+        "code_readability"
+      ]
+    },
+    {
+      "specialization_id": "xr",
+      "name": "Разработчик AR / VR / XR",
+      "direction": 4,
+      "competency_ids": [
+        "program-implementation",
+        "algorithms",
+        "code-maintenance",
+        "debugging",
+        "refactoring",
+        "layout",
+        "client-state",
+        "client-api",
+        "interface-accessibility",
+        "client-platform",
+        "test-design",
+        "test-automation",
+        "defect-reporting",
+        "performance-testing",
+        "quality-assessment",
+        "device-programming",
+        "real-time-behavior",
+        "interactive-systems",
+        "graphics-computing"
+      ],
+      "relation": "suggested_applicability_not_mandatory",
+      "criterion_codes": [
+        "functional_correctness",
+        "algorithm_correctness",
+        "change_contract",
+        "defect_resolution",
+        "behavior_preservation",
+        "layout_conformance",
+        "state_transitions",
+        "client_api_states",
+        "accessibility_scenarios",
+        "platform_interaction",
+        "scenario_coverage",
+        "test_effectiveness",
+        "defect_reproducibility",
+        "load_experiment",
+        "coverage_gaps",
+        "device_behavior",
+        "timing_constraints",
+        "interactive_rules",
+        "computational_accuracy",
+        "code_readability"
+      ]
+    },
+    {
+      "specialization_id": "embedded",
+      "name": "Разработчик встроенных систем",
+      "direction": 5,
+      "competency_ids": [
+        "program-implementation",
+        "algorithms",
+        "code-maintenance",
+        "debugging",
+        "refactoring",
+        "deployment",
+        "delivery-automation",
+        "observability",
+        "incident-diagnosis",
+        "system-recovery",
+        "network-diagnosis",
+        "network-configuration",
+        "network-design",
+        "device-programming",
+        "real-time-behavior",
+        "interactive-systems",
+        "graphics-computing"
+      ],
+      "relation": "suggested_applicability_not_mandatory",
+      "criterion_codes": [
+        "functional_correctness",
+        "algorithm_correctness",
+        "change_contract",
+        "defect_resolution",
+        "behavior_preservation",
+        "reproducible_deployment",
+        "pipeline_execution",
+        "diagnostic_visibility",
+        "incident_root_cause",
+        "service_restore",
+        "network_fault_location",
+        "network_policy",
+        "network_requirements",
+        "device_behavior",
+        "timing_constraints",
+        "interactive_rules",
+        "computational_accuracy",
+        "container_configuration",
+        "orchestration_recovery",
+        "code_readability"
+      ]
+    },
+    {
+      "specialization_id": "firmware",
+      "name": "Разработчик прошивок",
+      "direction": 5,
+      "competency_ids": [
+        "program-implementation",
+        "algorithms",
+        "code-maintenance",
+        "debugging",
+        "refactoring",
+        "deployment",
+        "delivery-automation",
+        "observability",
+        "incident-diagnosis",
+        "system-recovery",
+        "network-diagnosis",
+        "network-configuration",
+        "network-design",
+        "device-programming",
+        "real-time-behavior",
+        "interactive-systems",
+        "graphics-computing"
+      ],
+      "relation": "suggested_applicability_not_mandatory",
+      "criterion_codes": [
+        "functional_correctness",
+        "algorithm_correctness",
+        "change_contract",
+        "defect_resolution",
+        "behavior_preservation",
+        "reproducible_deployment",
+        "pipeline_execution",
+        "diagnostic_visibility",
+        "incident_root_cause",
+        "service_restore",
+        "network_fault_location",
+        "network_policy",
+        "network_requirements",
+        "device_behavior",
+        "timing_constraints",
+        "interactive_rules",
+        "computational_accuracy",
+        "container_configuration",
+        "orchestration_recovery",
+        "code_readability"
+      ]
+    },
+    {
+      "specialization_id": "iot",
+      "name": "Разработчик IoT-систем",
+      "direction": 5,
+      "competency_ids": [
+        "program-implementation",
+        "algorithms",
+        "code-maintenance",
+        "debugging",
+        "refactoring",
+        "deployment",
+        "delivery-automation",
+        "observability",
+        "incident-diagnosis",
+        "system-recovery",
+        "network-diagnosis",
+        "network-configuration",
+        "network-design",
+        "device-programming",
+        "real-time-behavior",
+        "interactive-systems",
+        "graphics-computing"
+      ],
+      "relation": "suggested_applicability_not_mandatory",
+      "criterion_codes": [
+        "functional_correctness",
+        "algorithm_correctness",
+        "change_contract",
+        "defect_resolution",
+        "behavior_preservation",
+        "reproducible_deployment",
+        "pipeline_execution",
+        "diagnostic_visibility",
+        "incident_root_cause",
+        "service_restore",
+        "network_fault_location",
+        "network_policy",
+        "network_requirements",
+        "device_behavior",
+        "timing_constraints",
+        "interactive_rules",
+        "computational_accuracy",
+        "container_configuration",
+        "orchestration_recovery",
+        "code_readability"
+      ]
+    },
+    {
+      "specialization_id": "robotics",
+      "name": "Разработчик робототехнических систем",
+      "direction": 5,
+      "competency_ids": [
+        "program-implementation",
+        "algorithms",
+        "code-maintenance",
+        "debugging",
+        "refactoring",
+        "deployment",
+        "delivery-automation",
+        "observability",
+        "incident-diagnosis",
+        "system-recovery",
+        "network-diagnosis",
+        "network-configuration",
+        "network-design",
+        "device-programming",
+        "real-time-behavior",
+        "interactive-systems",
+        "graphics-computing"
+      ],
+      "relation": "suggested_applicability_not_mandatory",
+      "criterion_codes": [
+        "functional_correctness",
+        "algorithm_correctness",
+        "change_contract",
+        "defect_resolution",
+        "behavior_preservation",
+        "reproducible_deployment",
+        "pipeline_execution",
+        "diagnostic_visibility",
+        "incident_root_cause",
+        "service_restore",
+        "network_fault_location",
+        "network_policy",
+        "network_requirements",
+        "device_behavior",
+        "timing_constraints",
+        "interactive_rules",
+        "computational_accuracy",
+        "container_configuration",
+        "orchestration_recovery",
+        "code_readability"
+      ]
+    },
+    {
+      "specialization_id": "realtime",
+      "name": "Разработчик систем реального времени",
+      "direction": 5,
+      "competency_ids": [
+        "program-implementation",
+        "algorithms",
+        "code-maintenance",
+        "debugging",
+        "refactoring",
+        "deployment",
+        "delivery-automation",
+        "observability",
+        "incident-diagnosis",
+        "system-recovery",
+        "network-diagnosis",
+        "network-configuration",
+        "network-design",
+        "device-programming",
+        "real-time-behavior",
+        "interactive-systems",
+        "graphics-computing"
+      ],
+      "relation": "suggested_applicability_not_mandatory",
+      "criterion_codes": [
+        "functional_correctness",
+        "algorithm_correctness",
+        "change_contract",
+        "defect_resolution",
+        "behavior_preservation",
+        "reproducible_deployment",
+        "pipeline_execution",
+        "diagnostic_visibility",
+        "incident_root_cause",
+        "service_restore",
+        "network_fault_location",
+        "network_policy",
+        "network_requirements",
+        "device_behavior",
+        "timing_constraints",
+        "interactive_rules",
+        "computational_accuracy",
+        "container_configuration",
+        "orchestration_recovery",
+        "code_readability"
+      ]
+    },
+    {
+      "specialization_id": "hpc",
+      "name": "Инженер высокопроизводительных вычислений",
+      "direction": 5,
+      "competency_ids": [
+        "program-implementation",
+        "algorithms",
+        "code-maintenance",
+        "debugging",
+        "refactoring",
+        "deployment",
+        "delivery-automation",
+        "observability",
+        "incident-diagnosis",
+        "system-recovery",
+        "network-diagnosis",
+        "network-configuration",
+        "network-design",
+        "device-programming",
+        "real-time-behavior",
+        "interactive-systems",
+        "graphics-computing"
+      ],
+      "relation": "suggested_applicability_not_mandatory",
+      "criterion_codes": [
+        "functional_correctness",
+        "algorithm_correctness",
+        "change_contract",
+        "defect_resolution",
+        "behavior_preservation",
+        "reproducible_deployment",
+        "pipeline_execution",
+        "diagnostic_visibility",
+        "incident_root_cause",
+        "service_restore",
+        "network_fault_location",
+        "network_policy",
+        "network_requirements",
+        "device_behavior",
+        "timing_constraints",
+        "interactive_rules",
+        "computational_accuracy",
+        "container_configuration",
+        "orchestration_recovery",
+        "code_readability"
+      ]
+    },
+    {
+      "specialization_id": "scientific",
+      "name": "Разработчик научного и инженерного ПО",
+      "direction": 5,
+      "competency_ids": [
+        "program-implementation",
+        "algorithms",
+        "code-maintenance",
+        "debugging",
+        "refactoring",
+        "deployment",
+        "delivery-automation",
+        "observability",
+        "incident-diagnosis",
+        "system-recovery",
+        "network-diagnosis",
+        "network-configuration",
+        "network-design",
+        "device-programming",
+        "real-time-behavior",
+        "interactive-systems",
+        "graphics-computing"
+      ],
+      "relation": "suggested_applicability_not_mandatory",
+      "criterion_codes": [
+        "functional_correctness",
+        "algorithm_correctness",
+        "change_contract",
+        "defect_resolution",
+        "behavior_preservation",
+        "reproducible_deployment",
+        "pipeline_execution",
+        "diagnostic_visibility",
+        "incident_root_cause",
+        "service_restore",
+        "network_fault_location",
+        "network_policy",
+        "network_requirements",
+        "device_behavior",
+        "timing_constraints",
+        "interactive_rules",
+        "computational_accuracy",
+        "container_configuration",
+        "orchestration_recovery",
+        "code_readability"
+      ]
+    },
+    {
+      "specialization_id": "gis",
+      "name": "Разработчик геоинформационных систем",
+      "direction": 5,
+      "competency_ids": [
+        "program-implementation",
+        "algorithms",
+        "code-maintenance",
+        "debugging",
+        "refactoring",
+        "deployment",
+        "delivery-automation",
+        "observability",
+        "incident-diagnosis",
+        "system-recovery",
+        "network-diagnosis",
+        "network-configuration",
+        "network-design",
+        "device-programming",
+        "real-time-behavior",
+        "interactive-systems",
+        "graphics-computing"
+      ],
+      "relation": "suggested_applicability_not_mandatory",
+      "criterion_codes": [
+        "functional_correctness",
+        "algorithm_correctness",
+        "change_contract",
+        "defect_resolution",
+        "behavior_preservation",
+        "reproducible_deployment",
+        "pipeline_execution",
+        "diagnostic_visibility",
+        "incident_root_cause",
+        "service_restore",
+        "network_fault_location",
+        "network_policy",
+        "network_requirements",
+        "device_behavior",
+        "timing_constraints",
+        "interactive_rules",
+        "computational_accuracy",
+        "container_configuration",
+        "orchestration_recovery",
+        "code_readability"
+      ]
+    },
+    {
+      "specialization_id": "data-analyst",
+      "name": "Аналитик данных",
+      "direction": 6,
+      "competency_ids": [
+        "sql-queries",
+        "data-modeling",
+        "transactions",
+        "query-performance",
+        "database-recovery",
+        "test-design",
+        "test-automation",
+        "defect-reporting",
+        "performance-testing",
+        "quality-assessment",
+        "data-preparation",
+        "data-analysis",
+        "data-pipelines",
+        "data-visualization",
+        "experiment-analysis",
+        "requirements",
+        "process-modeling",
+        "architecture-design",
+        "architecture-review"
+      ],
+      "relation": "suggested_applicability_not_mandatory",
+      "criterion_codes": [
+        "data_operations",
+        "schema_constraints",
+        "transaction_atomicity",
+        "query_efficiency",
+        "database_restore",
+        "scenario_coverage",
+        "test_effectiveness",
+        "defect_reproducibility",
+        "load_experiment",
+        "coverage_gaps",
+        "data_cleaning",
+        "analysis_validity",
+        "pipeline_integrity",
+        "report_accuracy",
+        "experiment_validity",
+        "requirements_testability",
+        "process_consistency",
+        "architecture_constraints",
+        "architecture_risks",
+        "sql_parameterization",
+        "concurrency_consistency"
+      ]
+    },
+    {
+      "specialization_id": "product-analyst",
+      "name": "Продуктовый аналитик",
+      "direction": 6,
+      "competency_ids": [
+        "sql-queries",
+        "data-modeling",
+        "transactions",
+        "query-performance",
+        "database-recovery",
+        "test-design",
+        "test-automation",
+        "defect-reporting",
+        "performance-testing",
+        "quality-assessment",
+        "data-preparation",
+        "data-analysis",
+        "data-pipelines",
+        "data-visualization",
+        "experiment-analysis",
+        "requirements",
+        "process-modeling",
+        "architecture-design",
+        "architecture-review"
+      ],
+      "relation": "suggested_applicability_not_mandatory",
+      "criterion_codes": [
+        "data_operations",
+        "schema_constraints",
+        "transaction_atomicity",
+        "query_efficiency",
+        "database_restore",
+        "scenario_coverage",
+        "test_effectiveness",
+        "defect_reproducibility",
+        "load_experiment",
+        "coverage_gaps",
+        "data_cleaning",
+        "analysis_validity",
+        "pipeline_integrity",
+        "report_accuracy",
+        "experiment_validity",
+        "requirements_testability",
+        "process_consistency",
+        "architecture_constraints",
+        "architecture_risks",
+        "sql_parameterization",
+        "concurrency_consistency"
+      ]
+    },
+    {
+      "specialization_id": "bi",
+      "name": "BI-специалист",
+      "direction": 6,
+      "competency_ids": [
+        "sql-queries",
+        "data-modeling",
+        "transactions",
+        "query-performance",
+        "database-recovery",
+        "test-design",
+        "test-automation",
+        "defect-reporting",
+        "performance-testing",
+        "quality-assessment",
+        "data-preparation",
+        "data-analysis",
+        "data-pipelines",
+        "data-visualization",
+        "experiment-analysis",
+        "requirements",
+        "process-modeling",
+        "architecture-design",
+        "architecture-review"
+      ],
+      "relation": "suggested_applicability_not_mandatory",
+      "criterion_codes": [
+        "data_operations",
+        "schema_constraints",
+        "transaction_atomicity",
+        "query_efficiency",
+        "database_restore",
+        "scenario_coverage",
+        "test_effectiveness",
+        "defect_reproducibility",
+        "load_experiment",
+        "coverage_gaps",
+        "data_cleaning",
+        "analysis_validity",
+        "pipeline_integrity",
+        "report_accuracy",
+        "experiment_validity",
+        "requirements_testability",
+        "process_consistency",
+        "architecture_constraints",
+        "architecture_risks",
+        "sql_parameterization",
+        "concurrency_consistency"
+      ]
+    },
+    {
+      "specialization_id": "data-engineer",
+      "name": "Инженер данных — Data Engineer",
+      "direction": 6,
+      "competency_ids": [
+        "sql-queries",
+        "data-modeling",
+        "transactions",
+        "query-performance",
+        "database-recovery",
+        "test-design",
+        "test-automation",
+        "defect-reporting",
+        "performance-testing",
+        "quality-assessment",
+        "data-preparation",
+        "data-analysis",
+        "data-pipelines",
+        "data-visualization",
+        "experiment-analysis",
+        "requirements",
+        "process-modeling",
+        "architecture-design",
+        "architecture-review"
+      ],
+      "relation": "suggested_applicability_not_mandatory",
+      "criterion_codes": [
+        "data_operations",
+        "schema_constraints",
+        "transaction_atomicity",
+        "query_efficiency",
+        "database_restore",
+        "scenario_coverage",
+        "test_effectiveness",
+        "defect_reproducibility",
+        "load_experiment",
+        "coverage_gaps",
+        "data_cleaning",
+        "analysis_validity",
+        "pipeline_integrity",
+        "report_accuracy",
+        "experiment_validity",
+        "requirements_testability",
+        "process_consistency",
+        "architecture_constraints",
+        "architecture_risks",
+        "sql_parameterization",
+        "concurrency_consistency"
+      ]
+    },
+    {
+      "specialization_id": "analytics-engineer",
+      "name": "Analytics Engineer",
+      "direction": 6,
+      "competency_ids": [
+        "sql-queries",
+        "data-modeling",
+        "transactions",
+        "query-performance",
+        "database-recovery",
+        "test-design",
+        "test-automation",
+        "defect-reporting",
+        "performance-testing",
+        "quality-assessment",
+        "data-preparation",
+        "data-analysis",
+        "data-pipelines",
+        "data-visualization",
+        "experiment-analysis",
+        "requirements",
+        "process-modeling",
+        "architecture-design",
+        "architecture-review"
+      ],
+      "relation": "suggested_applicability_not_mandatory",
+      "criterion_codes": [
+        "data_operations",
+        "schema_constraints",
+        "transaction_atomicity",
+        "query_efficiency",
+        "database_restore",
+        "scenario_coverage",
+        "test_effectiveness",
+        "defect_reproducibility",
+        "load_experiment",
+        "coverage_gaps",
+        "data_cleaning",
+        "analysis_validity",
+        "pipeline_integrity",
+        "report_accuracy",
+        "experiment_validity",
+        "requirements_testability",
+        "process_consistency",
+        "architecture_constraints",
+        "architecture_risks",
+        "sql_parameterization",
+        "concurrency_consistency"
+      ]
+    },
+    {
+      "specialization_id": "data-scientist",
+      "name": "Data Scientist",
+      "direction": 6,
+      "competency_ids": [
+        "sql-queries",
+        "data-modeling",
+        "transactions",
+        "query-performance",
+        "database-recovery",
+        "test-design",
+        "test-automation",
+        "defect-reporting",
+        "performance-testing",
+        "quality-assessment",
+        "data-preparation",
+        "data-analysis",
+        "data-pipelines",
+        "data-visualization",
+        "experiment-analysis",
+        "requirements",
+        "process-modeling",
+        "architecture-design",
+        "architecture-review"
+      ],
+      "relation": "suggested_applicability_not_mandatory",
+      "criterion_codes": [
+        "data_operations",
+        "schema_constraints",
+        "transaction_atomicity",
+        "query_efficiency",
+        "database_restore",
+        "scenario_coverage",
+        "test_effectiveness",
+        "defect_reproducibility",
+        "load_experiment",
+        "coverage_gaps",
+        "data_cleaning",
+        "analysis_validity",
+        "pipeline_integrity",
+        "report_accuracy",
+        "experiment_validity",
+        "requirements_testability",
+        "process_consistency",
+        "architecture_constraints",
+        "architecture_risks",
+        "sql_parameterization",
+        "concurrency_consistency"
+      ]
+    },
+    {
+      "specialization_id": "data-quality",
+      "name": "Специалист по качеству данных",
+      "direction": 6,
+      "competency_ids": [
+        "sql-queries",
+        "data-modeling",
+        "transactions",
+        "query-performance",
+        "database-recovery",
+        "test-design",
+        "test-automation",
+        "defect-reporting",
+        "performance-testing",
+        "quality-assessment",
+        "data-preparation",
+        "data-analysis",
+        "data-pipelines",
+        "data-visualization",
+        "experiment-analysis",
+        "requirements",
+        "process-modeling",
+        "architecture-design",
+        "architecture-review"
+      ],
+      "relation": "suggested_applicability_not_mandatory",
+      "criterion_codes": [
+        "data_operations",
+        "schema_constraints",
+        "transaction_atomicity",
+        "query_efficiency",
+        "database_restore",
+        "scenario_coverage",
+        "test_effectiveness",
+        "defect_reproducibility",
+        "load_experiment",
+        "coverage_gaps",
+        "data_cleaning",
+        "analysis_validity",
+        "pipeline_integrity",
+        "report_accuracy",
+        "experiment_validity",
+        "requirements_testability",
+        "process_consistency",
+        "architecture_constraints",
+        "architecture_risks",
+        "sql_parameterization",
+        "concurrency_consistency"
+      ]
+    },
+    {
+      "specialization_id": "data-governance",
+      "name": "Специалист по управлению данными",
+      "direction": 6,
+      "competency_ids": [
+        "sql-queries",
+        "data-modeling",
+        "transactions",
+        "query-performance",
+        "database-recovery",
+        "test-design",
+        "test-automation",
+        "defect-reporting",
+        "performance-testing",
+        "quality-assessment",
+        "data-preparation",
+        "data-analysis",
+        "data-pipelines",
+        "data-visualization",
+        "experiment-analysis",
+        "requirements",
+        "process-modeling",
+        "architecture-design",
+        "architecture-review"
+      ],
+      "relation": "suggested_applicability_not_mandatory",
+      "criterion_codes": [
+        "data_operations",
+        "schema_constraints",
+        "transaction_atomicity",
+        "query_efficiency",
+        "database_restore",
+        "scenario_coverage",
+        "test_effectiveness",
+        "defect_reproducibility",
+        "load_experiment",
+        "coverage_gaps",
+        "data_cleaning",
+        "analysis_validity",
+        "pipeline_integrity",
+        "report_accuracy",
+        "experiment_validity",
+        "requirements_testability",
+        "process_consistency",
+        "architecture_constraints",
+        "architecture_risks",
+        "sql_parameterization",
+        "concurrency_consistency"
+      ]
+    },
+    {
+      "specialization_id": "ml",
+      "name": "Инженер машинного обучения — ML Engineer",
+      "direction": 7,
+      "competency_ids": [
+        "program-implementation",
+        "algorithms",
+        "code-maintenance",
+        "debugging",
+        "refactoring",
+        "test-design",
+        "test-automation",
+        "defect-reporting",
+        "performance-testing",
+        "quality-assessment",
+        "data-preparation",
+        "data-analysis",
+        "data-pipelines",
+        "data-visualization",
+        "experiment-analysis",
+        "model-development",
+        "model-evaluation",
+        "model-deployment",
+        "ai-application-evaluation"
+      ],
+      "relation": "suggested_applicability_not_mandatory",
+      "criterion_codes": [
+        "functional_correctness",
+        "algorithm_correctness",
+        "change_contract",
+        "defect_resolution",
+        "behavior_preservation",
+        "scenario_coverage",
+        "test_effectiveness",
+        "defect_reproducibility",
+        "load_experiment",
+        "coverage_gaps",
+        "data_cleaning",
+        "analysis_validity",
+        "pipeline_integrity",
+        "report_accuracy",
+        "experiment_validity",
+        "model_baseline",
+        "model_error_analysis",
+        "model_serving",
+        "ai_scenario_evaluation",
+        "code_readability"
+      ]
+    },
+    {
+      "specialization_id": "computer-vision",
+      "name": "Инженер компьютерного зрения",
+      "direction": 7,
+      "competency_ids": [
+        "program-implementation",
+        "algorithms",
+        "code-maintenance",
+        "debugging",
+        "refactoring",
+        "test-design",
+        "test-automation",
+        "defect-reporting",
+        "performance-testing",
+        "quality-assessment",
+        "data-preparation",
+        "data-analysis",
+        "data-pipelines",
+        "data-visualization",
+        "experiment-analysis",
+        "model-development",
+        "model-evaluation",
+        "model-deployment",
+        "ai-application-evaluation"
+      ],
+      "relation": "suggested_applicability_not_mandatory",
+      "criterion_codes": [
+        "functional_correctness",
+        "algorithm_correctness",
+        "change_contract",
+        "defect_resolution",
+        "behavior_preservation",
+        "scenario_coverage",
+        "test_effectiveness",
+        "defect_reproducibility",
+        "load_experiment",
+        "coverage_gaps",
+        "data_cleaning",
+        "analysis_validity",
+        "pipeline_integrity",
+        "report_accuracy",
+        "experiment_validity",
+        "model_baseline",
+        "model_error_analysis",
+        "model_serving",
+        "ai_scenario_evaluation",
+        "code_readability"
+      ]
+    },
+    {
+      "specialization_id": "nlp",
+      "name": "Инженер обработки языка и речи",
+      "direction": 7,
+      "competency_ids": [
+        "program-implementation",
+        "algorithms",
+        "code-maintenance",
+        "debugging",
+        "refactoring",
+        "test-design",
+        "test-automation",
+        "defect-reporting",
+        "performance-testing",
+        "quality-assessment",
+        "data-preparation",
+        "data-analysis",
+        "data-pipelines",
+        "data-visualization",
+        "experiment-analysis",
+        "model-development",
+        "model-evaluation",
+        "model-deployment",
+        "ai-application-evaluation"
+      ],
+      "relation": "suggested_applicability_not_mandatory",
+      "criterion_codes": [
+        "functional_correctness",
+        "algorithm_correctness",
+        "change_contract",
+        "defect_resolution",
+        "behavior_preservation",
+        "scenario_coverage",
+        "test_effectiveness",
+        "defect_reproducibility",
+        "load_experiment",
+        "coverage_gaps",
+        "data_cleaning",
+        "analysis_validity",
+        "pipeline_integrity",
+        "report_accuracy",
+        "experiment_validity",
+        "model_baseline",
+        "model_error_analysis",
+        "model_serving",
+        "ai_scenario_evaluation",
+        "code_readability"
+      ]
+    },
+    {
+      "specialization_id": "generative-ai",
+      "name": "Разработчик приложений генеративного ИИ",
+      "direction": 7,
+      "competency_ids": [
+        "program-implementation",
+        "algorithms",
+        "code-maintenance",
+        "debugging",
+        "refactoring",
+        "test-design",
+        "test-automation",
+        "defect-reporting",
+        "performance-testing",
+        "quality-assessment",
+        "data-preparation",
+        "data-analysis",
+        "data-pipelines",
+        "data-visualization",
+        "experiment-analysis",
+        "model-development",
+        "model-evaluation",
+        "model-deployment",
+        "ai-application-evaluation"
+      ],
+      "relation": "suggested_applicability_not_mandatory",
+      "criterion_codes": [
+        "functional_correctness",
+        "algorithm_correctness",
+        "change_contract",
+        "defect_resolution",
+        "behavior_preservation",
+        "scenario_coverage",
+        "test_effectiveness",
+        "defect_reproducibility",
+        "load_experiment",
+        "coverage_gaps",
+        "data_cleaning",
+        "analysis_validity",
+        "pipeline_integrity",
+        "report_accuracy",
+        "experiment_validity",
+        "model_baseline",
+        "model_error_analysis",
+        "model_serving",
+        "ai_scenario_evaluation",
+        "code_readability"
+      ]
+    },
+    {
+      "specialization_id": "mlops",
+      "name": "MLOps-инженер",
+      "direction": 7,
+      "competency_ids": [
+        "program-implementation",
+        "algorithms",
+        "code-maintenance",
+        "debugging",
+        "refactoring",
+        "test-design",
+        "test-automation",
+        "defect-reporting",
+        "performance-testing",
+        "quality-assessment",
+        "data-preparation",
+        "data-analysis",
+        "data-pipelines",
+        "data-visualization",
+        "experiment-analysis",
+        "model-development",
+        "model-evaluation",
+        "model-deployment",
+        "ai-application-evaluation"
+      ],
+      "relation": "suggested_applicability_not_mandatory",
+      "criterion_codes": [
+        "functional_correctness",
+        "algorithm_correctness",
+        "change_contract",
+        "defect_resolution",
+        "behavior_preservation",
+        "scenario_coverage",
+        "test_effectiveness",
+        "defect_reproducibility",
+        "load_experiment",
+        "coverage_gaps",
+        "data_cleaning",
+        "analysis_validity",
+        "pipeline_integrity",
+        "report_accuracy",
+        "experiment_validity",
+        "model_baseline",
+        "model_error_analysis",
+        "model_serving",
+        "ai_scenario_evaluation",
+        "code_readability"
+      ]
+    },
+    {
+      "specialization_id": "ai-research",
+      "name": "Исследователь ИИ и машинного обучения",
+      "direction": 7,
+      "competency_ids": [
+        "program-implementation",
+        "algorithms",
+        "code-maintenance",
+        "debugging",
+        "refactoring",
+        "test-design",
+        "test-automation",
+        "defect-reporting",
+        "performance-testing",
+        "quality-assessment",
+        "data-preparation",
+        "data-analysis",
+        "data-pipelines",
+        "data-visualization",
+        "experiment-analysis",
+        "model-development",
+        "model-evaluation",
+        "model-deployment",
+        "ai-application-evaluation"
+      ],
+      "relation": "suggested_applicability_not_mandatory",
+      "criterion_codes": [
+        "functional_correctness",
+        "algorithm_correctness",
+        "change_contract",
+        "defect_resolution",
+        "behavior_preservation",
+        "scenario_coverage",
+        "test_effectiveness",
+        "defect_reproducibility",
+        "load_experiment",
+        "coverage_gaps",
+        "data_cleaning",
+        "analysis_validity",
+        "pipeline_integrity",
+        "report_accuracy",
+        "experiment_validity",
+        "model_baseline",
+        "model_error_analysis",
+        "model_serving",
+        "ai_scenario_evaluation",
+        "code_readability"
+      ]
+    },
+    {
+      "specialization_id": "ai-evaluation",
+      "name": "Специалист по оценке качества ИИ",
+      "direction": 7,
+      "competency_ids": [
+        "program-implementation",
+        "algorithms",
+        "code-maintenance",
+        "debugging",
+        "refactoring",
+        "test-design",
+        "test-automation",
+        "defect-reporting",
+        "performance-testing",
+        "quality-assessment",
+        "data-preparation",
+        "data-analysis",
+        "data-pipelines",
+        "data-visualization",
+        "experiment-analysis",
+        "model-development",
+        "model-evaluation",
+        "model-deployment",
+        "ai-application-evaluation"
+      ],
+      "relation": "suggested_applicability_not_mandatory",
+      "criterion_codes": [
+        "functional_correctness",
+        "algorithm_correctness",
+        "change_contract",
+        "defect_resolution",
+        "behavior_preservation",
+        "scenario_coverage",
+        "test_effectiveness",
+        "defect_reproducibility",
+        "load_experiment",
+        "coverage_gaps",
+        "data_cleaning",
+        "analysis_validity",
+        "pipeline_integrity",
+        "report_accuracy",
+        "experiment_validity",
+        "model_baseline",
+        "model_error_analysis",
+        "model_serving",
+        "ai_scenario_evaluation",
+        "code_readability"
+      ]
+    },
+    {
+      "specialization_id": "dba",
+      "name": "Администратор баз данных — DBA",
+      "direction": 8,
+      "competency_ids": [
+        "sql-queries",
+        "data-modeling",
+        "transactions",
+        "query-performance",
+        "database-recovery",
+        "deployment",
+        "delivery-automation",
+        "observability",
+        "incident-diagnosis",
+        "system-recovery"
+      ],
+      "relation": "suggested_applicability_not_mandatory",
+      "criterion_codes": [
+        "data_operations",
+        "schema_constraints",
+        "transaction_atomicity",
+        "query_efficiency",
+        "database_restore",
+        "reproducible_deployment",
+        "pipeline_execution",
+        "diagnostic_visibility",
+        "incident_root_cause",
+        "service_restore",
+        "sql_parameterization",
+        "concurrency_consistency",
+        "container_configuration",
+        "orchestration_recovery"
+      ]
+    },
+    {
+      "specialization_id": "database-development",
+      "name": "Разработчик баз данных",
+      "direction": 8,
+      "competency_ids": [
+        "sql-queries",
+        "data-modeling",
+        "transactions",
+        "query-performance",
+        "database-recovery",
+        "deployment",
+        "delivery-automation",
+        "observability",
+        "incident-diagnosis",
+        "system-recovery"
+      ],
+      "relation": "suggested_applicability_not_mandatory",
+      "criterion_codes": [
+        "data_operations",
+        "schema_constraints",
+        "transaction_atomicity",
+        "query_efficiency",
+        "database_restore",
+        "reproducible_deployment",
+        "pipeline_execution",
+        "diagnostic_visibility",
+        "incident_root_cause",
+        "service_restore",
+        "sql_parameterization",
+        "concurrency_consistency",
+        "container_configuration",
+        "orchestration_recovery"
+      ]
+    },
+    {
+      "specialization_id": "database-architecture",
+      "name": "Архитектор баз данных",
+      "direction": 8,
+      "competency_ids": [
+        "sql-queries",
+        "data-modeling",
+        "transactions",
+        "query-performance",
+        "database-recovery",
+        "deployment",
+        "delivery-automation",
+        "observability",
+        "incident-diagnosis",
+        "system-recovery"
+      ],
+      "relation": "suggested_applicability_not_mandatory",
+      "criterion_codes": [
+        "data_operations",
+        "schema_constraints",
+        "transaction_atomicity",
+        "query_efficiency",
+        "database_restore",
+        "reproducible_deployment",
+        "pipeline_execution",
+        "diagnostic_visibility",
+        "incident_root_cause",
+        "service_restore",
+        "sql_parameterization",
+        "concurrency_consistency",
+        "container_configuration",
+        "orchestration_recovery"
+      ]
+    },
+    {
+      "specialization_id": "qa-functional",
+      "name": "Инженер функционального тестирования",
+      "direction": 9,
+      "competency_ids": [
+        "test-design",
+        "test-automation",
+        "defect-reporting",
+        "performance-testing",
+        "quality-assessment"
+      ],
+      "relation": "suggested_applicability_not_mandatory",
+      "criterion_codes": [
+        "scenario_coverage",
+        "test_effectiveness",
+        "defect_reproducibility",
+        "load_experiment",
+        "coverage_gaps"
+      ]
+    },
+    {
+      "specialization_id": "qa-automation",
+      "name": "Инженер автоматизации тестирования",
+      "direction": 9,
+      "competency_ids": [
+        "test-design",
+        "test-automation",
+        "defect-reporting",
+        "performance-testing",
+        "quality-assessment"
+      ],
+      "relation": "suggested_applicability_not_mandatory",
+      "criterion_codes": [
+        "scenario_coverage",
+        "test_effectiveness",
+        "defect_reproducibility",
+        "load_experiment",
+        "coverage_gaps"
+      ]
+    },
+    {
+      "specialization_id": "qa-performance",
+      "name": "Инженер нагрузочного тестирования",
+      "direction": 9,
+      "competency_ids": [
+        "test-design",
+        "test-automation",
+        "defect-reporting",
+        "performance-testing",
+        "quality-assessment"
+      ],
+      "relation": "suggested_applicability_not_mandatory",
+      "criterion_codes": [
+        "scenario_coverage",
+        "test_effectiveness",
+        "defect_reproducibility",
+        "load_experiment",
+        "coverage_gaps"
+      ]
+    },
+    {
+      "specialization_id": "qa-reliability",
+      "name": "Инженер проверки надёжности",
+      "direction": 9,
+      "competency_ids": [
+        "test-design",
+        "test-automation",
+        "defect-reporting",
+        "performance-testing",
+        "quality-assessment"
+      ],
+      "relation": "suggested_applicability_not_mandatory",
+      "criterion_codes": [
+        "scenario_coverage",
+        "test_effectiveness",
+        "defect_reproducibility",
+        "load_experiment",
+        "coverage_gaps"
+      ]
+    },
+    {
+      "specialization_id": "qa-embedded",
+      "name": "Инженер тестирования устройств и встроенного ПО",
+      "direction": 9,
+      "competency_ids": [
+        "test-design",
+        "test-automation",
+        "defect-reporting",
+        "performance-testing",
+        "quality-assessment"
+      ],
+      "relation": "suggested_applicability_not_mandatory",
+      "criterion_codes": [
+        "scenario_coverage",
+        "test_effectiveness",
+        "defect_reproducibility",
+        "load_experiment",
+        "coverage_gaps"
+      ]
+    },
+    {
+      "specialization_id": "qa-games",
+      "name": "Тестировщик игр",
+      "direction": 9,
+      "competency_ids": [
+        "test-design",
+        "test-automation",
+        "defect-reporting",
+        "performance-testing",
+        "quality-assessment"
+      ],
+      "relation": "suggested_applicability_not_mandatory",
+      "criterion_codes": [
+        "scenario_coverage",
+        "test_effectiveness",
+        "defect_reproducibility",
+        "load_experiment",
+        "coverage_gaps"
+      ]
+    },
+    {
+      "specialization_id": "accessibility",
+      "name": "Специалист по цифровой доступности",
+      "direction": 9,
+      "competency_ids": [
+        "test-design",
+        "test-automation",
+        "defect-reporting",
+        "performance-testing",
+        "quality-assessment"
+      ],
+      "relation": "suggested_applicability_not_mandatory",
+      "criterion_codes": [
+        "scenario_coverage",
+        "test_effectiveness",
+        "defect_reproducibility",
+        "load_experiment",
+        "coverage_gaps"
+      ]
+    },
+    {
+      "specialization_id": "sysadmin",
+      "name": "Системный администратор",
+      "direction": 10,
+      "competency_ids": [
+        "deployment",
+        "delivery-automation",
+        "observability",
+        "incident-diagnosis",
+        "system-recovery",
+        "network-diagnosis",
+        "network-configuration",
+        "network-design"
+      ],
+      "relation": "suggested_applicability_not_mandatory",
+      "criterion_codes": [
+        "reproducible_deployment",
+        "pipeline_execution",
+        "diagnostic_visibility",
+        "incident_root_cause",
+        "service_restore",
+        "network_fault_location",
+        "network_policy",
+        "network_requirements",
+        "container_configuration",
+        "orchestration_recovery"
+      ]
+    },
+    {
+      "specialization_id": "devops",
+      "name": "DevOps-инженер",
+      "direction": 10,
+      "competency_ids": [
+        "deployment",
+        "delivery-automation",
+        "observability",
+        "incident-diagnosis",
+        "system-recovery",
+        "network-diagnosis",
+        "network-configuration",
+        "network-design"
+      ],
+      "relation": "suggested_applicability_not_mandatory",
+      "criterion_codes": [
+        "reproducible_deployment",
+        "pipeline_execution",
+        "diagnostic_visibility",
+        "incident_root_cause",
+        "service_restore",
+        "network_fault_location",
+        "network_policy",
+        "network_requirements",
+        "container_configuration",
+        "orchestration_recovery"
+      ]
+    },
+    {
+      "specialization_id": "sre",
+      "name": "SRE-инженер",
+      "direction": 10,
+      "competency_ids": [
+        "deployment",
+        "delivery-automation",
+        "observability",
+        "incident-diagnosis",
+        "system-recovery",
+        "network-diagnosis",
+        "network-configuration",
+        "network-design"
+      ],
+      "relation": "suggested_applicability_not_mandatory",
+      "criterion_codes": [
+        "reproducible_deployment",
+        "pipeline_execution",
+        "diagnostic_visibility",
+        "incident_root_cause",
+        "service_restore",
+        "network_fault_location",
+        "network_policy",
+        "network_requirements",
+        "container_configuration",
+        "orchestration_recovery"
+      ]
+    },
+    {
+      "specialization_id": "platform",
+      "name": "Инженер платформы — Platform Engineer",
+      "direction": 10,
+      "competency_ids": [
+        "deployment",
+        "delivery-automation",
+        "observability",
+        "incident-diagnosis",
+        "system-recovery",
+        "network-diagnosis",
+        "network-configuration",
+        "network-design"
+      ],
+      "relation": "suggested_applicability_not_mandatory",
+      "criterion_codes": [
+        "reproducible_deployment",
+        "pipeline_execution",
+        "diagnostic_visibility",
+        "incident_root_cause",
+        "service_restore",
+        "network_fault_location",
+        "network_policy",
+        "network_requirements",
+        "container_configuration",
+        "orchestration_recovery"
+      ]
+    },
+    {
+      "specialization_id": "cloud",
+      "name": "Облачный инженер",
+      "direction": 10,
+      "competency_ids": [
+        "deployment",
+        "delivery-automation",
+        "observability",
+        "incident-diagnosis",
+        "system-recovery",
+        "network-diagnosis",
+        "network-configuration",
+        "network-design"
+      ],
+      "relation": "suggested_applicability_not_mandatory",
+      "criterion_codes": [
+        "reproducible_deployment",
+        "pipeline_execution",
+        "diagnostic_visibility",
+        "incident_root_cause",
+        "service_restore",
+        "network_fault_location",
+        "network_policy",
+        "network_requirements",
+        "container_configuration",
+        "orchestration_recovery"
+      ]
+    },
+    {
+      "specialization_id": "virtualization",
+      "name": "Инженер виртуализации",
+      "direction": 10,
+      "competency_ids": [
+        "deployment",
+        "delivery-automation",
+        "observability",
+        "incident-diagnosis",
+        "system-recovery",
+        "network-diagnosis",
+        "network-configuration",
+        "network-design"
+      ],
+      "relation": "suggested_applicability_not_mandatory",
+      "criterion_codes": [
+        "reproducible_deployment",
+        "pipeline_execution",
+        "diagnostic_visibility",
+        "incident_root_cause",
+        "service_restore",
+        "network_fault_location",
+        "network_policy",
+        "network_requirements",
+        "container_configuration",
+        "orchestration_recovery"
+      ]
+    },
+    {
+      "specialization_id": "storage",
+      "name": "Инженер систем хранения",
+      "direction": 10,
+      "competency_ids": [
+        "deployment",
+        "delivery-automation",
+        "observability",
+        "incident-diagnosis",
+        "system-recovery",
+        "network-diagnosis",
+        "network-configuration",
+        "network-design"
+      ],
+      "relation": "suggested_applicability_not_mandatory",
+      "criterion_codes": [
+        "reproducible_deployment",
+        "pipeline_execution",
+        "diagnostic_visibility",
+        "incident_root_cause",
+        "service_restore",
+        "network_fault_location",
+        "network_policy",
+        "network_requirements",
+        "container_configuration",
+        "orchestration_recovery"
+      ]
+    },
+    {
+      "specialization_id": "backup",
+      "name": "Инженер резервного копирования и восстановления",
+      "direction": 10,
+      "competency_ids": [
+        "deployment",
+        "delivery-automation",
+        "observability",
+        "incident-diagnosis",
+        "system-recovery",
+        "network-diagnosis",
+        "network-configuration",
+        "network-design"
+      ],
+      "relation": "suggested_applicability_not_mandatory",
+      "criterion_codes": [
+        "reproducible_deployment",
+        "pipeline_execution",
+        "diagnostic_visibility",
+        "incident_root_cause",
+        "service_restore",
+        "network_fault_location",
+        "network_policy",
+        "network_requirements",
+        "container_configuration",
+        "orchestration_recovery"
+      ]
+    },
+    {
+      "specialization_id": "network",
+      "name": "Сетевой инженер",
+      "direction": 11,
+      "competency_ids": [
+        "deployment",
+        "delivery-automation",
+        "observability",
+        "incident-diagnosis",
+        "system-recovery",
+        "network-diagnosis",
+        "network-configuration",
+        "network-design"
+      ],
+      "relation": "suggested_applicability_not_mandatory",
+      "criterion_codes": [
+        "reproducible_deployment",
+        "pipeline_execution",
+        "diagnostic_visibility",
+        "incident_root_cause",
+        "service_restore",
+        "network_fault_location",
+        "network_policy",
+        "network_requirements",
+        "container_configuration",
+        "orchestration_recovery"
+      ]
+    },
+    {
+      "specialization_id": "network-automation",
+      "name": "Инженер автоматизации сетей",
+      "direction": 11,
+      "competency_ids": [
+        "deployment",
+        "delivery-automation",
+        "observability",
+        "incident-diagnosis",
+        "system-recovery",
+        "network-diagnosis",
+        "network-configuration",
+        "network-design"
+      ],
+      "relation": "suggested_applicability_not_mandatory",
+      "criterion_codes": [
+        "reproducible_deployment",
+        "pipeline_execution",
+        "diagnostic_visibility",
+        "incident_root_cause",
+        "service_restore",
+        "network_fault_location",
+        "network_policy",
+        "network_requirements",
+        "container_configuration",
+        "orchestration_recovery"
+      ]
+    },
+    {
+      "specialization_id": "telecom",
+      "name": "Инженер телекоммуникационных систем",
+      "direction": 11,
+      "competency_ids": [
+        "deployment",
+        "delivery-automation",
+        "observability",
+        "incident-diagnosis",
+        "system-recovery",
+        "network-diagnosis",
+        "network-configuration",
+        "network-design"
+      ],
+      "relation": "suggested_applicability_not_mandatory",
+      "criterion_codes": [
+        "reproducible_deployment",
+        "pipeline_execution",
+        "diagnostic_visibility",
+        "incident_root_cause",
+        "service_restore",
+        "network_fault_location",
+        "network_policy",
+        "network_requirements",
+        "container_configuration",
+        "orchestration_recovery"
+      ]
+    },
+    {
+      "specialization_id": "wireless",
+      "name": "Инженер беспроводных сетей",
+      "direction": 11,
+      "competency_ids": [
+        "deployment",
+        "delivery-automation",
+        "observability",
+        "incident-diagnosis",
+        "system-recovery",
+        "network-diagnosis",
+        "network-configuration",
+        "network-design"
+      ],
+      "relation": "suggested_applicability_not_mandatory",
+      "criterion_codes": [
+        "reproducible_deployment",
+        "pipeline_execution",
+        "diagnostic_visibility",
+        "incident_root_cause",
+        "service_restore",
+        "network_fault_location",
+        "network_policy",
+        "network_requirements",
+        "container_configuration",
+        "orchestration_recovery"
+      ]
+    },
+    {
+      "specialization_id": "appsec",
+      "name": "Специалист по безопасности приложений — AppSec",
+      "direction": 12,
+      "competency_ids": [
+        "deployment",
+        "delivery-automation",
+        "observability",
+        "incident-diagnosis",
+        "system-recovery",
+        "network-diagnosis",
+        "network-configuration",
+        "network-design",
+        "vulnerability-analysis",
+        "security-events",
+        "security-configuration",
+        "security-risk"
+      ],
+      "relation": "suggested_applicability_not_mandatory",
+      "criterion_codes": [
+        "reproducible_deployment",
+        "pipeline_execution",
+        "diagnostic_visibility",
+        "incident_root_cause",
+        "service_restore",
+        "network_fault_location",
+        "network_policy",
+        "network_requirements",
+        "vulnerability_evidence",
+        "event_analysis",
+        "security_policy",
+        "threat_controls",
+        "container_configuration",
+        "orchestration_recovery"
+      ]
+    },
+    {
+      "specialization_id": "infrastructure-security",
+      "name": "Инженер инфраструктурной безопасности",
+      "direction": 12,
+      "competency_ids": [
+        "deployment",
+        "delivery-automation",
+        "observability",
+        "incident-diagnosis",
+        "system-recovery",
+        "network-diagnosis",
+        "network-configuration",
+        "network-design",
+        "vulnerability-analysis",
+        "security-events",
+        "security-configuration",
+        "security-risk"
+      ],
+      "relation": "suggested_applicability_not_mandatory",
+      "criterion_codes": [
+        "reproducible_deployment",
+        "pipeline_execution",
+        "diagnostic_visibility",
+        "incident_root_cause",
+        "service_restore",
+        "network_fault_location",
+        "network_policy",
+        "network_requirements",
+        "vulnerability_evidence",
+        "event_analysis",
+        "security_policy",
+        "threat_controls",
+        "container_configuration",
+        "orchestration_recovery"
+      ]
+    },
+    {
+      "specialization_id": "cloud-security",
+      "name": "Инженер облачной безопасности",
+      "direction": 12,
+      "competency_ids": [
+        "deployment",
+        "delivery-automation",
+        "observability",
+        "incident-diagnosis",
+        "system-recovery",
+        "network-diagnosis",
+        "network-configuration",
+        "network-design",
+        "vulnerability-analysis",
+        "security-events",
+        "security-configuration",
+        "security-risk"
+      ],
+      "relation": "suggested_applicability_not_mandatory",
+      "criterion_codes": [
+        "reproducible_deployment",
+        "pipeline_execution",
+        "diagnostic_visibility",
+        "incident_root_cause",
+        "service_restore",
+        "network_fault_location",
+        "network_policy",
+        "network_requirements",
+        "vulnerability_evidence",
+        "event_analysis",
+        "security_policy",
+        "threat_controls",
+        "container_configuration",
+        "orchestration_recovery"
+      ]
+    },
+    {
+      "specialization_id": "soc",
+      "name": "Аналитик SOC",
+      "direction": 12,
+      "competency_ids": [
+        "deployment",
+        "delivery-automation",
+        "observability",
+        "incident-diagnosis",
+        "system-recovery",
+        "network-diagnosis",
+        "network-configuration",
+        "network-design",
+        "vulnerability-analysis",
+        "security-events",
+        "security-configuration",
+        "security-risk"
+      ],
+      "relation": "suggested_applicability_not_mandatory",
+      "criterion_codes": [
+        "reproducible_deployment",
+        "pipeline_execution",
+        "diagnostic_visibility",
+        "incident_root_cause",
+        "service_restore",
+        "network_fault_location",
+        "network_policy",
+        "network_requirements",
+        "vulnerability_evidence",
+        "event_analysis",
+        "security_policy",
+        "threat_controls",
+        "container_configuration",
+        "orchestration_recovery"
+      ]
+    },
+    {
+      "specialization_id": "incident-response",
+      "name": "Специалист по реагированию на киберинциденты",
+      "direction": 12,
+      "competency_ids": [
+        "deployment",
+        "delivery-automation",
+        "observability",
+        "incident-diagnosis",
+        "system-recovery",
+        "network-diagnosis",
+        "network-configuration",
+        "network-design",
+        "vulnerability-analysis",
+        "security-events",
+        "security-configuration",
+        "security-risk"
+      ],
+      "relation": "suggested_applicability_not_mandatory",
+      "criterion_codes": [
+        "reproducible_deployment",
+        "pipeline_execution",
+        "diagnostic_visibility",
+        "incident_root_cause",
+        "service_restore",
+        "network_fault_location",
+        "network_policy",
+        "network_requirements",
+        "vulnerability_evidence",
+        "event_analysis",
+        "security_policy",
+        "threat_controls",
+        "container_configuration",
+        "orchestration_recovery"
+      ]
+    },
+    {
+      "specialization_id": "pentest",
+      "name": "Специалист по тестированию на проникновение",
+      "direction": 12,
+      "competency_ids": [
+        "deployment",
+        "delivery-automation",
+        "observability",
+        "incident-diagnosis",
+        "system-recovery",
+        "network-diagnosis",
+        "network-configuration",
+        "network-design",
+        "vulnerability-analysis",
+        "security-events",
+        "security-configuration",
+        "security-risk"
+      ],
+      "relation": "suggested_applicability_not_mandatory",
+      "criterion_codes": [
+        "reproducible_deployment",
+        "pipeline_execution",
+        "diagnostic_visibility",
+        "incident_root_cause",
+        "service_restore",
+        "network_fault_location",
+        "network_policy",
+        "network_requirements",
+        "vulnerability_evidence",
+        "event_analysis",
+        "security_policy",
+        "threat_controls",
+        "container_configuration",
+        "orchestration_recovery"
+      ]
+    },
+    {
+      "specialization_id": "forensics",
+      "name": "Специалист по цифровой криминалистике",
+      "direction": 12,
+      "competency_ids": [
+        "deployment",
+        "delivery-automation",
+        "observability",
+        "incident-diagnosis",
+        "system-recovery",
+        "network-diagnosis",
+        "network-configuration",
+        "network-design",
+        "vulnerability-analysis",
+        "security-events",
+        "security-configuration",
+        "security-risk"
+      ],
+      "relation": "suggested_applicability_not_mandatory",
+      "criterion_codes": [
+        "reproducible_deployment",
+        "pipeline_execution",
+        "diagnostic_visibility",
+        "incident_root_cause",
+        "service_restore",
+        "network_fault_location",
+        "network_policy",
+        "network_requirements",
+        "vulnerability_evidence",
+        "event_analysis",
+        "security_policy",
+        "threat_controls",
+        "container_configuration",
+        "orchestration_recovery"
+      ]
+    },
+    {
+      "specialization_id": "malware",
+      "name": "Исследователь вредоносного ПО",
+      "direction": 12,
+      "competency_ids": [
+        "deployment",
+        "delivery-automation",
+        "observability",
+        "incident-diagnosis",
+        "system-recovery",
+        "network-diagnosis",
+        "network-configuration",
+        "network-design",
+        "vulnerability-analysis",
+        "security-events",
+        "security-configuration",
+        "security-risk"
+      ],
+      "relation": "suggested_applicability_not_mandatory",
+      "criterion_codes": [
+        "reproducible_deployment",
+        "pipeline_execution",
+        "diagnostic_visibility",
+        "incident_root_cause",
+        "service_restore",
+        "network_fault_location",
+        "network_policy",
+        "network_requirements",
+        "vulnerability_evidence",
+        "event_analysis",
+        "security_policy",
+        "threat_controls",
+        "container_configuration",
+        "orchestration_recovery"
+      ]
+    },
+    {
+      "specialization_id": "iam",
+      "name": "Специалист по управлению доступом — IAM",
+      "direction": 12,
+      "competency_ids": [
+        "deployment",
+        "delivery-automation",
+        "observability",
+        "incident-diagnosis",
+        "system-recovery",
+        "network-diagnosis",
+        "network-configuration",
+        "network-design",
+        "vulnerability-analysis",
+        "security-events",
+        "security-configuration",
+        "security-risk"
+      ],
+      "relation": "suggested_applicability_not_mandatory",
+      "criterion_codes": [
+        "reproducible_deployment",
+        "pipeline_execution",
+        "diagnostic_visibility",
+        "incident_root_cause",
+        "service_restore",
+        "network_fault_location",
+        "network_policy",
+        "network_requirements",
+        "vulnerability_evidence",
+        "event_analysis",
+        "security_policy",
+        "threat_controls",
+        "container_configuration",
+        "orchestration_recovery"
+      ]
+    },
+    {
+      "specialization_id": "cryptography",
+      "name": "Специалист по прикладной криптографии",
+      "direction": 12,
+      "competency_ids": [
+        "deployment",
+        "delivery-automation",
+        "observability",
+        "incident-diagnosis",
+        "system-recovery",
+        "network-diagnosis",
+        "network-configuration",
+        "network-design",
+        "vulnerability-analysis",
+        "security-events",
+        "security-configuration",
+        "security-risk"
+      ],
+      "relation": "suggested_applicability_not_mandatory",
+      "criterion_codes": [
+        "reproducible_deployment",
+        "pipeline_execution",
+        "diagnostic_visibility",
+        "incident_root_cause",
+        "service_restore",
+        "network_fault_location",
+        "network_policy",
+        "network_requirements",
+        "vulnerability_evidence",
+        "event_analysis",
+        "security_policy",
+        "threat_controls",
+        "container_configuration",
+        "orchestration_recovery"
+      ]
+    },
+    {
+      "specialization_id": "security-grc",
+      "name": "Специалист по рискам и управлению ИБ — GRC",
+      "direction": 12,
+      "competency_ids": [
+        "deployment",
+        "delivery-automation",
+        "observability",
+        "incident-diagnosis",
+        "system-recovery",
+        "network-diagnosis",
+        "network-configuration",
+        "network-design",
+        "vulnerability-analysis",
+        "security-events",
+        "security-configuration",
+        "security-risk"
+      ],
+      "relation": "suggested_applicability_not_mandatory",
+      "criterion_codes": [
+        "reproducible_deployment",
+        "pipeline_execution",
+        "diagnostic_visibility",
+        "incident_root_cause",
+        "service_restore",
+        "network_fault_location",
+        "network_policy",
+        "network_requirements",
+        "vulnerability_evidence",
+        "event_analysis",
+        "security_policy",
+        "threat_controls",
+        "container_configuration",
+        "orchestration_recovery"
+      ]
+    },
+    {
+      "specialization_id": "systems-analysis",
+      "name": "Системный аналитик",
+      "direction": 13,
+      "competency_ids": [
+        "data-preparation",
+        "data-analysis",
+        "data-pipelines",
+        "data-visualization",
+        "experiment-analysis",
+        "requirements",
+        "process-modeling",
+        "architecture-design",
+        "architecture-review"
+      ],
+      "relation": "suggested_applicability_not_mandatory",
+      "criterion_codes": [
+        "data_cleaning",
+        "analysis_validity",
+        "pipeline_integrity",
+        "report_accuracy",
+        "experiment_validity",
+        "requirements_testability",
+        "process_consistency",
+        "architecture_constraints",
+        "architecture_risks"
+      ]
+    },
+    {
+      "specialization_id": "business-analysis",
+      "name": "Бизнес-аналитик",
+      "direction": 13,
+      "competency_ids": [
+        "data-preparation",
+        "data-analysis",
+        "data-pipelines",
+        "data-visualization",
+        "experiment-analysis",
+        "requirements",
+        "process-modeling",
+        "architecture-design",
+        "architecture-review"
+      ],
+      "relation": "suggested_applicability_not_mandatory",
+      "criterion_codes": [
+        "data_cleaning",
+        "analysis_validity",
+        "pipeline_integrity",
+        "report_accuracy",
+        "experiment_validity",
+        "requirements_testability",
+        "process_consistency",
+        "architecture_constraints",
+        "architecture_risks"
+      ]
+    },
+    {
+      "specialization_id": "process-analysis",
+      "name": "Аналитик бизнес-процессов",
+      "direction": 13,
+      "competency_ids": [
+        "data-preparation",
+        "data-analysis",
+        "data-pipelines",
+        "data-visualization",
+        "experiment-analysis",
+        "requirements",
+        "process-modeling",
+        "architecture-design",
+        "architecture-review"
+      ],
+      "relation": "suggested_applicability_not_mandatory",
+      "criterion_codes": [
+        "data_cleaning",
+        "analysis_validity",
+        "pipeline_integrity",
+        "report_accuracy",
+        "experiment_validity",
+        "requirements_testability",
+        "process_consistency",
+        "architecture_constraints",
+        "architecture_risks"
+      ]
+    },
+    {
+      "specialization_id": "integration-analysis",
+      "name": "Аналитик интеграций",
+      "direction": 13,
+      "competency_ids": [
+        "data-preparation",
+        "data-analysis",
+        "data-pipelines",
+        "data-visualization",
+        "experiment-analysis",
+        "requirements",
+        "process-modeling",
+        "architecture-design",
+        "architecture-review"
+      ],
+      "relation": "suggested_applicability_not_mandatory",
+      "criterion_codes": [
+        "data_cleaning",
+        "analysis_validity",
+        "pipeline_integrity",
+        "report_accuracy",
+        "experiment_validity",
+        "requirements_testability",
+        "process_consistency",
+        "architecture_constraints",
+        "architecture_risks"
+      ]
+    },
+    {
+      "specialization_id": "software-architecture",
+      "name": "Архитектор программного обеспечения",
+      "direction": 14,
+      "competency_ids": [
+        "sql-queries",
+        "data-modeling",
+        "transactions",
+        "query-performance",
+        "database-recovery",
+        "deployment",
+        "delivery-automation",
+        "observability",
+        "incident-diagnosis",
+        "system-recovery",
+        "vulnerability-analysis",
+        "security-events",
+        "security-configuration",
+        "security-risk",
+        "requirements",
+        "process-modeling",
+        "architecture-design",
+        "architecture-review"
+      ],
+      "relation": "suggested_applicability_not_mandatory",
+      "criterion_codes": [
+        "data_operations",
+        "schema_constraints",
+        "transaction_atomicity",
+        "query_efficiency",
+        "database_restore",
+        "reproducible_deployment",
+        "pipeline_execution",
+        "diagnostic_visibility",
+        "incident_root_cause",
+        "service_restore",
+        "vulnerability_evidence",
+        "event_analysis",
+        "security_policy",
+        "threat_controls",
+        "requirements_testability",
+        "process_consistency",
+        "architecture_constraints",
+        "architecture_risks",
+        "sql_parameterization",
+        "concurrency_consistency",
+        "container_configuration",
+        "orchestration_recovery"
+      ]
+    },
+    {
+      "specialization_id": "solution-architecture",
+      "name": "Архитектор решений — Solution Architect",
+      "direction": 14,
+      "competency_ids": [
+        "sql-queries",
+        "data-modeling",
+        "transactions",
+        "query-performance",
+        "database-recovery",
+        "deployment",
+        "delivery-automation",
+        "observability",
+        "incident-diagnosis",
+        "system-recovery",
+        "vulnerability-analysis",
+        "security-events",
+        "security-configuration",
+        "security-risk",
+        "requirements",
+        "process-modeling",
+        "architecture-design",
+        "architecture-review"
+      ],
+      "relation": "suggested_applicability_not_mandatory",
+      "criterion_codes": [
+        "data_operations",
+        "schema_constraints",
+        "transaction_atomicity",
+        "query_efficiency",
+        "database_restore",
+        "reproducible_deployment",
+        "pipeline_execution",
+        "diagnostic_visibility",
+        "incident_root_cause",
+        "service_restore",
+        "vulnerability_evidence",
+        "event_analysis",
+        "security_policy",
+        "threat_controls",
+        "requirements_testability",
+        "process_consistency",
+        "architecture_constraints",
+        "architecture_risks",
+        "sql_parameterization",
+        "concurrency_consistency",
+        "container_configuration",
+        "orchestration_recovery"
+      ]
+    },
+    {
+      "specialization_id": "enterprise-architecture",
+      "name": "Корпоративный архитектор — Enterprise Architect",
+      "direction": 14,
+      "competency_ids": [
+        "sql-queries",
+        "data-modeling",
+        "transactions",
+        "query-performance",
+        "database-recovery",
+        "deployment",
+        "delivery-automation",
+        "observability",
+        "incident-diagnosis",
+        "system-recovery",
+        "vulnerability-analysis",
+        "security-events",
+        "security-configuration",
+        "security-risk",
+        "requirements",
+        "process-modeling",
+        "architecture-design",
+        "architecture-review"
+      ],
+      "relation": "suggested_applicability_not_mandatory",
+      "criterion_codes": [
+        "data_operations",
+        "schema_constraints",
+        "transaction_atomicity",
+        "query_efficiency",
+        "database_restore",
+        "reproducible_deployment",
+        "pipeline_execution",
+        "diagnostic_visibility",
+        "incident_root_cause",
+        "service_restore",
+        "vulnerability_evidence",
+        "event_analysis",
+        "security_policy",
+        "threat_controls",
+        "requirements_testability",
+        "process_consistency",
+        "architecture_constraints",
+        "architecture_risks",
+        "sql_parameterization",
+        "concurrency_consistency",
+        "container_configuration",
+        "orchestration_recovery"
+      ]
+    },
+    {
+      "specialization_id": "data-architecture",
+      "name": "Архитектор данных",
+      "direction": 14,
+      "competency_ids": [
+        "sql-queries",
+        "data-modeling",
+        "transactions",
+        "query-performance",
+        "database-recovery",
+        "deployment",
+        "delivery-automation",
+        "observability",
+        "incident-diagnosis",
+        "system-recovery",
+        "vulnerability-analysis",
+        "security-events",
+        "security-configuration",
+        "security-risk",
+        "requirements",
+        "process-modeling",
+        "architecture-design",
+        "architecture-review"
+      ],
+      "relation": "suggested_applicability_not_mandatory",
+      "criterion_codes": [
+        "data_operations",
+        "schema_constraints",
+        "transaction_atomicity",
+        "query_efficiency",
+        "database_restore",
+        "reproducible_deployment",
+        "pipeline_execution",
+        "diagnostic_visibility",
+        "incident_root_cause",
+        "service_restore",
+        "vulnerability_evidence",
+        "event_analysis",
+        "security_policy",
+        "threat_controls",
+        "requirements_testability",
+        "process_consistency",
+        "architecture_constraints",
+        "architecture_risks",
+        "sql_parameterization",
+        "concurrency_consistency",
+        "container_configuration",
+        "orchestration_recovery"
+      ]
+    },
+    {
+      "specialization_id": "infrastructure-architecture",
+      "name": "Архитектор инфраструктуры",
+      "direction": 14,
+      "competency_ids": [
+        "sql-queries",
+        "data-modeling",
+        "transactions",
+        "query-performance",
+        "database-recovery",
+        "deployment",
+        "delivery-automation",
+        "observability",
+        "incident-diagnosis",
+        "system-recovery",
+        "vulnerability-analysis",
+        "security-events",
+        "security-configuration",
+        "security-risk",
+        "requirements",
+        "process-modeling",
+        "architecture-design",
+        "architecture-review"
+      ],
+      "relation": "suggested_applicability_not_mandatory",
+      "criterion_codes": [
+        "data_operations",
+        "schema_constraints",
+        "transaction_atomicity",
+        "query_efficiency",
+        "database_restore",
+        "reproducible_deployment",
+        "pipeline_execution",
+        "diagnostic_visibility",
+        "incident_root_cause",
+        "service_restore",
+        "vulnerability_evidence",
+        "event_analysis",
+        "security_policy",
+        "threat_controls",
+        "requirements_testability",
+        "process_consistency",
+        "architecture_constraints",
+        "architecture_risks",
+        "sql_parameterization",
+        "concurrency_consistency",
+        "container_configuration",
+        "orchestration_recovery"
+      ]
+    },
+    {
+      "specialization_id": "security-architecture",
+      "name": "Архитектор безопасности",
+      "direction": 14,
+      "competency_ids": [
+        "sql-queries",
+        "data-modeling",
+        "transactions",
+        "query-performance",
+        "database-recovery",
+        "deployment",
+        "delivery-automation",
+        "observability",
+        "incident-diagnosis",
+        "system-recovery",
+        "vulnerability-analysis",
+        "security-events",
+        "security-configuration",
+        "security-risk",
+        "requirements",
+        "process-modeling",
+        "architecture-design",
+        "architecture-review"
+      ],
+      "relation": "suggested_applicability_not_mandatory",
+      "criterion_codes": [
+        "data_operations",
+        "schema_constraints",
+        "transaction_atomicity",
+        "query_efficiency",
+        "database_restore",
+        "reproducible_deployment",
+        "pipeline_execution",
+        "diagnostic_visibility",
+        "incident_root_cause",
+        "service_restore",
+        "vulnerability_evidence",
+        "event_analysis",
+        "security_policy",
+        "threat_controls",
+        "requirements_testability",
+        "process_consistency",
+        "architecture_constraints",
+        "architecture_risks",
+        "sql_parameterization",
+        "concurrency_consistency",
+        "container_configuration",
+        "orchestration_recovery"
+      ]
+    },
+    {
+      "specialization_id": "ux",
+      "name": "UX-дизайнер",
+      "direction": 15,
+      "competency_ids": [
+        "layout",
+        "client-state",
+        "client-api",
+        "interface-accessibility",
+        "client-platform",
+        "interaction-design",
+        "visual-design",
+        "user-research",
+        "design-systems"
+      ],
+      "relation": "suggested_applicability_not_mandatory",
+      "criterion_codes": [
+        "layout_conformance",
+        "state_transitions",
+        "client_api_states",
+        "accessibility_scenarios",
+        "platform_interaction",
+        "user_flow_completion",
+        "visual_constraints",
+        "research_traceability",
+        "component_consistency"
+      ]
+    },
+    {
+      "specialization_id": "ui",
+      "name": "UI-дизайнер",
+      "direction": 15,
+      "competency_ids": [
+        "layout",
+        "client-state",
+        "client-api",
+        "interface-accessibility",
+        "client-platform",
+        "interaction-design",
+        "visual-design",
+        "user-research",
+        "design-systems"
+      ],
+      "relation": "suggested_applicability_not_mandatory",
+      "criterion_codes": [
+        "layout_conformance",
+        "state_transitions",
+        "client_api_states",
+        "accessibility_scenarios",
+        "platform_interaction",
+        "user_flow_completion",
+        "visual_constraints",
+        "research_traceability",
+        "component_consistency"
+      ]
+    },
+    {
+      "specialization_id": "product-design",
+      "name": "Продуктовый дизайнер",
+      "direction": 15,
+      "competency_ids": [
+        "layout",
+        "client-state",
+        "client-api",
+        "interface-accessibility",
+        "client-platform",
+        "interaction-design",
+        "visual-design",
+        "user-research",
+        "design-systems"
+      ],
+      "relation": "suggested_applicability_not_mandatory",
+      "criterion_codes": [
+        "layout_conformance",
+        "state_transitions",
+        "client_api_states",
+        "accessibility_scenarios",
+        "platform_interaction",
+        "user_flow_completion",
+        "visual_constraints",
+        "research_traceability",
+        "component_consistency"
+      ]
+    },
+    {
+      "specialization_id": "ux-research",
+      "name": "UX-исследователь",
+      "direction": 15,
+      "competency_ids": [
+        "layout",
+        "client-state",
+        "client-api",
+        "interface-accessibility",
+        "client-platform",
+        "interaction-design",
+        "visual-design",
+        "user-research",
+        "design-systems"
+      ],
+      "relation": "suggested_applicability_not_mandatory",
+      "criterion_codes": [
+        "layout_conformance",
+        "state_transitions",
+        "client_api_states",
+        "accessibility_scenarios",
+        "platform_interaction",
+        "user_flow_completion",
+        "visual_constraints",
+        "research_traceability",
+        "component_consistency"
+      ]
+    },
+    {
+      "specialization_id": "interaction-design",
+      "name": "Дизайнер взаимодействия",
+      "direction": 15,
+      "competency_ids": [
+        "layout",
+        "client-state",
+        "client-api",
+        "interface-accessibility",
+        "client-platform",
+        "interaction-design",
+        "visual-design",
+        "user-research",
+        "design-systems"
+      ],
+      "relation": "suggested_applicability_not_mandatory",
+      "criterion_codes": [
+        "layout_conformance",
+        "state_transitions",
+        "client_api_states",
+        "accessibility_scenarios",
+        "platform_interaction",
+        "user_flow_completion",
+        "visual_constraints",
+        "research_traceability",
+        "component_consistency"
+      ]
+    },
+    {
+      "specialization_id": "design-systems",
+      "name": "Специалист по дизайн-системам",
+      "direction": 15,
+      "competency_ids": [
+        "layout",
+        "client-state",
+        "client-api",
+        "interface-accessibility",
+        "client-platform",
+        "interaction-design",
+        "visual-design",
+        "user-research",
+        "design-systems"
+      ],
+      "relation": "suggested_applicability_not_mandatory",
+      "criterion_codes": [
+        "layout_conformance",
+        "state_transitions",
+        "client_api_states",
+        "accessibility_scenarios",
+        "platform_interaction",
+        "user_flow_completion",
+        "visual_constraints",
+        "research_traceability",
+        "component_consistency"
+      ]
+    },
+    {
+      "specialization_id": "service-design",
+      "name": "Сервис-дизайнер",
+      "direction": 15,
+      "competency_ids": [
+        "layout",
+        "client-state",
+        "client-api",
+        "interface-accessibility",
+        "client-platform",
+        "interaction-design",
+        "visual-design",
+        "user-research",
+        "design-systems"
+      ],
+      "relation": "suggested_applicability_not_mandatory",
+      "criterion_codes": [
+        "layout_conformance",
+        "state_transitions",
+        "client_api_states",
+        "accessibility_scenarios",
+        "platform_interaction",
+        "user_flow_completion",
+        "visual_constraints",
+        "research_traceability",
+        "component_consistency"
+      ]
+    },
+    {
+      "specialization_id": "service-desk",
+      "name": "Специалист технической поддержки — Service Desk",
+      "direction": 16,
+      "competency_ids": [
+        "deployment",
+        "delivery-automation",
+        "observability",
+        "incident-diagnosis",
+        "system-recovery",
+        "technical-docs",
+        "support-analysis",
+        "implementation-plan"
+      ],
+      "relation": "suggested_applicability_not_mandatory",
+      "criterion_codes": [
+        "reproducible_deployment",
+        "pipeline_execution",
+        "diagnostic_visibility",
+        "incident_root_cause",
+        "service_restore",
+        "instruction_reproducibility",
+        "support_diagnosis",
+        "rollout_readiness",
+        "container_configuration",
+        "orchestration_recovery"
+      ]
+    },
+    {
+      "specialization_id": "application-support",
+      "name": "Инженер поддержки приложений",
+      "direction": 16,
+      "competency_ids": [
+        "deployment",
+        "delivery-automation",
+        "observability",
+        "incident-diagnosis",
+        "system-recovery",
+        "technical-docs",
+        "support-analysis",
+        "implementation-plan"
+      ],
+      "relation": "suggested_applicability_not_mandatory",
+      "criterion_codes": [
+        "reproducible_deployment",
+        "pipeline_execution",
+        "diagnostic_visibility",
+        "incident_root_cause",
+        "service_restore",
+        "instruction_reproducibility",
+        "support_diagnosis",
+        "rollout_readiness",
+        "container_configuration",
+        "orchestration_recovery"
+      ]
+    },
+    {
+      "specialization_id": "implementation",
+      "name": "Инженер внедрения",
+      "direction": 16,
+      "competency_ids": [
+        "deployment",
+        "delivery-automation",
+        "observability",
+        "incident-diagnosis",
+        "system-recovery",
+        "technical-docs",
+        "support-analysis",
+        "implementation-plan"
+      ],
+      "relation": "suggested_applicability_not_mandatory",
+      "criterion_codes": [
+        "reproducible_deployment",
+        "pipeline_execution",
+        "diagnostic_visibility",
+        "incident_root_cause",
+        "service_restore",
+        "instruction_reproducibility",
+        "support_diagnosis",
+        "rollout_readiness",
+        "container_configuration",
+        "orchestration_recovery"
+      ]
+    },
+    {
+      "specialization_id": "implementation-consulting",
+      "name": "Консультант по внедрению ИТ-систем",
+      "direction": 16,
+      "competency_ids": [
+        "deployment",
+        "delivery-automation",
+        "observability",
+        "incident-diagnosis",
+        "system-recovery",
+        "technical-docs",
+        "support-analysis",
+        "implementation-plan"
+      ],
+      "relation": "suggested_applicability_not_mandatory",
+      "criterion_codes": [
+        "reproducible_deployment",
+        "pipeline_execution",
+        "diagnostic_visibility",
+        "incident_root_cause",
+        "service_restore",
+        "instruction_reproducibility",
+        "support_diagnosis",
+        "rollout_readiness",
+        "container_configuration",
+        "orchestration_recovery"
+      ]
+    },
+    {
+      "specialization_id": "hardware-support",
+      "name": "Инженер обслуживания ИТ-оборудования",
+      "direction": 16,
+      "competency_ids": [
+        "deployment",
+        "delivery-automation",
+        "observability",
+        "incident-diagnosis",
+        "system-recovery",
+        "technical-docs",
+        "support-analysis",
+        "implementation-plan"
+      ],
+      "relation": "suggested_applicability_not_mandatory",
+      "criterion_codes": [
+        "reproducible_deployment",
+        "pipeline_execution",
+        "diagnostic_visibility",
+        "incident_root_cause",
+        "service_restore",
+        "instruction_reproducibility",
+        "support_diagnosis",
+        "rollout_readiness",
+        "container_configuration",
+        "orchestration_recovery"
+      ]
+    },
+    {
+      "specialization_id": "itsm",
+      "name": "Специалист по управлению ИТ-сервисами — ITSM",
+      "direction": 17,
+      "competency_ids": [
+        "deployment",
+        "delivery-automation",
+        "observability",
+        "incident-diagnosis",
+        "system-recovery",
+        "technical-docs",
+        "support-analysis",
+        "implementation-plan",
+        "prioritization",
+        "project-planning",
+        "product-metrics",
+        "decision-explanation"
+      ],
+      "relation": "suggested_applicability_not_mandatory",
+      "criterion_codes": [
+        "reproducible_deployment",
+        "pipeline_execution",
+        "diagnostic_visibility",
+        "incident_root_cause",
+        "service_restore",
+        "instruction_reproducibility",
+        "support_diagnosis",
+        "rollout_readiness",
+        "priority_rationale",
+        "plan_feasibility",
+        "metric_alignment",
+        "decision_evidence",
+        "container_configuration",
+        "orchestration_recovery"
+      ]
+    },
+    {
+      "specialization_id": "incident-management",
+      "name": "Специалист по управлению инцидентами",
+      "direction": 17,
+      "competency_ids": [
+        "deployment",
+        "delivery-automation",
+        "observability",
+        "incident-diagnosis",
+        "system-recovery",
+        "technical-docs",
+        "support-analysis",
+        "implementation-plan",
+        "prioritization",
+        "project-planning",
+        "product-metrics",
+        "decision-explanation"
+      ],
+      "relation": "suggested_applicability_not_mandatory",
+      "criterion_codes": [
+        "reproducible_deployment",
+        "pipeline_execution",
+        "diagnostic_visibility",
+        "incident_root_cause",
+        "service_restore",
+        "instruction_reproducibility",
+        "support_diagnosis",
+        "rollout_readiness",
+        "priority_rationale",
+        "plan_feasibility",
+        "metric_alignment",
+        "decision_evidence",
+        "container_configuration",
+        "orchestration_recovery"
+      ]
+    },
+    {
+      "specialization_id": "problem-management",
+      "name": "Специалист по управлению проблемами",
+      "direction": 17,
+      "competency_ids": [
+        "deployment",
+        "delivery-automation",
+        "observability",
+        "incident-diagnosis",
+        "system-recovery",
+        "technical-docs",
+        "support-analysis",
+        "implementation-plan",
+        "prioritization",
+        "project-planning",
+        "product-metrics",
+        "decision-explanation"
+      ],
+      "relation": "suggested_applicability_not_mandatory",
+      "criterion_codes": [
+        "reproducible_deployment",
+        "pipeline_execution",
+        "diagnostic_visibility",
+        "incident_root_cause",
+        "service_restore",
+        "instruction_reproducibility",
+        "support_diagnosis",
+        "rollout_readiness",
+        "priority_rationale",
+        "plan_feasibility",
+        "metric_alignment",
+        "decision_evidence",
+        "container_configuration",
+        "orchestration_recovery"
+      ]
+    },
+    {
+      "specialization_id": "release-management",
+      "name": "Специалист по управлению релизами",
+      "direction": 17,
+      "competency_ids": [
+        "deployment",
+        "delivery-automation",
+        "observability",
+        "incident-diagnosis",
+        "system-recovery",
+        "technical-docs",
+        "support-analysis",
+        "implementation-plan",
+        "prioritization",
+        "project-planning",
+        "product-metrics",
+        "decision-explanation"
+      ],
+      "relation": "suggested_applicability_not_mandatory",
+      "criterion_codes": [
+        "reproducible_deployment",
+        "pipeline_execution",
+        "diagnostic_visibility",
+        "incident_root_cause",
+        "service_restore",
+        "instruction_reproducibility",
+        "support_diagnosis",
+        "rollout_readiness",
+        "priority_rationale",
+        "plan_feasibility",
+        "metric_alignment",
+        "decision_evidence",
+        "container_configuration",
+        "orchestration_recovery"
+      ]
+    },
+    {
+      "specialization_id": "change-management",
+      "name": "Специалист по управлению ИТ-изменениями",
+      "direction": 17,
+      "competency_ids": [
+        "deployment",
+        "delivery-automation",
+        "observability",
+        "incident-diagnosis",
+        "system-recovery",
+        "technical-docs",
+        "support-analysis",
+        "implementation-plan",
+        "prioritization",
+        "project-planning",
+        "product-metrics",
+        "decision-explanation"
+      ],
+      "relation": "suggested_applicability_not_mandatory",
+      "criterion_codes": [
+        "reproducible_deployment",
+        "pipeline_execution",
+        "diagnostic_visibility",
+        "incident_root_cause",
+        "service_restore",
+        "instruction_reproducibility",
+        "support_diagnosis",
+        "rollout_readiness",
+        "priority_rationale",
+        "plan_feasibility",
+        "metric_alignment",
+        "decision_evidence",
+        "container_configuration",
+        "orchestration_recovery"
+      ]
+    },
+    {
+      "specialization_id": "it-assets",
+      "name": "Специалист по управлению ИТ-активами",
+      "direction": 17,
+      "competency_ids": [
+        "deployment",
+        "delivery-automation",
+        "observability",
+        "incident-diagnosis",
+        "system-recovery",
+        "technical-docs",
+        "support-analysis",
+        "implementation-plan",
+        "prioritization",
+        "project-planning",
+        "product-metrics",
+        "decision-explanation"
+      ],
+      "relation": "suggested_applicability_not_mandatory",
+      "criterion_codes": [
+        "reproducible_deployment",
+        "pipeline_execution",
+        "diagnostic_visibility",
+        "incident_root_cause",
+        "service_restore",
+        "instruction_reproducibility",
+        "support_diagnosis",
+        "rollout_readiness",
+        "priority_rationale",
+        "plan_feasibility",
+        "metric_alignment",
+        "decision_evidence",
+        "container_configuration",
+        "orchestration_recovery"
+      ]
+    },
+    {
+      "specialization_id": "finops",
+      "name": "FinOps-специалист",
+      "direction": 17,
+      "competency_ids": [
+        "deployment",
+        "delivery-automation",
+        "observability",
+        "incident-diagnosis",
+        "system-recovery",
+        "technical-docs",
+        "support-analysis",
+        "implementation-plan",
+        "prioritization",
+        "project-planning",
+        "product-metrics",
+        "decision-explanation"
+      ],
+      "relation": "suggested_applicability_not_mandatory",
+      "criterion_codes": [
+        "reproducible_deployment",
+        "pipeline_execution",
+        "diagnostic_visibility",
+        "incident_root_cause",
+        "service_restore",
+        "instruction_reproducibility",
+        "support_diagnosis",
+        "rollout_readiness",
+        "priority_rationale",
+        "plan_feasibility",
+        "metric_alignment",
+        "decision_evidence",
+        "container_configuration",
+        "orchestration_recovery"
+      ]
+    },
+    {
+      "specialization_id": "product-management",
+      "name": "Менеджер цифрового продукта",
+      "direction": 18,
+      "competency_ids": [
+        "requirements",
+        "process-modeling",
+        "architecture-design",
+        "architecture-review",
+        "prioritization",
+        "project-planning",
+        "product-metrics",
+        "decision-explanation"
+      ],
+      "relation": "suggested_applicability_not_mandatory",
+      "criterion_codes": [
+        "requirements_testability",
+        "process_consistency",
+        "architecture_constraints",
+        "architecture_risks",
+        "priority_rationale",
+        "plan_feasibility",
+        "metric_alignment",
+        "decision_evidence"
+      ]
+    },
+    {
+      "specialization_id": "technical-product",
+      "name": "Технический продуктовый менеджер",
+      "direction": 18,
+      "competency_ids": [
+        "requirements",
+        "process-modeling",
+        "architecture-design",
+        "architecture-review",
+        "prioritization",
+        "project-planning",
+        "product-metrics",
+        "decision-explanation"
+      ],
+      "relation": "suggested_applicability_not_mandatory",
+      "criterion_codes": [
+        "requirements_testability",
+        "process_consistency",
+        "architecture_constraints",
+        "architecture_risks",
+        "priority_rationale",
+        "plan_feasibility",
+        "metric_alignment",
+        "decision_evidence"
+      ]
+    },
+    {
+      "specialization_id": "project-management",
+      "name": "Менеджер ИТ-проектов",
+      "direction": 18,
+      "competency_ids": [
+        "requirements",
+        "process-modeling",
+        "architecture-design",
+        "architecture-review",
+        "prioritization",
+        "project-planning",
+        "product-metrics",
+        "decision-explanation"
+      ],
+      "relation": "suggested_applicability_not_mandatory",
+      "criterion_codes": [
+        "requirements_testability",
+        "process_consistency",
+        "architecture_constraints",
+        "architecture_risks",
+        "priority_rationale",
+        "plan_feasibility",
+        "metric_alignment",
+        "decision_evidence"
+      ]
+    },
+    {
+      "specialization_id": "program-management",
+      "name": "Менеджер ИТ-программ",
+      "direction": 18,
+      "competency_ids": [
+        "requirements",
+        "process-modeling",
+        "architecture-design",
+        "architecture-review",
+        "prioritization",
+        "project-planning",
+        "product-metrics",
+        "decision-explanation"
+      ],
+      "relation": "suggested_applicability_not_mandatory",
+      "criterion_codes": [
+        "requirements_testability",
+        "process_consistency",
+        "architecture_constraints",
+        "architecture_risks",
+        "priority_rationale",
+        "plan_feasibility",
+        "metric_alignment",
+        "decision_evidence"
+      ]
+    },
+    {
+      "specialization_id": "delivery-management",
+      "name": "Delivery Manager",
+      "direction": 18,
+      "competency_ids": [
+        "requirements",
+        "process-modeling",
+        "architecture-design",
+        "architecture-review",
+        "prioritization",
+        "project-planning",
+        "product-metrics",
+        "decision-explanation"
+      ],
+      "relation": "suggested_applicability_not_mandatory",
+      "criterion_codes": [
+        "requirements_testability",
+        "process_consistency",
+        "architecture_constraints",
+        "architecture_risks",
+        "priority_rationale",
+        "plan_feasibility",
+        "metric_alignment",
+        "decision_evidence"
+      ]
+    },
+    {
+      "specialization_id": "it-consulting",
+      "name": "ИТ-консультант",
+      "direction": 18,
+      "competency_ids": [
+        "requirements",
+        "process-modeling",
+        "architecture-design",
+        "architecture-review",
+        "prioritization",
+        "project-planning",
+        "product-metrics",
+        "decision-explanation"
+      ],
+      "relation": "suggested_applicability_not_mandatory",
+      "criterion_codes": [
+        "requirements_testability",
+        "process_consistency",
+        "architecture_constraints",
+        "architecture_risks",
+        "priority_rationale",
+        "plan_feasibility",
+        "metric_alignment",
+        "decision_evidence"
+      ]
+    },
+    {
+      "specialization_id": "technical-writing",
+      "name": "Технический писатель",
+      "direction": 19,
+      "competency_ids": [
+        "technical-docs",
+        "support-analysis",
+        "implementation-plan",
+        "prioritization",
+        "project-planning",
+        "product-metrics",
+        "decision-explanation"
+      ],
+      "relation": "suggested_applicability_not_mandatory",
+      "criterion_codes": [
+        "instruction_reproducibility",
+        "support_diagnosis",
+        "rollout_readiness",
+        "priority_rationale",
+        "plan_feasibility",
+        "metric_alignment",
+        "decision_evidence"
+      ]
+    },
+    {
+      "specialization_id": "developer-relations",
+      "name": "Специалист Developer Relations — DevRel",
+      "direction": 19,
+      "competency_ids": [
+        "technical-docs",
+        "support-analysis",
+        "implementation-plan",
+        "prioritization",
+        "project-planning",
+        "product-metrics",
+        "decision-explanation"
+      ],
+      "relation": "suggested_applicability_not_mandatory",
+      "criterion_codes": [
+        "instruction_reproducibility",
+        "support_diagnosis",
+        "rollout_readiness",
+        "priority_rationale",
+        "plan_feasibility",
+        "metric_alignment",
+        "decision_evidence"
+      ]
+    },
+    {
+      "specialization_id": "technical-training",
+      "name": "Технический тренер",
+      "direction": 19,
+      "competency_ids": [
+        "technical-docs",
+        "support-analysis",
+        "implementation-plan",
+        "prioritization",
+        "project-planning",
+        "product-metrics",
+        "decision-explanation"
+      ],
+      "relation": "suggested_applicability_not_mandatory",
+      "criterion_codes": [
+        "instruction_reproducibility",
+        "support_diagnosis",
+        "rollout_readiness",
+        "priority_rationale",
+        "plan_feasibility",
+        "metric_alignment",
+        "decision_evidence"
+      ]
+    },
+    {
+      "specialization_id": "presales",
+      "name": "Инженер технических предпродаж — Presales",
+      "direction": 19,
+      "competency_ids": [
+        "technical-docs",
+        "support-analysis",
+        "implementation-plan",
+        "prioritization",
+        "project-planning",
+        "product-metrics",
+        "decision-explanation"
+      ],
+      "relation": "suggested_applicability_not_mandatory",
+      "criterion_codes": [
+        "instruction_reproducibility",
+        "support_diagnosis",
+        "rollout_readiness",
+        "priority_rationale",
+        "plan_feasibility",
+        "metric_alignment",
+        "decision_evidence"
+      ]
+    },
+    {
+      "specialization_id": "developer-experience",
+      "name": "Инженер опыта разработчиков — DevEx",
+      "direction": 19,
+      "competency_ids": [
+        "technical-docs",
+        "support-analysis",
+        "implementation-plan",
+        "prioritization",
+        "project-planning",
+        "product-metrics",
+        "decision-explanation"
+      ],
+      "relation": "suggested_applicability_not_mandatory",
+      "criterion_codes": [
+        "instruction_reproducibility",
+        "support_diagnosis",
+        "rollout_readiness",
+        "priority_rationale",
+        "plan_feasibility",
+        "metric_alignment",
+        "decision_evidence"
+      ]
+    },
+    {
+      "specialization_id": "it-audit",
+      "name": "ИТ-аудитор",
+      "direction": 20,
+      "competency_ids": [
+        "vulnerability-analysis",
+        "security-events",
+        "security-configuration",
+        "security-risk",
+        "requirements",
+        "process-modeling",
+        "architecture-design",
+        "architecture-review",
+        "prioritization",
+        "project-planning",
+        "product-metrics",
+        "decision-explanation"
+      ],
+      "relation": "suggested_applicability_not_mandatory",
+      "criterion_codes": [
+        "vulnerability_evidence",
+        "event_analysis",
+        "security_policy",
+        "threat_controls",
+        "requirements_testability",
+        "process_consistency",
+        "architecture_constraints",
+        "architecture_risks",
+        "priority_rationale",
+        "plan_feasibility",
+        "metric_alignment",
+        "decision_evidence"
+      ]
+    },
+    {
+      "specialization_id": "it-compliance",
+      "name": "Специалист по ИТ-комплаенсу",
+      "direction": 20,
+      "competency_ids": [
+        "vulnerability-analysis",
+        "security-events",
+        "security-configuration",
+        "security-risk",
+        "requirements",
+        "process-modeling",
+        "architecture-design",
+        "architecture-review",
+        "prioritization",
+        "project-planning",
+        "product-metrics",
+        "decision-explanation"
+      ],
+      "relation": "suggested_applicability_not_mandatory",
+      "criterion_codes": [
+        "vulnerability_evidence",
+        "event_analysis",
+        "security_policy",
+        "threat_controls",
+        "requirements_testability",
+        "process_consistency",
+        "architecture_constraints",
+        "architecture_risks",
+        "priority_rationale",
+        "plan_feasibility",
+        "metric_alignment",
+        "decision_evidence"
+      ]
+    },
+    {
+      "specialization_id": "technology-governance",
+      "name": "Специалист по управлению технологиями",
+      "direction": 20,
+      "competency_ids": [
+        "vulnerability-analysis",
+        "security-events",
+        "security-configuration",
+        "security-risk",
+        "requirements",
+        "process-modeling",
+        "architecture-design",
+        "architecture-review",
+        "prioritization",
+        "project-planning",
+        "product-metrics",
+        "decision-explanation"
+      ],
+      "relation": "suggested_applicability_not_mandatory",
+      "criterion_codes": [
+        "vulnerability_evidence",
+        "event_analysis",
+        "security_policy",
+        "threat_controls",
+        "requirements_testability",
+        "process_consistency",
+        "architecture_constraints",
+        "architecture_risks",
+        "priority_rationale",
+        "plan_feasibility",
+        "metric_alignment",
+        "decision_evidence"
+      ]
+    }
+  ],
+  "grade_contexts": {
+    "junior": "Ограниченная задача с явно заданным контрактом и средой",
+    "middle": "Несколько взаимодействующих сценариев с заданными сбоями и ограничениями",
+    "senior": "Кейс с альтернативами, конфликтующими ограничениями и защитой решения"
+  },
+  "grade_context_note": "Рекомендации для подготовки сложности, не валидированная методика присвоения грейда"
+}
