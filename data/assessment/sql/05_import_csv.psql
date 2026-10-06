@@ -1,0 +1,20 @@
+\set ON_ERROR_STOP on
+BEGIN;
+SET LOCAL search_path TO mesto_assessment, pg_catalog;
+\copy specializations (id, code, name, description, direction_code, active) FROM 'data/assessment/csv/specializations.csv' WITH (FORMAT csv, HEADER true, ENCODING 'UTF8');
+\copy grades (id, code, name, sort_order) FROM 'data/assessment/csv/grades.csv' WITH (FORMAT csv, HEADER true, ENCODING 'UTF8');
+\copy competencies (id, code, name, description, active) FROM 'data/assessment/csv/competencies.csv' WITH (FORMAT csv, HEADER true, ENCODING 'UTF8');
+\copy technologies (id, code, name, kind, active) FROM 'data/assessment/csv/technologies.csv' WITH (FORMAT csv, HEADER true, ENCODING 'UTF8');
+\copy criteria (id, code, version, name, description, check_templates, active) FROM 'data/assessment/csv/criteria.csv' WITH (FORMAT csv, HEADER true, ENCODING 'UTF8');
+\copy specialization_competencies (specialization_id, competency_id, relevance_description) FROM 'data/assessment/csv/specialization_competencies.csv' WITH (FORMAT csv, HEADER true, ENCODING 'UTF8');
+\copy criterion_competencies (criterion_id, competency_id, active, scope_note) FROM 'data/assessment/csv/criterion_competencies.csv' WITH (FORMAT csv, HEADER true, ENCODING 'UTF8');
+\copy tests (id, candidate_id, request_key, specialization_id, declared_grade_id, competency_ids, technology_context, criteria_snapshot, assignment, status, generation_metadata, created_at) FROM 'data/assessment/csv/tests.csv' WITH (FORMAT csv, HEADER true, ENCODING 'UTF8');
+\copy test_attempts (id, candidate_id, test_id, answer, evaluation, status, started_at, submitted_at) FROM 'data/assessment/csv/test_attempts.csv' WITH (FORMAT csv, HEADER true, ENCODING 'UTF8');
+SELECT setval(pg_get_serial_sequence('mesto_assessment.specializations', 'id'), COALESCE(MAX(id), 1), MAX(id) IS NOT NULL) FROM specializations;
+SELECT setval(pg_get_serial_sequence('mesto_assessment.grades', 'id'), COALESCE(MAX(id), 1), MAX(id) IS NOT NULL) FROM grades;
+SELECT setval(pg_get_serial_sequence('mesto_assessment.competencies', 'id'), COALESCE(MAX(id), 1), MAX(id) IS NOT NULL) FROM competencies;
+SELECT setval(pg_get_serial_sequence('mesto_assessment.technologies', 'id'), COALESCE(MAX(id), 1), MAX(id) IS NOT NULL) FROM technologies;
+SELECT setval(pg_get_serial_sequence('mesto_assessment.criteria', 'id'), COALESCE(MAX(id), 1), MAX(id) IS NOT NULL) FROM criteria;
+SELECT setval(pg_get_serial_sequence('mesto_assessment.tests', 'id'), COALESCE(MAX(id), 1), MAX(id) IS NOT NULL) FROM tests;
+SELECT setval(pg_get_serial_sequence('mesto_assessment.test_attempts', 'id'), COALESCE(MAX(id), 1), MAX(id) IS NOT NULL) FROM test_attempts;
+COMMIT;

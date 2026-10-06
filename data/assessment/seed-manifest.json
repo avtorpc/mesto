@@ -1,0 +1,40 @@
+{
+  "generated_on": "2026-10-06",
+  "database": "PostgreSQL",
+  "schema": "mesto_assessment",
+  "catalog_status": "draft_for_experimental_mvp_not_calibrated",
+  "seed_counts": {
+    "specializations": 120,
+    "grades": 3,
+    "competencies": 65,
+    "technologies": 62,
+    "specialization_competencies": 1543,
+    "criteria": 72,
+    "criterion_competencies": 78,
+    "tests": 0,
+    "test_attempts": 0
+  },
+  "optional_demo_counts": {
+    "tests": 1,
+    "test_attempts": 1
+  },
+  "files": {
+    "csv/competencies.csv": "d00fc733bf951b61219dbf84e40f48ee675848e121436e7dac17bcb3db74ad30",
+    "csv/criteria.csv": "8aa6a852a08436d2bb4133acd98195a67093686adb8da8278b171960a088e6fd",
+    "csv/criterion_competencies.csv": "0925732f11d94932cc716a7bb136fe03a6953044034544464a1e99caa9946ba8",
+    "csv/demo/test_attempts.csv": "68aa276a1e9f3a470605e0b8b58c5cc023eaf5cc52a8dbe1aab62aaca9b08c74",
+    "csv/demo/tests.csv": "813371731cad18fde59a66ab46c6a3bce97cb1d0ade542f44ee1eb305d4797f4",
+    "csv/grades.csv": "bb38b48a61231e3bb18300d7b3d1451ac746ccab72ac2b303325712511152360",
+    "csv/specialization_competencies.csv": "26dfb9f137c666bc7960d7ea538a4e590314eac2d82622c4aad259709438f78a",
+    "csv/specializations.csv": "09b538b8002a4a32a6ba8d7bfa0e81c13f962295a2c3d383faa234197546180c",
+    "csv/technologies.csv": "d4f1fe6ade5d2008b0268ea82f09d62a9c4f3a32869115985b771320484929e0",
+    "csv/test_attempts.csv": "53f1eb628519296a512e28e3b1d739514b5df9bab31e3fed9acf09d4543399c3",
+    "csv/tests.csv": "4cc06f0f60edce9713400a7489562a5598b224dd55b8b05ac2d28e40d044e98a",
+    "sql/01_schema.sql": "bb070bd22e1457cb76a3015a8efd0d876a10b4ac077efa099a48d7c907771b11",
+    "sql/02_seed.sql": "2abb8399ed6dfb01dc78d4950cd270e70ffcc0e63ba39184f7da298ab72131c8",
+    "sql/03_demo.sql": "912305bd9df21751ea236b20f5ab9cb257b8c72596aa86e654ec20b7550e8676",
+    "sql/04_validate.sql": "fa197b74b0c773405a064d53dd829021ebdcfb97737e38907bf5de403952d021",
+    "sql/05_import_csv.psql": "7d28097ec8e99cac98b545333899ff6756da69fae855e8980e0fc05108053a16",
+    "sql/06_import_demo_csv.psql": "eb455ff1bdc7cfb34944fdd607a75ade46198351beb23c22cb1cf0301a597141"
+  }
+}

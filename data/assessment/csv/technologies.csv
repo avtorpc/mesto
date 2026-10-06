@@ -1,0 +1,63 @@
+id,code,name,kind,active
+1,php,PHP,language,true
+2,java,Java,language,true
+3,javascript,JavaScript,language,true
+4,typescript,TypeScript,language,true
+5,python,Python,language,true
+6,c,C,language,true
+7,cpp,C++,language,true
+8,csharp,C#,language,true
+9,go,Go,language,true
+10,rust,Rust,language,true
+11,kotlin,Kotlin,language,true
+12,swift,Swift,language,true
+13,r,R,language,true
+14,html,HTML,markup-style,true
+15,css,CSS,markup-style,true
+16,laravel,Laravel,backend-framework,true
+17,symfony,Symfony,backend-framework,true
+18,spring,Spring,backend-framework,true
+19,nestjs,NestJS,backend-framework,true
+20,django,Django,backend-framework,true
+21,fastapi,FastAPI,backend-framework,true
+22,aspnet-core,ASP.NET Core,backend-framework,true
+23,react,React,frontend-framework,true
+24,vue,Vue,frontend-framework,true
+25,angular,Angular,frontend-framework,true
+26,svelte,Svelte,frontend-framework,true
+27,nodejs,Node.js,platform,true
+28,jvm,JVM,platform,true
+29,dotnet,.NET,platform,true
+30,android,Android,platform,true
+31,ios,iOS,platform,true
+32,sql,SQL,query-database,true
+33,postgresql,PostgreSQL,query-database,true
+34,mysql,MySQL,query-database,true
+35,sql-server,SQL Server,query-database,true
+36,mongodb,MongoDB,query-database,true
+37,redis,Redis,query-database,true
+38,docker,Docker,containers,true
+39,kubernetes,Kubernetes,containers,true
+40,linux,Linux,infrastructure,true
+41,windows-server,Windows Server,infrastructure,true
+42,terraform,Terraform,infrastructure,true
+43,ansible,Ansible,infrastructure,true
+44,git,Git,delivery-versioning,true
+45,jenkins,Jenkins,delivery-versioning,true
+46,gitlab-ci-cd,GitLab CI/CD,delivery-versioning,true
+47,github-actions,GitHub Actions,delivery-versioning,true
+48,phpunit,PHPUnit,testing,true
+49,junit,JUnit,testing,true
+50,pytest,pytest,testing,true
+51,playwright,Playwright,testing,true
+52,cypress,Cypress,testing,true
+53,selenium,Selenium,testing,true
+54,pandas,pandas,data-ai,true
+55,numpy,NumPy,data-ai,true
+56,scikit-learn,scikit-learn,data-ai,true
+57,pytorch,PyTorch,data-ai,true
+58,tensorflow,TensorFlow,data-ai,true
+59,spark,Spark,data-ai,true
+60,figma,Figma,design-enterprise,true
+61,1c,1С,design-enterprise,true
+62,sap,SAP,design-enterprise,true

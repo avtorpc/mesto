@@ -1,0 +1,554 @@
+{
+  "schema_version": 1,
+  "catalog_version": "mvp-many-to-many-draft-2026-10-06",
+  "status": "draft_for_experimental_mvp_not_calibrated",
+  "note": "При импорте criterion_code+criterion_version разрешаются в criteria.id, competency_code в competencies.id; пары должны быть уникальны. Дополнительные связи предложены для пилота и требуют проверки на конкретных задачах.",
+  "links": [
+    {
+      "criterion_code": "functional_correctness",
+      "criterion_version": 1,
+      "competency_code": "program-implementation",
+      "active": true,
+      "scope_note": "Проверяемый аспект компетенции, не подтверждение всей компетенции"
+    },
+    {
+      "criterion_code": "algorithm_correctness",
+      "criterion_version": 1,
+      "competency_code": "algorithms",
+      "active": true,
+      "scope_note": "Проверяемый аспект компетенции, не подтверждение всей компетенции"
+    },
+    {
+      "criterion_code": "change_contract",
+      "criterion_version": 1,
+      "competency_code": "code-maintenance",
+      "active": true,
+      "scope_note": "Проверяемый аспект компетенции, не подтверждение всей компетенции"
+    },
+    {
+      "criterion_code": "defect_resolution",
+      "criterion_version": 1,
+      "competency_code": "debugging",
+      "active": true,
+      "scope_note": "Проверяемый аспект компетенции, не подтверждение всей компетенции"
+    },
+    {
+      "criterion_code": "behavior_preservation",
+      "criterion_version": 1,
+      "competency_code": "refactoring",
+      "active": true,
+      "scope_note": "Проверяемый аспект компетенции, не подтверждение всей компетенции"
+    },
+    {
+      "criterion_code": "api_contract",
+      "criterion_version": 1,
+      "competency_code": "api-design",
+      "active": true,
+      "scope_note": "Проверяемый аспект компетенции, не подтверждение всей компетенции"
+    },
+    {
+      "criterion_code": "business_rules",
+      "criterion_version": 1,
+      "competency_code": "business-logic",
+      "active": true,
+      "scope_note": "Проверяемый аспект компетенции, не подтверждение всей компетенции"
+    },
+    {
+      "criterion_code": "integration_contract",
+      "criterion_version": 1,
+      "competency_code": "service-integration",
+      "active": true,
+      "scope_note": "Проверяемый аспект компетенции, не подтверждение всей компетенции"
+    },
+    {
+      "criterion_code": "async_execution",
+      "criterion_version": 1,
+      "competency_code": "async-processing",
+      "active": true,
+      "scope_note": "Проверяемый аспект компетенции, не подтверждение всей компетенции"
+    },
+    {
+      "criterion_code": "access_enforcement",
+      "criterion_version": 1,
+      "competency_code": "application-access",
+      "active": true,
+      "scope_note": "Проверяемый аспект компетенции, не подтверждение всей компетенции"
+    },
+    {
+      "criterion_code": "layout_conformance",
+      "criterion_version": 1,
+      "competency_code": "layout",
+      "active": true,
+      "scope_note": "Проверяемый аспект компетенции, не подтверждение всей компетенции"
+    },
+    {
+      "criterion_code": "state_transitions",
+      "criterion_version": 1,
+      "competency_code": "client-state",
+      "active": true,
+      "scope_note": "Проверяемый аспект компетенции, не подтверждение всей компетенции"
+    },
+    {
+      "criterion_code": "client_api_states",
+      "criterion_version": 1,
+      "competency_code": "client-api",
+      "active": true,
+      "scope_note": "Проверяемый аспект компетенции, не подтверждение всей компетенции"
+    },
+    {
+      "criterion_code": "accessibility_scenarios",
+      "criterion_version": 1,
+      "competency_code": "interface-accessibility",
+      "active": true,
+      "scope_note": "Проверяемый аспект компетенции, не подтверждение всей компетенции"
+    },
+    {
+      "criterion_code": "platform_interaction",
+      "criterion_version": 1,
+      "competency_code": "client-platform",
+      "active": true,
+      "scope_note": "Проверяемый аспект компетенции, не подтверждение всей компетенции"
+    },
+    {
+      "criterion_code": "data_operations",
+      "criterion_version": 1,
+      "competency_code": "sql-queries",
+      "active": true,
+      "scope_note": "Проверяемый аспект компетенции, не подтверждение всей компетенции"
+    },
+    {
+      "criterion_code": "schema_constraints",
+      "criterion_version": 1,
+      "competency_code": "data-modeling",
+      "active": true,
+      "scope_note": "Проверяемый аспект компетенции, не подтверждение всей компетенции"
+    },
+    {
+      "criterion_code": "transaction_atomicity",
+      "criterion_version": 1,
+      "competency_code": "transactions",
+      "active": true,
+      "scope_note": "Проверяемый аспект компетенции, не подтверждение всей компетенции"
+    },
+    {
+      "criterion_code": "query_efficiency",
+      "criterion_version": 1,
+      "competency_code": "query-performance",
+      "active": true,
+      "scope_note": "Проверяемый аспект компетенции, не подтверждение всей компетенции"
+    },
+    {
+      "criterion_code": "database_restore",
+      "criterion_version": 1,
+      "competency_code": "database-recovery",
+      "active": true,
+      "scope_note": "Проверяемый аспект компетенции, не подтверждение всей компетенции"
+    },
+    {
+      "criterion_code": "scenario_coverage",
+      "criterion_version": 1,
+      "competency_code": "test-design",
+      "active": true,
+      "scope_note": "Проверяемый аспект компетенции, не подтверждение всей компетенции"
+    },
+    {
+      "criterion_code": "test_effectiveness",
+      "criterion_version": 1,
+      "competency_code": "test-automation",
+      "active": true,
+      "scope_note": "Проверяемый аспект компетенции, не подтверждение всей компетенции"
+    },
+    {
+      "criterion_code": "defect_reproducibility",
+      "criterion_version": 1,
+      "competency_code": "defect-reporting",
+      "active": true,
+      "scope_note": "Проверяемый аспект компетенции, не подтверждение всей компетенции"
+    },
+    {
+      "criterion_code": "load_experiment",
+      "criterion_version": 1,
+      "competency_code": "performance-testing",
+      "active": true,
+      "scope_note": "Проверяемый аспект компетенции, не подтверждение всей компетенции"
+    },
+    {
+      "criterion_code": "coverage_gaps",
+      "criterion_version": 1,
+      "competency_code": "quality-assessment",
+      "active": true,
+      "scope_note": "Проверяемый аспект компетенции, не подтверждение всей компетенции"
+    },
+    {
+      "criterion_code": "reproducible_deployment",
+      "criterion_version": 1,
+      "competency_code": "deployment",
+      "active": true,
+      "scope_note": "Проверяемый аспект компетенции, не подтверждение всей компетенции"
+    },
+    {
+      "criterion_code": "pipeline_execution",
+      "criterion_version": 1,
+      "competency_code": "delivery-automation",
+      "active": true,
+      "scope_note": "Проверяемый аспект компетенции, не подтверждение всей компетенции"
+    },
+    {
+      "criterion_code": "diagnostic_visibility",
+      "criterion_version": 1,
+      "competency_code": "observability",
+      "active": true,
+      "scope_note": "Проверяемый аспект компетенции, не подтверждение всей компетенции"
+    },
+    {
+      "criterion_code": "incident_root_cause",
+      "criterion_version": 1,
+      "competency_code": "incident-diagnosis",
+      "active": true,
+      "scope_note": "Проверяемый аспект компетенции, не подтверждение всей компетенции"
+    },
+    {
+      "criterion_code": "service_restore",
+      "criterion_version": 1,
+      "competency_code": "system-recovery",
+      "active": true,
+      "scope_note": "Проверяемый аспект компетенции, не подтверждение всей компетенции"
+    },
+    {
+      "criterion_code": "network_fault_location",
+      "criterion_version": 1,
+      "competency_code": "network-diagnosis",
+      "active": true,
+      "scope_note": "Проверяемый аспект компетенции, не подтверждение всей компетенции"
+    },
+    {
+      "criterion_code": "network_policy",
+      "criterion_version": 1,
+      "competency_code": "network-configuration",
+      "active": true,
+      "scope_note": "Проверяемый аспект компетенции, не подтверждение всей компетенции"
+    },
+    {
+      "criterion_code": "network_requirements",
+      "criterion_version": 1,
+      "competency_code": "network-design",
+      "active": true,
+      "scope_note": "Проверяемый аспект компетенции, не подтверждение всей компетенции"
+    },
+    {
+      "criterion_code": "vulnerability_evidence",
+      "criterion_version": 1,
+      "competency_code": "vulnerability-analysis",
+      "active": true,
+      "scope_note": "Проверяемый аспект компетенции, не подтверждение всей компетенции"
+    },
+    {
+      "criterion_code": "event_analysis",
+      "criterion_version": 1,
+      "competency_code": "security-events",
+      "active": true,
+      "scope_note": "Проверяемый аспект компетенции, не подтверждение всей компетенции"
+    },
+    {
+      "criterion_code": "security_policy",
+      "criterion_version": 1,
+      "competency_code": "security-configuration",
+      "active": true,
+      "scope_note": "Проверяемый аспект компетенции, не подтверждение всей компетенции"
+    },
+    {
+      "criterion_code": "threat_controls",
+      "criterion_version": 1,
+      "competency_code": "security-risk",
+      "active": true,
+      "scope_note": "Проверяемый аспект компетенции, не подтверждение всей компетенции"
+    },
+    {
+      "criterion_code": "data_cleaning",
+      "criterion_version": 1,
+      "competency_code": "data-preparation",
+      "active": true,
+      "scope_note": "Проверяемый аспект компетенции, не подтверждение всей компетенции"
+    },
+    {
+      "criterion_code": "analysis_validity",
+      "criterion_version": 1,
+      "competency_code": "data-analysis",
+      "active": true,
+      "scope_note": "Проверяемый аспект компетенции, не подтверждение всей компетенции"
+    },
+    {
+      "criterion_code": "pipeline_integrity",
+      "criterion_version": 1,
+      "competency_code": "data-pipelines",
+      "active": true,
+      "scope_note": "Проверяемый аспект компетенции, не подтверждение всей компетенции"
+    },
+    {
+      "criterion_code": "report_accuracy",
+      "criterion_version": 1,
+      "competency_code": "data-visualization",
+      "active": true,
+      "scope_note": "Проверяемый аспект компетенции, не подтверждение всей компетенции"
+    },
+    {
+      "criterion_code": "experiment_validity",
+      "criterion_version": 1,
+      "competency_code": "experiment-analysis",
+      "active": true,
+      "scope_note": "Проверяемый аспект компетенции, не подтверждение всей компетенции"
+    },
+    {
+      "criterion_code": "model_baseline",
+      "criterion_version": 1,
+      "competency_code": "model-development",
+      "active": true,
+      "scope_note": "Проверяемый аспект компетенции, не подтверждение всей компетенции"
+    },
+    {
+      "criterion_code": "model_error_analysis",
+      "criterion_version": 1,
+      "competency_code": "model-evaluation",
+      "active": true,
+      "scope_note": "Проверяемый аспект компетенции, не подтверждение всей компетенции"
+    },
+    {
+      "criterion_code": "model_serving",
+      "criterion_version": 1,
+      "competency_code": "model-deployment",
+      "active": true,
+      "scope_note": "Проверяемый аспект компетенции, не подтверждение всей компетенции"
+    },
+    {
+      "criterion_code": "ai_scenario_evaluation",
+      "criterion_version": 1,
+      "competency_code": "ai-application-evaluation",
+      "active": true,
+      "scope_note": "Проверяемый аспект компетенции, не подтверждение всей компетенции"
+    },
+    {
+      "criterion_code": "requirements_testability",
+      "criterion_version": 1,
+      "competency_code": "requirements",
+      "active": true,
+      "scope_note": "Проверяемый аспект компетенции, не подтверждение всей компетенции"
+    },
+    {
+      "criterion_code": "process_consistency",
+      "criterion_version": 1,
+      "competency_code": "process-modeling",
+      "active": true,
+      "scope_note": "Проверяемый аспект компетенции, не подтверждение всей компетенции"
+    },
+    {
+      "criterion_code": "architecture_constraints",
+      "criterion_version": 1,
+      "competency_code": "architecture-design",
+      "active": true,
+      "scope_note": "Проверяемый аспект компетенции, не подтверждение всей компетенции"
+    },
+    {
+      "criterion_code": "architecture_risks",
+      "criterion_version": 1,
+      "competency_code": "architecture-review",
+      "active": true,
+      "scope_note": "Проверяемый аспект компетенции, не подтверждение всей компетенции"
+    },
+    {
+      "criterion_code": "user_flow_completion",
+      "criterion_version": 1,
+      "competency_code": "interaction-design",
+      "active": true,
+      "scope_note": "Проверяемый аспект компетенции, не подтверждение всей компетенции"
+    },
+    {
+      "criterion_code": "visual_constraints",
+      "criterion_version": 1,
+      "competency_code": "visual-design",
+      "active": true,
+      "scope_note": "Проверяемый аспект компетенции, не подтверждение всей компетенции"
+    },
+    {
+      "criterion_code": "research_traceability",
+      "criterion_version": 1,
+      "competency_code": "user-research",
+      "active": true,
+      "scope_note": "Проверяемый аспект компетенции, не подтверждение всей компетенции"
+    },
+    {
+      "criterion_code": "component_consistency",
+      "criterion_version": 1,
+      "competency_code": "design-systems",
+      "active": true,
+      "scope_note": "Проверяемый аспект компетенции, не подтверждение всей компетенции"
+    },
+    {
+      "criterion_code": "device_behavior",
+      "criterion_version": 1,
+      "competency_code": "device-programming",
+      "active": true,
+      "scope_note": "Проверяемый аспект компетенции, не подтверждение всей компетенции"
+    },
+    {
+      "criterion_code": "timing_constraints",
+      "criterion_version": 1,
+      "competency_code": "real-time-behavior",
+      "active": true,
+      "scope_note": "Проверяемый аспект компетенции, не подтверждение всей компетенции"
+    },
+    {
+      "criterion_code": "interactive_rules",
+      "criterion_version": 1,
+      "competency_code": "interactive-systems",
+      "active": true,
+      "scope_note": "Проверяемый аспект компетенции, не подтверждение всей компетенции"
+    },
+    {
+      "criterion_code": "computational_accuracy",
+      "criterion_version": 1,
+      "competency_code": "graphics-computing",
+      "active": true,
+      "scope_note": "Проверяемый аспект компетенции, не подтверждение всей компетенции"
+    },
+    {
+      "criterion_code": "instruction_reproducibility",
+      "criterion_version": 1,
+      "competency_code": "technical-docs",
+      "active": true,
+      "scope_note": "Проверяемый аспект компетенции, не подтверждение всей компетенции"
+    },
+    {
+      "criterion_code": "support_diagnosis",
+      "criterion_version": 1,
+      "competency_code": "support-analysis",
+      "active": true,
+      "scope_note": "Проверяемый аспект компетенции, не подтверждение всей компетенции"
+    },
+    {
+      "criterion_code": "rollout_readiness",
+      "criterion_version": 1,
+      "competency_code": "implementation-plan",
+      "active": true,
+      "scope_note": "Проверяемый аспект компетенции, не подтверждение всей компетенции"
+    },
+    {
+      "criterion_code": "priority_rationale",
+      "criterion_version": 1,
+      "competency_code": "prioritization",
+      "active": true,
+      "scope_note": "Проверяемый аспект компетенции, не подтверждение всей компетенции"
+    },
+    {
+      "criterion_code": "plan_feasibility",
+      "criterion_version": 1,
+      "competency_code": "project-planning",
+      "active": true,
+      "scope_note": "Проверяемый аспект компетенции, не подтверждение всей компетенции"
+    },
+    {
+      "criterion_code": "metric_alignment",
+      "criterion_version": 1,
+      "competency_code": "product-metrics",
+      "active": true,
+      "scope_note": "Проверяемый аспект компетенции, не подтверждение всей компетенции"
+    },
+    {
+      "criterion_code": "decision_evidence",
+      "criterion_version": 1,
+      "competency_code": "decision-explanation",
+      "active": true,
+      "scope_note": "Проверяемый аспект компетенции, не подтверждение всей компетенции"
+    },
+    {
+      "criterion_code": "input_validation",
+      "criterion_version": 1,
+      "competency_code": "api-design",
+      "active": true,
+      "scope_note": "Проверяемый аспект компетенции, не подтверждение всей компетенции"
+    },
+    {
+      "criterion_code": "sql_parameterization",
+      "criterion_version": 1,
+      "competency_code": "sql-queries",
+      "active": true,
+      "scope_note": "Проверяемый аспект компетенции, не подтверждение всей компетенции"
+    },
+    {
+      "criterion_code": "concurrency_consistency",
+      "criterion_version": 1,
+      "competency_code": "transactions",
+      "active": true,
+      "scope_note": "Проверяемый аспект компетенции, не подтверждение всей компетенции"
+    },
+    {
+      "criterion_code": "request_idempotency",
+      "criterion_version": 1,
+      "competency_code": "service-integration",
+      "active": true,
+      "scope_note": "Проверяемый аспект компетенции, не подтверждение всей компетенции"
+    },
+    {
+      "criterion_code": "container_configuration",
+      "criterion_version": 1,
+      "competency_code": "deployment",
+      "active": true,
+      "scope_note": "Проверяемый аспект компетенции, не подтверждение всей компетенции"
+    },
+    {
+      "criterion_code": "orchestration_recovery",
+      "criterion_version": 1,
+      "competency_code": "system-recovery",
+      "active": true,
+      "scope_note": "Проверяемый аспект компетенции, не подтверждение всей компетенции"
+    },
+    {
+      "criterion_code": "code_readability",
+      "criterion_version": 1,
+      "competency_code": "code-maintenance",
+      "active": true,
+      "scope_note": "Проверяемый аспект компетенции, не подтверждение всей компетенции"
+    },
+    {
+      "criterion_code": "functional_correctness",
+      "criterion_version": 1,
+      "competency_code": "business-logic",
+      "active": true,
+      "scope_note": "Реализация поведения предметной задачи"
+    },
+    {
+      "criterion_code": "api_contract",
+      "criterion_version": 1,
+      "competency_code": "service-integration",
+      "active": true,
+      "scope_note": "Соблюдение контракта API при взаимодействии сервисов"
+    },
+    {
+      "criterion_code": "input_validation",
+      "criterion_version": 1,
+      "competency_code": "business-logic",
+      "active": true,
+      "scope_note": "Отклонение недопустимых входных данных предметной задачи"
+    },
+    {
+      "criterion_code": "test_effectiveness",
+      "criterion_version": 1,
+      "competency_code": "quality-assessment",
+      "active": true,
+      "scope_note": "Способность набора тестов обнаруживать заданные дефекты"
+    },
+    {
+      "criterion_code": "instruction_reproducibility",
+      "criterion_version": 1,
+      "competency_code": "deployment",
+      "active": true,
+      "scope_note": "Воспроизводимость инструкции развёртывания"
+    },
+    {
+      "criterion_code": "network_policy",
+      "criterion_version": 1,
+      "competency_code": "security-configuration",
+      "active": true,
+      "scope_note": "Проверка разрешённых и запрещённых сетевых соединений"
+    }
+  ]
+}

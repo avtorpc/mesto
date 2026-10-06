@@ -1,0 +1,77 @@
+{
+  "operation": "generate_task",
+  "prompt_version": "mvp-generation-v1",
+  "selection": {
+    "specialization_code": "backend",
+    "declared_grade_code": "middle",
+    "competency_codes": [
+      "api-design",
+      "transactions"
+    ],
+    "technologies": [
+      {
+        "code": "php",
+        "role": "assessed"
+      },
+      {
+        "code": "postgresql",
+        "role": "assessed"
+      }
+    ]
+  },
+  "criteria": [
+    {
+      "code": "api_contract",
+      "version": 1,
+      "name": "Проектирование и реализация API",
+      "description": "Проверить наблюдаемые условия: Ответы соответствуют заданной структуре и кодам состояния; Ошибочные запросы обработаны согласно контракту",
+      "check_templates": [
+        "Ответы соответствуют заданной структуре и кодам состояния",
+        "Ошибочные запросы обработаны согласно контракту"
+      ]
+    },
+    {
+      "code": "transaction_atomicity",
+      "version": 1,
+      "name": "Транзакции и целостность",
+      "description": "Проверить наблюдаемые условия: Успешная операция сохраняет требуемое согласованное состояние; При указанных сбоях отсутствуют запрещённые частичные изменения",
+      "check_templates": [
+        "Успешная операция сохраняет требуемое согласованное состояние",
+        "При указанных сбоях отсутствуют запрещённые частичные изменения"
+      ]
+    }
+  ],
+  "scale": {
+    "code": "mvp_checks_0_2_v1",
+    "checks_per_criterion": 2,
+    "anchors": {
+      "0": "Обе проверки не выполнены",
+      "1": "Выполнена ровно одна проверка",
+      "2": "Выполнены обе проверки"
+    },
+    "unknown": null,
+    "unknown_rule": "Хотя бы одна проверка без достаточных оснований → null"
+  },
+  "constraints": {
+    "max_competencies": 3,
+    "checks_per_criterion": 2,
+    "allow_new_criteria": false,
+    "allow_grade_assignment": false,
+    "require_explicit_candidate_conditions": true,
+    "allow_unselected_required_technologies": false
+  },
+  "instruction": "Сформируй одну небольшую выполнимую задачу по выбору и критериям. Верни JSON с title, assignment, required_technology_codes, criteria_checks. Для каждого переданного criterion_code сохрани criterion_version и предложи ровно две конкретные проверки с check_id, condition, expected_evidence. Все проверяемые требования должны быть прямо отражены в assignment. Не меняй критерии и шкалу. В required_technology_codes верни ровно выбранные технологии с ролью assessed; не добавляй обязательные технологии. Если сочетание не позволяет составить связную задачу, верни compatible=false и reason; не заменяй выбор. Грейд — ориентир сложности, не подтверждение уровня. Соблюдай selected_pairs: каждый критерий оценивает только назначенную ему в этой задаче компетенцию. Не перераспределяй пары. В criteria_checks верни competency_code из selected_pairs вместе с criterion_code и criterion_version.",
+  "selection_policy": "random_complete_unique_matching_v1",
+  "selected_pairs": [
+    {
+      "competency_code": "api-design",
+      "criterion_code": "api_contract",
+      "criterion_version": 1
+    },
+    {
+      "competency_code": "transactions",
+      "criterion_code": "transaction_atomicity",
+      "criterion_version": 1
+    }
+  ]
+}
