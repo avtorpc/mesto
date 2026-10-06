@@ -3,8 +3,16 @@ services:
         autowire: true
         autoconfigure: true
 
-    App\\Service\\AiEvaluationService:
+    App\:
+        resource: '../src/'
+
+    App\Service\AiEvaluationService:
         arguments:
             $aiApiKey: '%env(AI_API_KEY)%'
             $aiApiBaseUrl: '%env(AI_API_BASE_URL)%'
             $aiModel: '%env(AI_MODEL)%'
+
+    App\Service\GigaChatClient:
+        arguments:
+            $authorizationKey: '%env(AI_API_KEY)%'
+            $model: '%env(AI_MODEL)%'

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Проверка компетенций — место</title>
+  <link rel="stylesheet" href="./qualification.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="logo" href="/qualification/" aria-label="место — проверка компетенций"><span></span>место</a>
+    <span class="prototype">ПРОТОТИП</span>
+  </header>
+
+  <main>
+    <section class="intro">
+      <p class="eyebrow">Независимая проверка</p>
+      <h1>Подтвердите профессиональные компетенции</h1>
+      <p>Укажите свой профиль, и GigaChat сформирует короткий тест примерно на 5 минут. Результат этой попытки хранится только в вашем браузере.</p>
+    </section>
+
+    <section class="panel" aria-labelledby="profile-title">
+      <div class="section-heading">
+        <div>
+          <p class="step">Шаг 1</p>
+          <h2 id="profile-title">Параметры проверки</h2>
+        </div>
+        <span>Без регистрации</span>
+      </div>
+
+      <form id="testProfile">
+        <div class="field-grid">
+          <label>Специализация
+            <select id="specialization" required>
+              <option value="backend">Backend-разработка</option>
+              <option value="frontend">Frontend-разработка</option>
+            </select>
+          </label>
+          <label>Предполагаемый грейд
+            <select id="declaredGrade" required>
+              <option value="trainee">Trainee</option>
+              <option value="junior">Junior</option>
+              <option value="middle" selected>Middle</option>
+              <option value="senior">Senior</option>
+            </select>
+          </label>
+        </div>
+
+        <fieldset class="stack-group">
+          <legend>Языки программирования <small>выберите всё, с чем работали</small></legend>
+          <div class="choice-grid" data-stack-group="languages">
+            <label class="choice"><input type="checkbox" value="JavaScript / TypeScript" checked><span>JavaScript / TypeScript</span></label>
+            <label class="choice"><input type="checkbox" value="Python"><span>Python</span></label>
+            <label class="choice"><input type="checkbox" value="Java"><span>Java</span></label>
+            <label class="choice"><input type="checkbox" value="PHP" checked><span>PHP</span></label>
+            <label class="choice"><input type="checkbox" value="C#"><span>C#</span></label>
+            <label class="choice"><input type="checkbox" value="Go"><span>Go</span></label>
+            <label class="choice"><input type="checkbox" value="Kotlin"><span>Kotlin</span></label>
+            <label class="choice"><input type="checkbox" value="C++"><span>C++</span></label>
+          </div>
+        </fieldset>
+
+        <fieldset class="stack-group">
+          <legend>Базы данных и работа с данными</legend>
+          <div class="choice-grid" data-stack-group="databases">
+            <label class="choice"><input type="checkbox" value="SQL и проектирование схем" checked><span>SQL и схемы</span></label>
+            <label class="choice"><input type="checkbox" value="PostgreSQL" checked><span>PostgreSQL</span></label>
+            <label class="choice"><input type="checkbox" value="MySQL"><span>MySQL</span></label>
+            <label class="choice"><input type="checkbox" value="MongoDB"><span>MongoDB</span></label>
+            <label class="choice"><input type="checkbox" value="Redis"><span>Redis</span></label>
+            <label class="choice"><input type="checkbox" value="ClickHouse"><span>ClickHouse</span></label>
+            <label class="choice"><input type="checkbox" value="Индексы и оптимизация запросов"><span>Индексы и оптимизация</span></label>
+            <label class="choice"><input type="checkbox" value="Транзакции и уровни изоляции"><span>Транзакции</span></label>
+          </div>
+        </fieldset>
+
+        <fieldset class="stack-group">
+          <legend>DevOps и инфраструктура</legend>
+          <div class="choice-grid" data-stack-group="devops">
+            <label class="choice"><input type="checkbox" value="Docker" checked><span>Docker</span></label>
+            <label class="choice"><input type="checkbox" value="Docker Compose"><span>Docker Compose</span></label>
+            <label class="choice"><input type="checkbox" value="Linux"><span>Linux</span></label>
+            <label class="choice"><input type="checkbox" value="Nginx"><span>Nginx</span></label>
+            <label class="choice"><input type="checkbox" value="CI/CD"><span>CI/CD</span></label>
+            <label class="choice"><input type="checkbox" value="Kubernetes"><span>Kubernetes</span></label>
+            <label class="choice"><input type="checkbox" value="Terraform"><span>Terraform</span></label>
+            <label class="choice"><input type="checkbox" value="Мониторинг и логирование"><span>Мониторинг</span></label>
+          </div>
+        </fieldset>
+
+        <fieldset class="stack-group">
+          <legend>Инженерные практики <small>помогут разнообразить тест</small></legend>
+          <div class="choice-grid" data-stack-group="practices">
+            <label class="choice"><input type="checkbox" value="REST API" checked><span>REST API</span></label>
+            <label class="choice"><input type="checkbox" value="Автоматизированное тестирование" checked><span>Тестирование</span></label>
+            <label class="choice"><input type="checkbox" value="Git"><span>Git</span></label>
+            <label class="choice"><input type="checkbox" value="Безопасность приложений"><span>Безопасность</span></label>
+            <label class="choice"><input type="checkbox" value="Микросервисная архитектура"><span>Микросервисы</span></label>
+            <label class="choice"><input type="checkbox" value="Очереди сообщений"><span>Очереди сообщений</span></label>
+            <label class="choice"><input type="checkbox" value="Проектирование систем"><span>Проектирование систем</span></label>
+            <label class="choice"><input type="checkbox" value="Профилирование и производительность"><span>Производительность</span></label>
+          </div>
+        </fieldset>
+
+        <div class="actions">
+          <button class="primary" id="generateTest" type="submit">Сформировать тест</button>
+          <p id="requestStatus" role="status" aria-live="polite"></p>
+        </div>
+      </form>
+    </section>
+
+    <section class="panel test-panel" id="testSection" aria-labelledby="testTitle" hidden>
+      <div class="section-heading">
+        <div>
+          <p class="step">Шаг 2</p>
+          <h2 id="testTitle"></h2>
+        </div>
+        <span id="testDuration"></span>
+      </div>
+      <p id="testDescription" class="test-description"></p>
+      <form id="generatedTest"></form>
+      <div class="actions">
+        <button class="primary" id="saveAttempt" type="button">Сохранить ответы</button>
+        <p id="saveStatus" role="status" aria-live="polite"></p>
+      </div>
+    </section>
+  </main>
+
+  <script src="./qualification.js" defer></script>
+</body>
+</html>
