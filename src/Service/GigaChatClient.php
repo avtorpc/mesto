@@ -72,7 +72,8 @@ final class GigaChatClient
                             'strict' => true,
                         ],
                     ],
-                    'timeout' => 45,
+                    // Structured tests can take longer to generate, especially on GigaChat.
+                    'timeout' => 120,
                 ]);
 
                 $payload = $response->toArray();
@@ -172,8 +173,9 @@ final class GigaChatClient
                                 'type' => 'array',
                                 'items' => ['type' => 'string'],
                             ],
+                            'correctOptionIndex' => ['type' => 'integer', 'minimum' => 0],
                         ],
-                        'required' => ['id', 'type', 'competency', 'technology', 'prompt', 'codeSnippet', 'codeLanguage', 'options'],
+                        'required' => ['id', 'type', 'competency', 'technology', 'prompt', 'codeSnippet', 'codeLanguage', 'options', 'correctOptionIndex'],
                     ],
                 ],
             ],
@@ -194,6 +196,9 @@ final class GigaChatClient
             }
             if (($question['type'] ?? null) === 'single_choice' && count($question['options'] ?? []) < 2) {
                 throw new \RuntimeException('GigaChat returned a choice question without options.');
+            }
+            if (!is_int($question['correctOptionIndex'] ?? null) || $question['correctOptionIndex'] < 0 || $question['correctOptionIndex'] >= count($question['options'] ?? [])) {
+                throw new \RuntimeException('GigaChat returned an invalid correct answer.');
             }
             if (is_string($question['codeSnippet'] ?? null) && trim($question['codeSnippet']) !== '') {
                 ++$questionsWithCode;

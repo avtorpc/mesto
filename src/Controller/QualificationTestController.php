@@ -35,6 +35,22 @@ final class QualificationTestController
             return new JsonResponse(['error' => $exception->getMessage()], JsonResponse::HTTP_UNPROCESSABLE_ENTITY);
         } catch (\JsonException) {
             return new JsonResponse(['error' => 'Тело запроса должно быть корректным JSON.'], JsonResponse::HTTP_BAD_REQUEST);
+        } catch (\RuntimeException $exception) {
+            if (str_contains($exception->getMessage(), 'Too Many Requests')) {
+                return new JsonResponse(
+                    ['error' => 'GigaChat временно ограничил частоту запросов. Подождите около минуты и повторите попытку.'],
+                    JsonResponse::HTTP_TOO_MANY_REQUESTS,
+                    ['Retry-After' => '60'],
+                );
+            }
+            $logger->error('Qualification test generation failed: {type}: {message}', [
+                'type' => $exception::class,
+                'message' => $exception->getMessage(),
+            ]);
+            return new JsonResponse(
+                ['error' => 'Не удалось получить тест от GigaChat. Проверьте настройки API и повторите попытку.'],
+                JsonResponse::HTTP_BAD_GATEWAY,
+            );
         } catch (\Throwable $exception) {
             $logger->error('Qualification test generation failed: {type}: {message}', [
                 'type' => $exception::class,

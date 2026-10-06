@@ -20,3 +20,8 @@ WORKDIR /var/www/html
 
 COPY docker/php/php.ini /usr/local/etc/php/conf.d/app.ini
 
+COPY docker/php/entrypoint.sh /usr/local/bin/app-entrypoint
+RUN chmod +x /usr/local/bin/app-entrypoint
+
+ENTRYPOINT ["app-entrypoint"]
+CMD ["php-fpm"]

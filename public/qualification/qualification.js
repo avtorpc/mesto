@@ -56,12 +56,18 @@
       const input=block.querySelector('input:checked, textarea');
       answers[block.dataset.questionId]=input?input.value.trim():'';
     });
-    localStorage.setItem(storageKey,JSON.stringify({version:1,test:currentTest,answers,status:'answered',updatedAt:new Date().toISOString()}));
-    saveStatus.textContent='Ответы сохранены в этом браузере.';
+    const questions=currentTest.questions||[];
+    const correct=questions.reduce((total,question)=>{
+      const answer=answers[question.id];
+      const correctOption=Number.isInteger(question.correctOptionIndex)?question.options?.[question.correctOptionIndex]:null;
+      return total+(correctOption!==null&&answer===correctOption?1:0);
+    },0);
+    localStorage.setItem(storageKey,JSON.stringify({version:1,test:currentTest,answers,correctAnswers:correct,totalQuestions:questions.length,status:'answered',updatedAt:new Date().toISOString()}));
+    saveStatus.textContent=`Ответы сохранены. Правильных ответов: ${correct} из ${questions.length}.`;
   });
 
   try{
     const saved=JSON.parse(localStorage.getItem(storageKey));
-    if(saved?.version===1&&saved.test){render(saved.test,saved.answers||{});saveStatus.textContent='Восстановлена предыдущая попытка.'}
+    if(saved?.version===1&&saved.test){render(saved.test,saved.answers||{});saveStatus.textContent=saved.status==='answered'&&Number.isInteger(saved.correctAnswers)?`Восстановлена попытка. Правильных ответов: ${saved.correctAnswers} из ${saved.totalQuestions||saved.test.questions.length}.`:'Восстановлена предыдущая попытка.'}
   }catch{localStorage.removeItem(storageKey)}
 })();
