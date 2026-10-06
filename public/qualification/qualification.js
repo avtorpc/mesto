@@ -9,6 +9,11 @@
   let currentTest=null;
 
   const escape=value=>String(value).replace(/[&<>'"]/g,char=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[char]));
+  const decodeEntities=value=>{
+    const textarea=document.createElement('textarea');
+    textarea.innerHTML=String(value??'');
+    return textarea.value;
+  };
 
   function checked(group){return[...document.querySelectorAll(`[data-stack-group="${group}"] input:checked`)].map(input=>input.value)}
   function profile(){
@@ -24,7 +29,7 @@
     testForm.innerHTML=test.questions.map((question,index)=>{
       const name=`answer-${escape(question.id||index)}`;
       const meta=[...new Set([question.competency,question.technology].filter(Boolean))].map(value=>`<span>${escape(value)}</span>`).join('');
-      const code=question.codeSnippet?`<pre class="code-sample"><code>${escape(question.codeSnippet)}</code></pre>`:'';
+      const code=question.codeSnippet?`<pre class="code-sample"><code>${escape(decodeEntities(question.codeSnippet))}</code></pre>`:'';
       const control=question.type==='single_choice'
         ? question.options.map(option=>`<label class="option"><input type="radio" name="${name}" value="${escape(option)}" ${answers[question.id]===option?'checked':''}><span>${escape(option)}</span></label>`).join('')
         : `<textarea class="answer" name="${name}" rows="3" placeholder="Кратко опишите решение">${escape(answers[question.id]||'')}</textarea>`;
@@ -63,7 +68,7 @@
       return total+(correctOption!==null&&answer===correctOption?1:0);
     },0);
     localStorage.setItem(storageKey,JSON.stringify({version:1,test:currentTest,answers,correctAnswers:correct,totalQuestions:questions.length,status:'answered',updatedAt:new Date().toISOString()}));
-    saveStatus.textContent=`Ответы сохранены. Правильных ответов: ${correct} из ${questions.length}.`;
+    saveStatus.textContent=`Ответы сохранены в этом браузере. Правильных ответов: ${correct} из ${questions.length}.`;
   });
 
   try{
